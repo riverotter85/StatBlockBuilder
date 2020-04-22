@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("");
+            System.Windows.Forms.ListViewItem listViewItem5 = new System.Windows.Forms.ListViewItem("");
             this.nameBox = new System.Windows.Forms.TextBox();
             this.sizeBox = new System.Windows.Forms.ComboBox();
             this.typeBox = new System.Windows.Forms.ComboBox();
@@ -224,6 +224,7 @@
             // 
             // armorTypeBox
             // 
+            this.armorTypeBox.Enabled = false;
             this.armorTypeBox.Location = new System.Drawing.Point(44, 55);
             this.armorTypeBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.armorTypeBox.Name = "armorTypeBox";
@@ -240,6 +241,7 @@
             this.armorCheckBox.TabIndex = 7;
             this.armorCheckBox.Text = "Armor?";
             this.armorCheckBox.UseVisualStyleBackColor = true;
+            this.armorCheckBox.CheckedChanged += new System.EventHandler(this.armorCheckBox_CheckedChanged);
             // 
             // hitPointsLabel
             // 
@@ -268,9 +270,9 @@
             this.xpValueLabel.Location = new System.Drawing.Point(252, 58);
             this.xpValueLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.xpValueLabel.Name = "xpValueLabel";
-            this.xpValueLabel.Size = new System.Drawing.Size(36, 13);
+            this.xpValueLabel.Size = new System.Drawing.Size(42, 13);
             this.xpValueLabel.TabIndex = 13;
-            this.xpValueLabel.Text = "(0 XP)";
+            this.xpValueLabel.Text = "(10 XP)";
             // 
             // crLabel
             // 
@@ -326,6 +328,7 @@
             this.crBox.Name = "crBox";
             this.crBox.Size = new System.Drawing.Size(42, 21);
             this.crBox.TabIndex = 15;
+            this.crBox.SelectedIndexChanged += new System.EventHandler(this.crBox_SelectedIndexChanged);
             // 
             // strLabel
             // 
@@ -661,6 +664,7 @@
             // pbBox
             // 
             this.pbBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.pbBox.Enabled = false;
             this.pbBox.FormattingEnabled = true;
             this.pbBox.Items.AddRange(new object[] {
             "+2",
@@ -707,6 +711,7 @@
             this.manualPbCheckbox.TabIndex = 72;
             this.manualPbCheckbox.Text = "Manual?";
             this.manualPbCheckbox.UseVisualStyleBackColor = true;
+            this.manualPbCheckbox.CheckedChanged += new System.EventHandler(this.manualPbCheckbox_CheckedChanged);
             // 
             // savingThrowsLabel
             // 
@@ -1004,7 +1009,7 @@
             this.hitPointsBox.Location = new System.Drawing.Point(5, 92);
             this.hitPointsBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.hitPointsBox.Maximum = new decimal(new int[] {
-            800,
+            999,
             0,
             0,
             0});
@@ -1034,6 +1039,7 @@
             0,
             0,
             0});
+            this.numHitDiceBox.ValueChanged += new System.EventHandler(this.numHitDiceBox_ValueChanged);
             // 
             // hitDiceLabel
             // 
@@ -1327,10 +1333,12 @@
             this.spellcasterCheckBox.TabIndex = 114;
             this.spellcasterCheckBox.Text = "Spellcaster?";
             this.spellcasterCheckBox.UseVisualStyleBackColor = true;
+            this.spellcasterCheckBox.CheckedChanged += new System.EventHandler(this.spellcasterCheckBox_CheckedChanged);
             // 
             // spellAttrBox
             // 
             this.spellAttrBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.spellAttrBox.Enabled = false;
             this.spellAttrBox.FormattingEnabled = true;
             this.spellAttrBox.Items.AddRange(new object[] {
             "Strength",
@@ -1379,9 +1387,10 @@
             // 
             this.spellsListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.nameHeader});
+            this.spellsListView.Enabled = false;
             this.spellsListView.HideSelection = false;
             this.spellsListView.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1});
+            listViewItem5});
             this.spellsListView.Location = new System.Drawing.Point(9, 316);
             this.spellsListView.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.spellsListView.Name = "spellsListView";
@@ -1397,6 +1406,7 @@
             // 
             // editSpellsButton
             // 
+            this.editSpellsButton.Enabled = false;
             this.editSpellsButton.Location = new System.Drawing.Point(9, 449);
             this.editSpellsButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.editSpellsButton.Name = "editSpellsButton";
