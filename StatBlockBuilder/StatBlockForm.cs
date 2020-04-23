@@ -14,6 +14,14 @@ namespace StatBlockBuilder
 {
     public partial class StatBlockForm : Form
     {
+        private bool[][] toughnessMods = new bool[][]
+        {
+            new bool[] { false, false, false, false, false, false, false, false, false, false, false, false, false }, // Immunities
+            new bool[] { false, false, false, false, false, false, false, false, false, false, false, false, false }, // Resistances
+            new bool[] { false, false, false, false, false, false, false, false, false, false, false, false, false }  // Vulnerabilities
+        };
+        private int prev = 0;
+
         public StatBlockForm()
         {
             InitializeComponent();
@@ -344,6 +352,20 @@ namespace StatBlockBuilder
 
             decimal average = (decimal) Math.Floor(numHitDice * (hitDieTypeVal / 2.0 + 0.5)) + conModVal;
             hitPointsBox.Value = average;
+        }
+
+        private void tmTypeBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            for (int i = 0; i < 13; i++)
+            {
+                toughnessMods[prev][i] = damageTypeListBox.GetItemChecked(i);
+            }
+
+            prev = tmTypeBox.SelectedIndex;
+            for (int i = 0; i < 13; i++)
+            {
+                damageTypeListBox.SetItemChecked(i, toughnessMods[prev][i]);
+            }
         }
     }
 }
