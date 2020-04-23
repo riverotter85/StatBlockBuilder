@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("");
+            System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem("");
             this.nameBox = new System.Windows.Forms.TextBox();
             this.sizeBox = new System.Windows.Forms.ComboBox();
             this.typeBox = new System.Windows.Forms.ComboBox();
@@ -123,6 +123,7 @@
             this.spellsListView = new System.Windows.Forms.ListView();
             this.nameHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.editSpellsButton = new System.Windows.Forms.Button();
+            this.raceTypeBox = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.normalSpeedBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.burrowSpeedBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.climbSpeedBox)).BeginInit();
@@ -141,10 +142,10 @@
             // 
             // nameBox
             // 
-            this.nameBox.Location = new System.Drawing.Point(10, 11);
+            this.nameBox.Location = new System.Drawing.Point(10, 9);
             this.nameBox.Margin = new System.Windows.Forms.Padding(2);
             this.nameBox.Name = "nameBox";
-            this.nameBox.Size = new System.Drawing.Size(98, 20);
+            this.nameBox.Size = new System.Drawing.Size(127, 20);
             this.nameBox.TabIndex = 0;
             // 
             // sizeBox
@@ -158,7 +159,7 @@
             "Large",
             "Huge",
             "Gargantuan"});
-            this.sizeBox.Location = new System.Drawing.Point(119, 10);
+            this.sizeBox.Location = new System.Drawing.Point(164, 9);
             this.sizeBox.Margin = new System.Windows.Forms.Padding(2);
             this.sizeBox.Name = "sizeBox";
             this.sizeBox.Size = new System.Drawing.Size(84, 21);
@@ -184,7 +185,7 @@
             "Ooze",
             "Plant",
             "Undead"});
-            this.typeBox.Location = new System.Drawing.Point(206, 10);
+            this.typeBox.Location = new System.Drawing.Point(251, 9);
             this.typeBox.Margin = new System.Windows.Forms.Padding(2);
             this.typeBox.Name = "typeBox";
             this.typeBox.Size = new System.Drawing.Size(92, 21);
@@ -680,6 +681,7 @@
             this.pbBox.Name = "pbBox";
             this.pbBox.Size = new System.Drawing.Size(38, 21);
             this.pbBox.TabIndex = 69;
+            this.pbBox.SelectedIndexChanged += new System.EventHandler(this.pbBox_SelectedIndexChanged);
             // 
             // orLabel
             // 
@@ -1027,19 +1029,9 @@
             0,
             0,
             0});
-            this.numHitDiceBox.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
             this.numHitDiceBox.Name = "numHitDiceBox";
             this.numHitDiceBox.Size = new System.Drawing.Size(34, 20);
             this.numHitDiceBox.TabIndex = 94;
-            this.numHitDiceBox.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
             this.numHitDiceBox.ValueChanged += new System.EventHandler(this.numHitDiceBox_ValueChanged);
             // 
             // hitDiceLabel
@@ -1353,6 +1345,7 @@
             this.spellAttrBox.Name = "spellAttrBox";
             this.spellAttrBox.Size = new System.Drawing.Size(92, 21);
             this.spellAttrBox.TabIndex = 115;
+            this.spellAttrBox.SelectedIndexChanged += new System.EventHandler(this.spellAttrBox_SelectedIndexChanged);
             // 
             // saLabel
             // 
@@ -1382,7 +1375,7 @@
             this.spellAttackLabel.Name = "spellAttackLabel";
             this.spellAttackLabel.Size = new System.Drawing.Size(85, 13);
             this.spellAttackLabel.TabIndex = 118;
-            this.spellAttackLabel.Text = "Spell Attack (+0)";
+            this.spellAttackLabel.Text = "Spell Attack (+2)";
             // 
             // spellsListView
             // 
@@ -1391,7 +1384,7 @@
             this.spellsListView.Enabled = false;
             this.spellsListView.HideSelection = false;
             this.spellsListView.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1});
+            listViewItem4});
             this.spellsListView.Location = new System.Drawing.Point(9, 316);
             this.spellsListView.Margin = new System.Windows.Forms.Padding(2);
             this.spellsListView.Name = "spellsListView";
@@ -1416,11 +1409,20 @@
             this.editSpellsButton.Text = "Edit Spells";
             this.editSpellsButton.UseVisualStyleBackColor = true;
             // 
+            // raceTypeBox
+            // 
+            this.raceTypeBox.Location = new System.Drawing.Point(347, 10);
+            this.raceTypeBox.Margin = new System.Windows.Forms.Padding(2);
+            this.raceTypeBox.Name = "raceTypeBox";
+            this.raceTypeBox.Size = new System.Drawing.Size(98, 20);
+            this.raceTypeBox.TabIndex = 121;
+            // 
             // StatBlockForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(600, 480);
+            this.Controls.Add(this.raceTypeBox);
             this.Controls.Add(this.editSpellsButton);
             this.Controls.Add(this.spellsListView);
             this.Controls.Add(this.spellAttackLabel);
@@ -1632,6 +1634,7 @@
         private System.Windows.Forms.ListView spellsListView;
         private System.Windows.Forms.ColumnHeader nameHeader;
         private System.Windows.Forms.Button editSpellsButton;
+        private System.Windows.Forms.TextBox raceTypeBox;
     }
 }
 

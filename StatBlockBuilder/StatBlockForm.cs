@@ -31,6 +31,11 @@ namespace StatBlockBuilder
             this.nameBox.Leave += new System.EventHandler(this.nameBox_Leave);
             this.nameBox.Enter += new System.EventHandler(this.nameBox_Enter);
 
+            raceTypeBox.Text = "Race (optional)";
+            raceTypeBox.ForeColor = Color.Gray;
+            this.raceTypeBox.Leave += new System.EventHandler(this.raceTypeBox_Leave);
+            this.raceTypeBox.Enter += new System.EventHandler(this.raceTypeBox_Enter);
+
             armorTypeBox.Text = "Natural Armor";
             armorTypeBox.ForeColor = Color.Gray;
             this.armorTypeBox.Leave += new System.EventHandler(this.armorTypeBox_Leave);
@@ -45,6 +50,10 @@ namespace StatBlockBuilder
             tmTypeBox.Text = "Immunities";
             pbBox.Text = "+2";
             spellAttrBox.Text = "Intelligence";
+
+            saLabel.ForeColor = Color.Gray;
+            spellSaveDcLabel.ForeColor = Color.Gray;
+            spellAttackLabel.ForeColor = Color.Gray;
         }
 
         private void nameBox_Leave(object sender, EventArgs e)
@@ -62,6 +71,24 @@ namespace StatBlockBuilder
             {
                 nameBox.Text = "";
                 nameBox.ForeColor = Color.Black;
+            }
+        }
+
+        private void raceTypeBox_Leave(object sender, EventArgs e)
+        {
+            if (raceTypeBox.Text == "")
+            {
+                raceTypeBox.Text = "Race (optional)";
+                raceTypeBox.ForeColor = Color.Gray;
+            }
+        }
+
+        private void raceTypeBox_Enter(object sender, EventArgs e)
+        {
+            if (raceTypeBox.Text == "Race (optional)")
+            {
+                raceTypeBox.Text = "";
+                raceTypeBox.ForeColor = Color.Black;
             }
         }
 
@@ -106,6 +133,7 @@ namespace StatBlockBuilder
                     hitDieTypeLabel.Text = "d20";
                     break;
             }
+            calculateHitPoints();
         }
 
         private void typeBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -129,34 +157,117 @@ namespace StatBlockBuilder
             return str;
         }
 
+        private void calculateHitPoints()
+        {
+            int numHitDice = (int) numHitDiceBox.Value;
+            int hitDieTypeVal = int.Parse(hitDieTypeLabel.Text.Trim('d'));
+            int conModVal = int.Parse(conModLabel.Text.Trim(new Char[] { '(', ')', '+' }));
+
+            decimal average = (decimal) Math.Floor(numHitDice * (hitDieTypeVal / 2.0 + 0.5)) + conModVal;
+            hitPointsBox.Value = average;
+        }
+
+        private void calculateSpellAttackAndSaveDc()
+        {
+            int proficiencyBonus;
+            if (manualPbCheckbox.Checked == true)
+            {
+                proficiencyBonus = int.Parse(pbBox.Text.Trim(new Char[] { '(', ')', '+' }));
+            }
+            else
+            {
+                proficiencyBonus = int.Parse(pbValLabel.Text.Trim(new Char[] { '(', ')', '+' }));
+            }
+
+            int attrModVal = 0;
+            switch (spellAttrBox.Text)
+            {
+                case "Strength":
+                    attrModVal = int.Parse(strModLabel.Text.Trim(new Char[] { '(', ')', '+' }));
+                    break;
+                case "Dexterity":
+                    attrModVal = int.Parse(dexModLabel.Text.Trim(new Char[] { '(', ')', '+' }));
+                    break;
+                case "Constitution":
+                    attrModVal = int.Parse(conModLabel.Text.Trim(new Char[] { '(', ')', '+' }));
+                    break;
+                case "Intelligence":
+                    attrModVal = int.Parse(intModLabel.Text.Trim(new Char[] { '(', ')', '+' }));
+                    break;
+                case "Wisdom":
+                    attrModVal = int.Parse(wisModLabel.Text.Trim(new Char[] { '(', ')', '+' }));
+                    break;
+                case "Charisma":
+                    attrModVal = int.Parse(chaModLabel.Text.Trim(new Char[] { '(', ')', '+' }));
+                    break;
+            }
+
+            int spellSaveDc = 8 + proficiencyBonus + attrModVal;
+            int spellAttack = proficiencyBonus + attrModVal;
+            spellSaveDcLabel.Text = "Spell Save DC (" + spellSaveDc + ")";
+            if (spellAttack >= 0)
+            {
+                spellAttackLabel.Text = "Spell Attack (+" + spellAttack + ")";
+            }
+            else
+            {
+                spellAttackLabel.Text = "Spell Attack (" + spellAttack + ")";
+            }
+        }
+
         private void strAttrBox_ValueChanged(object sender, EventArgs e)
         {
             strModLabel.Text = attrToMod(strAttrBox.Value);
+            if (spellAttrBox.Text == "Strength")
+            {
+                calculateSpellAttackAndSaveDc();
+            }
         }
 
         private void dexAttrBox_ValueChanged(object sender, EventArgs e)
         {
             dexModLabel.Text = attrToMod(dexAttrBox.Value);
+            if (spellAttrBox.Text == "Dexterity")
+            {
+                calculateSpellAttackAndSaveDc();
+            }
         }
 
         private void conAttrBox_ValueChanged(object sender, EventArgs e)
         {
             conModLabel.Text = attrToMod(conAttrBox.Value);
+            calculateHitPoints();
+            if (spellAttrBox.Text == "Constitution")
+            {
+                calculateSpellAttackAndSaveDc();
+            }
         }
 
         private void intAttrBox_ValueChanged(object sender, EventArgs e)
         {
             intModLabel.Text = attrToMod(intAttrBox.Value);
+            if (spellAttrBox.Text == "Intelligence")
+            {
+                calculateSpellAttackAndSaveDc();
+            }
         }
 
         private void wisAttrBox_ValueChanged(object sender, EventArgs e)
         {
             wisModLabel.Text = attrToMod(wisAttrBox.Value);
+            if (spellAttrBox.Text == "Wisdom")
+            {
+                calculateSpellAttackAndSaveDc();
+            }
         }
 
         private void chaAttrBox_ValueChanged(object sender, EventArgs e)
         {
             chaModLabel.Text = attrToMod(chaAttrBox.Value);
+            if (spellAttrBox.Text == "Charisma")
+            {
+                calculateSpellAttackAndSaveDc();
+            }
         }
 
         private void crBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -300,6 +411,8 @@ namespace StatBlockBuilder
                     xpValueLabel.Text = "(155,000 XP)";
                     break;
             }
+
+            calculateSpellAttackAndSaveDc();
         }
 
         private void armorCheckBox_CheckedChanged(object sender, EventArgs e)
@@ -326,32 +439,35 @@ namespace StatBlockBuilder
             {
                 pbBox.Enabled = false;
             }
+
+            calculateSpellAttackAndSaveDc();
         }
 
         private void spellcasterCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             if (spellcasterCheckBox.Checked == true)
             {
+                saLabel.ForeColor = Color.Black;
                 spellAttrBox.Enabled = true;
                 spellsListView.Enabled = true;
                 editSpellsButton.Enabled = true;
+                spellSaveDcLabel.ForeColor = Color.Black;
+                spellAttackLabel.ForeColor = Color.Black;
             }
             else
             {
+                saLabel.ForeColor = Color.Gray;
                 spellAttrBox.Enabled = false;
                 spellsListView.Enabled = false;
                 editSpellsButton.Enabled = false;
+                spellSaveDcLabel.ForeColor = Color.Gray;
+                spellAttackLabel.ForeColor = Color.Gray;
             }
         }
 
         private void numHitDiceBox_ValueChanged(object sender, EventArgs e)
         {
-            int numHitDice = (int) numHitDiceBox.Value;
-            int hitDieTypeVal = int.Parse(hitDieTypeLabel.Text.Trim('d'));
-            int conModVal = int.Parse(conModLabel.Text.Trim(new Char[] {'(', ')', '+'}));
-
-            decimal average = (decimal) Math.Floor(numHitDice * (hitDieTypeVal / 2.0 + 0.5)) + conModVal;
-            hitPointsBox.Value = average;
+            calculateHitPoints();
         }
 
         private void tmTypeBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -366,6 +482,16 @@ namespace StatBlockBuilder
             {
                 damageTypeListBox.SetItemChecked(i, toughnessMods[prev][i]);
             }
+        }
+
+        private void pbBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            calculateSpellAttackAndSaveDc();
+        }
+
+        private void spellAttrBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            calculateSpellAttackAndSaveDc();
         }
     }
 }
