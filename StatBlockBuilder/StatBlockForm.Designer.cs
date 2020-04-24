@@ -28,14 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("");
+            System.Windows.Forms.ListViewItem listViewItem9 = new System.Windows.Forms.ListViewItem("");
             this.nameBox = new System.Windows.Forms.TextBox();
             this.sizeBox = new System.Windows.Forms.ComboBox();
             this.typeBox = new System.Windows.Forms.ComboBox();
             this.alignmentBox = new System.Windows.Forms.ComboBox();
             this.armorClassLabel = new System.Windows.Forms.Label();
             this.armorTypeBox = new System.Windows.Forms.TextBox();
-            this.armorCheckBox = new System.Windows.Forms.CheckBox();
             this.hitPointsLabel = new System.Windows.Forms.Label();
             this.attributesLabel = new System.Windows.Forms.Label();
             this.xpValueLabel = new System.Windows.Forms.Label();
@@ -124,6 +123,8 @@
             this.nameHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.editSpellsButton = new System.Windows.Forms.Button();
             this.raceTypeBox = new System.Windows.Forms.TextBox();
+            this.hpCalcBox = new System.Windows.Forms.ComboBox();
+            this.hpCalcLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.normalSpeedBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.burrowSpeedBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.climbSpeedBox)).BeginInit();
@@ -143,7 +144,7 @@
             // nameBox
             // 
             this.nameBox.Location = new System.Drawing.Point(10, 9);
-            this.nameBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.nameBox.Margin = new System.Windows.Forms.Padding(2);
             this.nameBox.Name = "nameBox";
             this.nameBox.Size = new System.Drawing.Size(127, 20);
             this.nameBox.TabIndex = 0;
@@ -160,7 +161,7 @@
             "Huge",
             "Gargantuan"});
             this.sizeBox.Location = new System.Drawing.Point(164, 9);
-            this.sizeBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.sizeBox.Margin = new System.Windows.Forms.Padding(2);
             this.sizeBox.Name = "sizeBox";
             this.sizeBox.Size = new System.Drawing.Size(84, 21);
             this.sizeBox.TabIndex = 1;
@@ -186,7 +187,7 @@
             "Plant",
             "Undead"});
             this.typeBox.Location = new System.Drawing.Point(251, 9);
-            this.typeBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.typeBox.Margin = new System.Windows.Forms.Padding(2);
             this.typeBox.Name = "typeBox";
             this.typeBox.Size = new System.Drawing.Size(92, 21);
             this.typeBox.TabIndex = 2;
@@ -208,7 +209,7 @@
             "Neutral Evil",
             "Chaotic Evil"});
             this.alignmentBox.Location = new System.Drawing.Point(487, 9);
-            this.alignmentBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.alignmentBox.Margin = new System.Windows.Forms.Padding(2);
             this.alignmentBox.Name = "alignmentBox";
             this.alignmentBox.Size = new System.Drawing.Size(104, 21);
             this.alignmentBox.TabIndex = 3;
@@ -225,24 +226,11 @@
             // 
             // armorTypeBox
             // 
-            this.armorTypeBox.Enabled = false;
             this.armorTypeBox.Location = new System.Drawing.Point(44, 55);
-            this.armorTypeBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.armorTypeBox.Margin = new System.Windows.Forms.Padding(2);
             this.armorTypeBox.Name = "armorTypeBox";
-            this.armorTypeBox.Size = new System.Drawing.Size(76, 20);
+            this.armorTypeBox.Size = new System.Drawing.Size(81, 20);
             this.armorTypeBox.TabIndex = 6;
-            // 
-            // armorCheckBox
-            // 
-            this.armorCheckBox.AutoSize = true;
-            this.armorCheckBox.Location = new System.Drawing.Point(124, 55);
-            this.armorCheckBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.armorCheckBox.Name = "armorCheckBox";
-            this.armorCheckBox.Size = new System.Drawing.Size(59, 17);
-            this.armorCheckBox.TabIndex = 7;
-            this.armorCheckBox.Text = "Armor?";
-            this.armorCheckBox.UseVisualStyleBackColor = true;
-            this.armorCheckBox.CheckedChanged += new System.EventHandler(this.armorCheckBox_CheckedChanged);
             // 
             // hitPointsLabel
             // 
@@ -268,7 +256,7 @@
             // xpValueLabel
             // 
             this.xpValueLabel.AutoSize = true;
-            this.xpValueLabel.Location = new System.Drawing.Point(252, 58);
+            this.xpValueLabel.Location = new System.Drawing.Point(265, 76);
             this.xpValueLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.xpValueLabel.Name = "xpValueLabel";
             this.xpValueLabel.Size = new System.Drawing.Size(42, 13);
@@ -278,7 +266,7 @@
             // crLabel
             // 
             this.crLabel.AutoSize = true;
-            this.crLabel.Location = new System.Drawing.Point(204, 39);
+            this.crLabel.Location = new System.Drawing.Point(217, 57);
             this.crLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.crLabel.Name = "crLabel";
             this.crLabel.Size = new System.Drawing.Size(88, 13);
@@ -324,8 +312,8 @@
             "28",
             "29",
             "30"});
-            this.crBox.Location = new System.Drawing.Point(206, 55);
-            this.crBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.crBox.Location = new System.Drawing.Point(219, 73);
+            this.crBox.Margin = new System.Windows.Forms.Padding(2);
             this.crBox.Name = "crBox";
             this.crBox.Size = new System.Drawing.Size(42, 21);
             this.crBox.TabIndex = 15;
@@ -457,7 +445,7 @@
             // 
             this.medicineCheckbox.AutoSize = true;
             this.medicineCheckbox.Location = new System.Drawing.Point(500, 154);
-            this.medicineCheckbox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.medicineCheckbox.Margin = new System.Windows.Forms.Padding(2);
             this.medicineCheckbox.Name = "medicineCheckbox";
             this.medicineCheckbox.Size = new System.Drawing.Size(69, 17);
             this.medicineCheckbox.TabIndex = 49;
@@ -468,7 +456,7 @@
             // 
             this.natureCheckbox.AutoSize = true;
             this.natureCheckbox.Location = new System.Drawing.Point(500, 176);
-            this.natureCheckbox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.natureCheckbox.Margin = new System.Windows.Forms.Padding(2);
             this.natureCheckbox.Name = "natureCheckbox";
             this.natureCheckbox.Size = new System.Drawing.Size(58, 17);
             this.natureCheckbox.TabIndex = 50;
@@ -479,7 +467,7 @@
             // 
             this.perceptionCheckbox.AutoSize = true;
             this.perceptionCheckbox.Location = new System.Drawing.Point(500, 198);
-            this.perceptionCheckbox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.perceptionCheckbox.Margin = new System.Windows.Forms.Padding(2);
             this.perceptionCheckbox.Name = "perceptionCheckbox";
             this.perceptionCheckbox.Size = new System.Drawing.Size(77, 17);
             this.perceptionCheckbox.TabIndex = 51;
@@ -490,7 +478,7 @@
             // 
             this.performanceCheckbox.AutoSize = true;
             this.performanceCheckbox.Location = new System.Drawing.Point(500, 220);
-            this.performanceCheckbox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.performanceCheckbox.Margin = new System.Windows.Forms.Padding(2);
             this.performanceCheckbox.Name = "performanceCheckbox";
             this.performanceCheckbox.Size = new System.Drawing.Size(86, 17);
             this.performanceCheckbox.TabIndex = 52;
@@ -501,7 +489,7 @@
             // 
             this.persuasionCheckbox.AutoSize = true;
             this.persuasionCheckbox.Location = new System.Drawing.Point(500, 242);
-            this.persuasionCheckbox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.persuasionCheckbox.Margin = new System.Windows.Forms.Padding(2);
             this.persuasionCheckbox.Name = "persuasionCheckbox";
             this.persuasionCheckbox.Size = new System.Drawing.Size(78, 17);
             this.persuasionCheckbox.TabIndex = 53;
@@ -512,7 +500,7 @@
             // 
             this.religionCheckbox.AutoSize = true;
             this.religionCheckbox.Location = new System.Drawing.Point(500, 264);
-            this.religionCheckbox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.religionCheckbox.Margin = new System.Windows.Forms.Padding(2);
             this.religionCheckbox.Name = "religionCheckbox";
             this.religionCheckbox.Size = new System.Drawing.Size(64, 17);
             this.religionCheckbox.TabIndex = 54;
@@ -523,7 +511,7 @@
             // 
             this.sohCheckbox.AutoSize = true;
             this.sohCheckbox.Location = new System.Drawing.Point(500, 286);
-            this.sohCheckbox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.sohCheckbox.Margin = new System.Windows.Forms.Padding(2);
             this.sohCheckbox.Name = "sohCheckbox";
             this.sohCheckbox.Size = new System.Drawing.Size(99, 17);
             this.sohCheckbox.TabIndex = 55;
@@ -534,7 +522,7 @@
             // 
             this.stealthCheckbox.AutoSize = true;
             this.stealthCheckbox.Location = new System.Drawing.Point(500, 308);
-            this.stealthCheckbox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.stealthCheckbox.Margin = new System.Windows.Forms.Padding(2);
             this.stealthCheckbox.Name = "stealthCheckbox";
             this.stealthCheckbox.Size = new System.Drawing.Size(59, 17);
             this.stealthCheckbox.TabIndex = 56;
@@ -545,7 +533,7 @@
             // 
             this.survivalCheckbox.AutoSize = true;
             this.survivalCheckbox.Location = new System.Drawing.Point(500, 330);
-            this.survivalCheckbox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.survivalCheckbox.Margin = new System.Windows.Forms.Padding(2);
             this.survivalCheckbox.Name = "survivalCheckbox";
             this.survivalCheckbox.Size = new System.Drawing.Size(64, 17);
             this.survivalCheckbox.TabIndex = 57;
@@ -556,7 +544,7 @@
             // 
             this.investigationCheckbox.AutoSize = true;
             this.investigationCheckbox.Location = new System.Drawing.Point(396, 330);
-            this.investigationCheckbox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.investigationCheckbox.Margin = new System.Windows.Forms.Padding(2);
             this.investigationCheckbox.Name = "investigationCheckbox";
             this.investigationCheckbox.Size = new System.Drawing.Size(86, 17);
             this.investigationCheckbox.TabIndex = 67;
@@ -567,7 +555,7 @@
             // 
             this.intimidationCheckbox.AutoSize = true;
             this.intimidationCheckbox.Location = new System.Drawing.Point(396, 308);
-            this.intimidationCheckbox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.intimidationCheckbox.Margin = new System.Windows.Forms.Padding(2);
             this.intimidationCheckbox.Name = "intimidationCheckbox";
             this.intimidationCheckbox.Size = new System.Drawing.Size(79, 17);
             this.intimidationCheckbox.TabIndex = 66;
@@ -578,7 +566,7 @@
             // 
             this.insightCheckbox.AutoSize = true;
             this.insightCheckbox.Location = new System.Drawing.Point(396, 286);
-            this.insightCheckbox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.insightCheckbox.Margin = new System.Windows.Forms.Padding(2);
             this.insightCheckbox.Name = "insightCheckbox";
             this.insightCheckbox.Size = new System.Drawing.Size(57, 17);
             this.insightCheckbox.TabIndex = 65;
@@ -589,7 +577,7 @@
             // 
             this.historyCheckbox.AutoSize = true;
             this.historyCheckbox.Location = new System.Drawing.Point(396, 264);
-            this.historyCheckbox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.historyCheckbox.Margin = new System.Windows.Forms.Padding(2);
             this.historyCheckbox.Name = "historyCheckbox";
             this.historyCheckbox.Size = new System.Drawing.Size(58, 17);
             this.historyCheckbox.TabIndex = 64;
@@ -600,7 +588,7 @@
             // 
             this.deceptionCheckbox.AutoSize = true;
             this.deceptionCheckbox.Location = new System.Drawing.Point(396, 242);
-            this.deceptionCheckbox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.deceptionCheckbox.Margin = new System.Windows.Forms.Padding(2);
             this.deceptionCheckbox.Name = "deceptionCheckbox";
             this.deceptionCheckbox.Size = new System.Drawing.Size(75, 17);
             this.deceptionCheckbox.TabIndex = 63;
@@ -611,7 +599,7 @@
             // 
             this.athleticsCheckbox.AutoSize = true;
             this.athleticsCheckbox.Location = new System.Drawing.Point(396, 220);
-            this.athleticsCheckbox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.athleticsCheckbox.Margin = new System.Windows.Forms.Padding(2);
             this.athleticsCheckbox.Name = "athleticsCheckbox";
             this.athleticsCheckbox.Size = new System.Drawing.Size(66, 17);
             this.athleticsCheckbox.TabIndex = 62;
@@ -622,7 +610,7 @@
             // 
             this.arcanaCheckbox.AutoSize = true;
             this.arcanaCheckbox.Location = new System.Drawing.Point(396, 198);
-            this.arcanaCheckbox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.arcanaCheckbox.Margin = new System.Windows.Forms.Padding(2);
             this.arcanaCheckbox.Name = "arcanaCheckbox";
             this.arcanaCheckbox.Size = new System.Drawing.Size(60, 17);
             this.arcanaCheckbox.TabIndex = 61;
@@ -633,7 +621,7 @@
             // 
             this.ahCheckbox.AutoSize = true;
             this.ahCheckbox.Location = new System.Drawing.Point(396, 176);
-            this.ahCheckbox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ahCheckbox.Margin = new System.Windows.Forms.Padding(2);
             this.ahCheckbox.Name = "ahCheckbox";
             this.ahCheckbox.Size = new System.Drawing.Size(102, 17);
             this.ahCheckbox.TabIndex = 60;
@@ -644,7 +632,7 @@
             // 
             this.acrobaticsCheckbox.AutoSize = true;
             this.acrobaticsCheckbox.Location = new System.Drawing.Point(396, 154);
-            this.acrobaticsCheckbox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.acrobaticsCheckbox.Margin = new System.Windows.Forms.Padding(2);
             this.acrobaticsCheckbox.Name = "acrobaticsCheckbox";
             this.acrobaticsCheckbox.Size = new System.Drawing.Size(76, 17);
             this.acrobaticsCheckbox.TabIndex = 59;
@@ -677,7 +665,7 @@
             "+8",
             "+9"});
             this.pbBox.Location = new System.Drawing.Point(335, 154);
-            this.pbBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pbBox.Margin = new System.Windows.Forms.Padding(2);
             this.pbBox.Name = "pbBox";
             this.pbBox.Size = new System.Drawing.Size(38, 21);
             this.pbBox.TabIndex = 69;
@@ -707,7 +695,7 @@
             // 
             this.manualPbCheckbox.AutoSize = true;
             this.manualPbCheckbox.Location = new System.Drawing.Point(298, 179);
-            this.manualPbCheckbox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.manualPbCheckbox.Margin = new System.Windows.Forms.Padding(2);
             this.manualPbCheckbox.Name = "manualPbCheckbox";
             this.manualPbCheckbox.Size = new System.Drawing.Size(67, 17);
             this.manualPbCheckbox.TabIndex = 72;
@@ -730,7 +718,7 @@
             // 
             this.strCheckbox.AutoSize = true;
             this.strCheckbox.Location = new System.Drawing.Point(279, 220);
-            this.strCheckbox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.strCheckbox.Margin = new System.Windows.Forms.Padding(2);
             this.strCheckbox.Name = "strCheckbox";
             this.strCheckbox.Size = new System.Drawing.Size(66, 17);
             this.strCheckbox.TabIndex = 74;
@@ -741,7 +729,7 @@
             // 
             this.dexCheckbox.AutoSize = true;
             this.dexCheckbox.Location = new System.Drawing.Point(279, 242);
-            this.dexCheckbox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dexCheckbox.Margin = new System.Windows.Forms.Padding(2);
             this.dexCheckbox.Name = "dexCheckbox";
             this.dexCheckbox.Size = new System.Drawing.Size(67, 17);
             this.dexCheckbox.TabIndex = 75;
@@ -752,7 +740,7 @@
             // 
             this.conCheckbox.AutoSize = true;
             this.conCheckbox.Location = new System.Drawing.Point(279, 264);
-            this.conCheckbox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.conCheckbox.Margin = new System.Windows.Forms.Padding(2);
             this.conCheckbox.Name = "conCheckbox";
             this.conCheckbox.Size = new System.Drawing.Size(81, 17);
             this.conCheckbox.TabIndex = 76;
@@ -763,7 +751,7 @@
             // 
             this.intCheckbox.AutoSize = true;
             this.intCheckbox.Location = new System.Drawing.Point(279, 286);
-            this.intCheckbox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.intCheckbox.Margin = new System.Windows.Forms.Padding(2);
             this.intCheckbox.Name = "intCheckbox";
             this.intCheckbox.Size = new System.Drawing.Size(80, 17);
             this.intCheckbox.TabIndex = 77;
@@ -774,7 +762,7 @@
             // 
             this.wisCheckbox.AutoSize = true;
             this.wisCheckbox.Location = new System.Drawing.Point(279, 308);
-            this.wisCheckbox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.wisCheckbox.Margin = new System.Windows.Forms.Padding(2);
             this.wisCheckbox.Name = "wisCheckbox";
             this.wisCheckbox.Size = new System.Drawing.Size(64, 17);
             this.wisCheckbox.TabIndex = 78;
@@ -785,7 +773,7 @@
             // 
             this.chaCheckbox.AutoSize = true;
             this.chaCheckbox.Location = new System.Drawing.Point(279, 330);
-            this.chaCheckbox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.chaCheckbox.Margin = new System.Windows.Forms.Padding(2);
             this.chaCheckbox.Name = "chaCheckbox";
             this.chaCheckbox.Size = new System.Drawing.Size(69, 17);
             this.chaCheckbox.TabIndex = 79;
@@ -810,8 +798,8 @@
             "Radiant",
             "Slashing",
             "Thunder"});
-            this.damageTypeListBox.Location = new System.Drawing.Point(130, 136);
-            this.damageTypeListBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.damageTypeListBox.Location = new System.Drawing.Point(126, 172);
+            this.damageTypeListBox.Margin = new System.Windows.Forms.Padding(2);
             this.damageTypeListBox.Name = "damageTypeListBox";
             this.damageTypeListBox.Size = new System.Drawing.Size(138, 49);
             this.damageTypeListBox.TabIndex = 81;
@@ -824,8 +812,8 @@
             "Immunities",
             "Resistances",
             "Vulnerabilities"});
-            this.tmTypeBox.Location = new System.Drawing.Point(151, 112);
-            this.tmTypeBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tmTypeBox.Location = new System.Drawing.Point(147, 148);
+            this.tmTypeBox.Margin = new System.Windows.Forms.Padding(2);
             this.tmTypeBox.Name = "tmTypeBox";
             this.tmTypeBox.Size = new System.Drawing.Size(92, 21);
             this.tmTypeBox.TabIndex = 82;
@@ -835,7 +823,7 @@
             // 
             this.tmLabel.AutoSize = true;
             this.tmLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tmLabel.Location = new System.Drawing.Point(143, 93);
+            this.tmLabel.Location = new System.Drawing.Point(139, 129);
             this.tmLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.tmLabel.Name = "tmLabel";
             this.tmLabel.Size = new System.Drawing.Size(122, 15);
@@ -846,7 +834,7 @@
             // 
             this.sensesLabel.AutoSize = true;
             this.sensesLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.sensesLabel.Location = new System.Drawing.Point(174, 275);
+            this.sensesLabel.Location = new System.Drawing.Point(170, 289);
             this.sensesLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.sensesLabel.Name = "sensesLabel";
             this.sensesLabel.Size = new System.Drawing.Size(48, 15);
@@ -862,8 +850,8 @@
             "Darkvision",
             "Tremorsense",
             "Truesight"});
-            this.sensesListBox.Location = new System.Drawing.Point(130, 292);
-            this.sensesListBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.sensesListBox.Location = new System.Drawing.Point(126, 306);
+            this.sensesListBox.Margin = new System.Windows.Forms.Padding(2);
             this.sensesListBox.Name = "sensesListBox";
             this.sensesListBox.Size = new System.Drawing.Size(138, 49);
             this.sensesListBox.TabIndex = 85;
@@ -895,8 +883,8 @@
             "Sylvan",
             "Terran",
             "Undercommon"});
-            this.languagesListBox.Location = new System.Drawing.Point(130, 370);
-            this.languagesListBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.languagesListBox.Location = new System.Drawing.Point(126, 374);
+            this.languagesListBox.Margin = new System.Windows.Forms.Padding(2);
             this.languagesListBox.Name = "languagesListBox";
             this.languagesListBox.Size = new System.Drawing.Size(138, 49);
             this.languagesListBox.TabIndex = 87;
@@ -905,7 +893,7 @@
             // 
             this.languagesLabel.AutoSize = true;
             this.languagesLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.languagesLabel.Location = new System.Drawing.Point(166, 353);
+            this.languagesLabel.Location = new System.Drawing.Point(162, 357);
             this.languagesLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.languagesLabel.Name = "languagesLabel";
             this.languagesLabel.Size = new System.Drawing.Size(69, 15);
@@ -920,7 +908,7 @@
             0,
             0});
             this.normalSpeedBox.Location = new System.Drawing.Point(5, 129);
-            this.normalSpeedBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.normalSpeedBox.Margin = new System.Windows.Forms.Padding(2);
             this.normalSpeedBox.Maximum = new decimal(new int[] {
             120,
             0,
@@ -943,7 +931,7 @@
             0,
             0});
             this.burrowSpeedBox.Location = new System.Drawing.Point(5, 152);
-            this.burrowSpeedBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.burrowSpeedBox.Margin = new System.Windows.Forms.Padding(2);
             this.burrowSpeedBox.Maximum = new decimal(new int[] {
             120,
             0,
@@ -961,7 +949,7 @@
             0,
             0});
             this.climbSpeedBox.Location = new System.Drawing.Point(5, 175);
-            this.climbSpeedBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.climbSpeedBox.Margin = new System.Windows.Forms.Padding(2);
             this.climbSpeedBox.Maximum = new decimal(new int[] {
             120,
             0,
@@ -979,7 +967,7 @@
             0,
             0});
             this.flySpeedBox.Location = new System.Drawing.Point(5, 197);
-            this.flySpeedBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.flySpeedBox.Margin = new System.Windows.Forms.Padding(2);
             this.flySpeedBox.Maximum = new decimal(new int[] {
             120,
             0,
@@ -997,7 +985,7 @@
             0,
             0});
             this.swimSpeedBox.Location = new System.Drawing.Point(5, 220);
-            this.swimSpeedBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.swimSpeedBox.Margin = new System.Windows.Forms.Padding(2);
             this.swimSpeedBox.Maximum = new decimal(new int[] {
             120,
             0,
@@ -1010,7 +998,7 @@
             // hitPointsBox
             // 
             this.hitPointsBox.Location = new System.Drawing.Point(5, 92);
-            this.hitPointsBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.hitPointsBox.Margin = new System.Windows.Forms.Padding(2);
             this.hitPointsBox.Maximum = new decimal(new int[] {
             999,
             0,
@@ -1023,7 +1011,7 @@
             // numHitDiceBox
             // 
             this.numHitDiceBox.Location = new System.Drawing.Point(56, 92);
-            this.numHitDiceBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.numHitDiceBox.Margin = new System.Windows.Forms.Padding(2);
             this.numHitDiceBox.Maximum = new decimal(new int[] {
             30,
             0,
@@ -1047,7 +1035,7 @@
             // armorClassBox
             // 
             this.armorClassBox.Location = new System.Drawing.Point(5, 55);
-            this.armorClassBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.armorClassBox.Margin = new System.Windows.Forms.Padding(2);
             this.armorClassBox.Maximum = new decimal(new int[] {
             30,
             0,
@@ -1060,7 +1048,7 @@
             // strAttrBox
             // 
             this.strAttrBox.Location = new System.Drawing.Point(349, 68);
-            this.strAttrBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.strAttrBox.Margin = new System.Windows.Forms.Padding(2);
             this.strAttrBox.Maximum = new decimal(new int[] {
             30,
             0,
@@ -1084,7 +1072,7 @@
             // dexAttrBox
             // 
             this.dexAttrBox.Location = new System.Drawing.Point(416, 69);
-            this.dexAttrBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dexAttrBox.Margin = new System.Windows.Forms.Padding(2);
             this.dexAttrBox.Maximum = new decimal(new int[] {
             30,
             0,
@@ -1118,7 +1106,7 @@
             // conAttrBox
             // 
             this.conAttrBox.Location = new System.Drawing.Point(482, 69);
-            this.conAttrBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.conAttrBox.Margin = new System.Windows.Forms.Padding(2);
             this.conAttrBox.Maximum = new decimal(new int[] {
             30,
             0,
@@ -1152,7 +1140,7 @@
             // chaAttrBox
             // 
             this.chaAttrBox.Location = new System.Drawing.Point(482, 110);
-            this.chaAttrBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.chaAttrBox.Margin = new System.Windows.Forms.Padding(2);
             this.chaAttrBox.Maximum = new decimal(new int[] {
             30,
             0,
@@ -1186,7 +1174,7 @@
             // wisAttrBox
             // 
             this.wisAttrBox.Location = new System.Drawing.Point(416, 110);
-            this.wisAttrBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.wisAttrBox.Margin = new System.Windows.Forms.Padding(2);
             this.wisAttrBox.Maximum = new decimal(new int[] {
             30,
             0,
@@ -1220,7 +1208,7 @@
             // intAttrBox
             // 
             this.intAttrBox.Location = new System.Drawing.Point(349, 109);
-            this.intAttrBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.intAttrBox.Margin = new System.Windows.Forms.Padding(2);
             this.intAttrBox.Maximum = new decimal(new int[] {
             30,
             0,
@@ -1299,8 +1287,8 @@
             "Restrained",
             "Stunned",
             "Unconscious"});
-            this.conditionTypeListBox.Location = new System.Drawing.Point(130, 214);
-            this.conditionTypeListBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.conditionTypeListBox.Location = new System.Drawing.Point(126, 238);
+            this.conditionTypeListBox.Margin = new System.Windows.Forms.Padding(2);
             this.conditionTypeListBox.Name = "conditionTypeListBox";
             this.conditionTypeListBox.Size = new System.Drawing.Size(138, 49);
             this.conditionTypeListBox.TabIndex = 113;
@@ -1309,7 +1297,7 @@
             // 
             this.ciLabel.AutoSize = true;
             this.ciLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ciLabel.Location = new System.Drawing.Point(146, 197);
+            this.ciLabel.Location = new System.Drawing.Point(138, 221);
             this.ciLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.ciLabel.Name = "ciLabel";
             this.ciLabel.Size = new System.Drawing.Size(123, 15);
@@ -1320,7 +1308,7 @@
             // 
             this.spellcasterCheckBox.AutoSize = true;
             this.spellcasterCheckBox.Location = new System.Drawing.Point(10, 254);
-            this.spellcasterCheckBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.spellcasterCheckBox.Margin = new System.Windows.Forms.Padding(2);
             this.spellcasterCheckBox.Name = "spellcasterCheckBox";
             this.spellcasterCheckBox.Size = new System.Drawing.Size(84, 17);
             this.spellcasterCheckBox.TabIndex = 114;
@@ -1341,7 +1329,7 @@
             "Wisdom",
             "Charisma"});
             this.spellAttrBox.Location = new System.Drawing.Point(9, 292);
-            this.spellAttrBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.spellAttrBox.Margin = new System.Windows.Forms.Padding(2);
             this.spellAttrBox.Name = "spellAttrBox";
             this.spellAttrBox.Size = new System.Drawing.Size(92, 21);
             this.spellAttrBox.TabIndex = 115;
@@ -1384,9 +1372,9 @@
             this.spellsListView.Enabled = false;
             this.spellsListView.HideSelection = false;
             this.spellsListView.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1});
+            listViewItem9});
             this.spellsListView.Location = new System.Drawing.Point(9, 316);
-            this.spellsListView.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.spellsListView.Margin = new System.Windows.Forms.Padding(2);
             this.spellsListView.Name = "spellsListView";
             this.spellsListView.Size = new System.Drawing.Size(110, 129);
             this.spellsListView.TabIndex = 119;
@@ -1402,7 +1390,7 @@
             // 
             this.editSpellsButton.Enabled = false;
             this.editSpellsButton.Location = new System.Drawing.Point(9, 449);
-            this.editSpellsButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.editSpellsButton.Margin = new System.Windows.Forms.Padding(2);
             this.editSpellsButton.Name = "editSpellsButton";
             this.editSpellsButton.Size = new System.Drawing.Size(64, 21);
             this.editSpellsButton.TabIndex = 120;
@@ -1412,16 +1400,42 @@
             // raceTypeBox
             // 
             this.raceTypeBox.Location = new System.Drawing.Point(347, 10);
-            this.raceTypeBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.raceTypeBox.Margin = new System.Windows.Forms.Padding(2);
             this.raceTypeBox.Name = "raceTypeBox";
             this.raceTypeBox.Size = new System.Drawing.Size(98, 20);
             this.raceTypeBox.TabIndex = 121;
+            // 
+            // hpCalcBox
+            // 
+            this.hpCalcBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.hpCalcBox.FormattingEnabled = true;
+            this.hpCalcBox.Items.AddRange(new object[] {
+            "Average",
+            "Max",
+            "Min",
+            "Manual"});
+            this.hpCalcBox.Location = new System.Drawing.Point(126, 91);
+            this.hpCalcBox.Name = "hpCalcBox";
+            this.hpCalcBox.Size = new System.Drawing.Size(67, 21);
+            this.hpCalcBox.TabIndex = 122;
+            this.hpCalcBox.SelectedIndexChanged += new System.EventHandler(this.hpCalcBox_SelectedIndexChanged);
+            // 
+            // hpCalcLabel
+            // 
+            this.hpCalcLabel.AutoSize = true;
+            this.hpCalcLabel.Location = new System.Drawing.Point(130, 75);
+            this.hpCalcLabel.Name = "hpCalcLabel";
+            this.hpCalcLabel.Size = new System.Drawing.Size(59, 13);
+            this.hpCalcLabel.TabIndex = 123;
+            this.hpCalcLabel.Text = "Calculation";
             // 
             // StatBlockForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(600, 480);
+            this.Controls.Add(this.hpCalcLabel);
+            this.Controls.Add(this.hpCalcBox);
             this.Controls.Add(this.raceTypeBox);
             this.Controls.Add(this.editSpellsButton);
             this.Controls.Add(this.spellsListView);
@@ -1509,14 +1523,13 @@
             this.Controls.Add(this.xpValueLabel);
             this.Controls.Add(this.attributesLabel);
             this.Controls.Add(this.hitPointsLabel);
-            this.Controls.Add(this.armorCheckBox);
             this.Controls.Add(this.armorTypeBox);
             this.Controls.Add(this.armorClassLabel);
             this.Controls.Add(this.alignmentBox);
             this.Controls.Add(this.typeBox);
             this.Controls.Add(this.sizeBox);
             this.Controls.Add(this.nameBox);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "StatBlockForm";
             this.Text = "5e Stat Block Builder";
             ((System.ComponentModel.ISupportInitialize)(this.normalSpeedBox)).EndInit();
@@ -1546,7 +1559,6 @@
         private System.Windows.Forms.ComboBox alignmentBox;
         private System.Windows.Forms.Label armorClassLabel;
         private System.Windows.Forms.TextBox armorTypeBox;
-        private System.Windows.Forms.CheckBox armorCheckBox;
         private System.Windows.Forms.Label hitPointsLabel;
         private System.Windows.Forms.Label attributesLabel;
         private System.Windows.Forms.Label xpValueLabel;
@@ -1635,6 +1647,8 @@
         private System.Windows.Forms.ColumnHeader nameHeader;
         private System.Windows.Forms.Button editSpellsButton;
         private System.Windows.Forms.TextBox raceTypeBox;
+        private System.Windows.Forms.ComboBox hpCalcBox;
+        private System.Windows.Forms.Label hpCalcLabel;
     }
 }
 

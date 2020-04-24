@@ -44,6 +44,7 @@ namespace StatBlockBuilder
             sizeBox.Text = "Medium";
             typeBox.Text = "Humanoid";
             alignmentBox.Text = "Unaligned";
+            hpCalcBox.Text = "Average";
 
             crBox.Text = "0";
 
@@ -159,11 +160,30 @@ namespace StatBlockBuilder
 
         private void calculateHitPoints()
         {
+            if (hpCalcBox.Text == "Manual")
+            {
+                return;
+            }
+
             int numHitDice = (int) numHitDiceBox.Value;
             int hitDieTypeVal = int.Parse(hitDieTypeLabel.Text.Trim('d'));
             int conModVal = int.Parse(conModLabel.Text.Trim(new Char[] { '(', ')', '+' }));
 
-            decimal average = (decimal) Math.Floor(numHitDice * (hitDieTypeVal / 2.0 + 0.5 + conModVal));
+            decimal hpVal = (decimal) 0.0;
+            switch (hpCalcBox.Text)
+            {
+                case "Average":
+                    hpVal = (decimal) (hitDieTypeVal / 2.0 + 0.5);
+                    break;
+                case "Max":
+                    hpVal = hitDieTypeVal;
+                    break;
+                case "Min":
+                    hpVal = 1;
+                    break;
+            }
+
+            decimal average = (decimal) Math.Floor(numHitDice * (hpVal + conModVal));
             hitPointsBox.Value = average;
         }
 
@@ -415,20 +435,6 @@ namespace StatBlockBuilder
             calculateSpellAttackAndSaveDc();
         }
 
-        private void armorCheckBox_CheckedChanged(object sender, EventArgs e)
-        {
-            if (armorCheckBox.Checked == true)
-            {
-                armorTypeBox.Enabled = true;
-            }
-            else
-            {
-                armorTypeBox.Text = "Natural Armor";
-                armorTypeBox.ForeColor = Color.Gray;
-                armorTypeBox.Enabled = false;
-            }
-        }
-
         private void manualPbCheckbox_CheckedChanged(object sender, EventArgs e)
         {
             if (manualPbCheckbox.Checked == true)
@@ -492,6 +498,24 @@ namespace StatBlockBuilder
         private void spellAttrBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             calculateSpellAttackAndSaveDc();
+        }
+
+        private void hpCalcBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (hpCalcBox.Text == "Manual")
+            {
+                hitDiceLabel.ForeColor = Color.Gray;
+                numHitDiceBox.Enabled = false;
+                hitDieTypeLabel.ForeColor = Color.Gray;
+            }
+            else
+            {
+                hitDiceLabel.ForeColor = Color.Black;
+                numHitDiceBox.Enabled = true;
+                hitDieTypeLabel.ForeColor = Color.Black;
+            }
+
+            calculateHitPoints();
         }
     }
 }
