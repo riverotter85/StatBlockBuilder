@@ -163,7 +163,7 @@ namespace StatBlockBuilder
             int hitDieTypeVal = int.Parse(hitDieTypeLabel.Text.Trim('d'));
             int conModVal = int.Parse(conModLabel.Text.Trim(new Char[] { '(', ')', '+' }));
 
-            decimal average = (decimal) Math.Floor(numHitDice * (hitDieTypeVal / 2.0 + 0.5)) + conModVal;
+            decimal average = (decimal) Math.Floor(numHitDice * (hitDieTypeVal / 2.0 + 0.5 + conModVal));
             hitPointsBox.Value = average;
         }
 
