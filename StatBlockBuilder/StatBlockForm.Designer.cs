@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem25 = new System.Windows.Forms.ListViewItem("");
+            System.Windows.Forms.ListViewItem listViewItem26 = new System.Windows.Forms.ListViewItem("");
             this.nameBox = new System.Windows.Forms.TextBox();
             this.sizeBox = new System.Windows.Forms.ComboBox();
             this.typeBox = new System.Windows.Forms.ComboBox();
@@ -209,7 +209,7 @@
             "Lawful Evil",
             "Neutral Evil",
             "Chaotic Evil"});
-            this.alignmentBox.Location = new System.Drawing.Point(487, 9);
+            this.alignmentBox.Location = new System.Drawing.Point(540, 10);
             this.alignmentBox.Margin = new System.Windows.Forms.Padding(2);
             this.alignmentBox.Name = "alignmentBox";
             this.alignmentBox.Size = new System.Drawing.Size(104, 21);
@@ -1398,7 +1398,7 @@
             this.spellsListView.Enabled = false;
             this.spellsListView.HideSelection = false;
             this.spellsListView.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem25});
+            listViewItem26});
             this.spellsListView.Location = new System.Drawing.Point(9, 316);
             this.spellsListView.Margin = new System.Windows.Forms.Padding(2);
             this.spellsListView.Name = "spellsListView";
