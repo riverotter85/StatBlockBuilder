@@ -160,7 +160,7 @@ namespace StatBlockBuilder
 
         private void calculateHitPoints()
         {
-            if (hpCalcBox.Text == "Manual")
+            if (hpCalcBox.Text == "Custom")
             {
                 return;
             }
@@ -187,7 +187,7 @@ namespace StatBlockBuilder
             hitPointsBox.Value = average;
         }
 
-        private void calculateSpellAttackAndSaveDc()
+        private int getProficiencyBonus()
         {
             int proficiencyBonus;
             if (manualPbCheckbox.Checked == true)
@@ -198,6 +198,13 @@ namespace StatBlockBuilder
             {
                 proficiencyBonus = int.Parse(pbValLabel.Text.Trim(new Char[] { '(', ')', '+' }));
             }
+
+            return proficiencyBonus;
+        }
+
+        private void calculateSpellAttackAndSaveDc()
+        {
+            int proficiencyBonus = getProficiencyBonus();
 
             int attrModVal = 0;
             switch (spellAttrBox.Text)
@@ -238,6 +245,13 @@ namespace StatBlockBuilder
         private void strAttrBox_ValueChanged(object sender, EventArgs e)
         {
             strModLabel.Text = attrToMod(strAttrBox.Value);
+
+            int strMod = int.Parse(strModLabel.Text.Trim(new Char[] { '(', ')', '+' }));
+            int profMod = getProficiencyBonus();
+
+            setSkillOrSave(strCheckbox, "Strength", strMod, profMod);
+            setSkillOrSave(athleticsCheckbox, "Athletics", strMod, profMod);
+
             if (spellAttrBox.Text == "Strength")
             {
                 calculateSpellAttackAndSaveDc();
@@ -247,6 +261,15 @@ namespace StatBlockBuilder
         private void dexAttrBox_ValueChanged(object sender, EventArgs e)
         {
             dexModLabel.Text = attrToMod(dexAttrBox.Value);
+
+            int dexMod = int.Parse(dexModLabel.Text.Trim(new Char[] { '(', ')', '+' }));
+            int profMod = getProficiencyBonus();
+
+            setSkillOrSave(dexCheckbox, "Dexterity", dexMod, profMod);
+            setSkillOrSave(acrobaticsCheckbox, "Acrobatics", dexMod, profMod);
+            setSkillOrSave(sohCheckbox, "Sleight of Hand", dexMod, profMod);
+            setSkillOrSave(stealthCheckbox, "Stealth", dexMod, profMod);
+
             if (spellAttrBox.Text == "Dexterity")
             {
                 calculateSpellAttackAndSaveDc();
@@ -257,6 +280,12 @@ namespace StatBlockBuilder
         {
             conModLabel.Text = attrToMod(conAttrBox.Value);
             calculateHitPoints();
+
+            int conMod = int.Parse(conModLabel.Text.Trim(new Char[] { '(', ')', '+' }));
+            int profMod = getProficiencyBonus();
+
+            setSkillOrSave(conCheckbox, "Constitution", conMod, profMod);
+
             if (spellAttrBox.Text == "Constitution")
             {
                 calculateSpellAttackAndSaveDc();
@@ -266,6 +295,17 @@ namespace StatBlockBuilder
         private void intAttrBox_ValueChanged(object sender, EventArgs e)
         {
             intModLabel.Text = attrToMod(intAttrBox.Value);
+
+            int intMod = int.Parse(intModLabel.Text.Trim(new Char[] { '(', ')', '+' }));
+            int profMod = getProficiencyBonus();
+
+            setSkillOrSave(intCheckbox, "Intelligence", intMod, profMod);
+            setSkillOrSave(arcanaCheckbox, "Arcana", intMod, profMod);
+            setSkillOrSave(historyCheckbox, "History", intMod, profMod);
+            setSkillOrSave(investigationCheckbox, "Investigation", intMod, profMod);
+            setSkillOrSave(natureCheckbox, "Nature", intMod, profMod);
+            setSkillOrSave(religionCheckbox, "Religion", intMod, profMod);
+
             if (spellAttrBox.Text == "Intelligence")
             {
                 calculateSpellAttackAndSaveDc();
@@ -275,6 +315,17 @@ namespace StatBlockBuilder
         private void wisAttrBox_ValueChanged(object sender, EventArgs e)
         {
             wisModLabel.Text = attrToMod(wisAttrBox.Value);
+
+            int wisMod = int.Parse(wisModLabel.Text.Trim(new Char[] { '(', ')', '+' }));
+            int profMod = getProficiencyBonus();
+
+            setSkillOrSave(wisCheckbox, "Wisdom", wisMod, profMod);
+            setSkillOrSave(ahCheckbox, "Animal Handling", wisMod, profMod);
+            setSkillOrSave(insightCheckbox, "Insight", wisMod, profMod);
+            setSkillOrSave(medicineCheckbox, "Medicine", wisMod, profMod);
+            setSkillOrSave(perceptionCheckbox, "Perception", wisMod, profMod);
+            setSkillOrSave(survivalCheckbox, "Survival", wisMod, profMod);
+
             if (spellAttrBox.Text == "Wisdom")
             {
                 calculateSpellAttackAndSaveDc();
@@ -284,6 +335,16 @@ namespace StatBlockBuilder
         private void chaAttrBox_ValueChanged(object sender, EventArgs e)
         {
             chaModLabel.Text = attrToMod(chaAttrBox.Value);
+
+            int chaMod = int.Parse(chaModLabel.Text.Trim(new Char[] { '(', ')', '+' }));
+            int profMod = getProficiencyBonus();
+
+            setSkillOrSave(chaCheckbox, "Charisma", chaMod, profMod);
+            setSkillOrSave(deceptionCheckbox, "Deception", chaMod, profMod);
+            setSkillOrSave(intimidationCheckbox, "Intimidation", chaMod, profMod);
+            setSkillOrSave(performanceCheckbox, "Performance", chaMod, profMod);
+            setSkillOrSave(persuasionCheckbox, "Persuasion", chaMod, profMod);
+
             if (spellAttrBox.Text == "Charisma")
             {
                 calculateSpellAttackAndSaveDc();
@@ -432,6 +493,7 @@ namespace StatBlockBuilder
                     break;
             }
 
+            calculateSavesAndSkills();
             calculateSpellAttackAndSaveDc();
         }
 
@@ -446,6 +508,7 @@ namespace StatBlockBuilder
                 pbBox.Enabled = false;
             }
 
+            calculateSavesAndSkills();
             calculateSpellAttackAndSaveDc();
         }
 
@@ -492,6 +555,7 @@ namespace StatBlockBuilder
 
         private void pbBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            calculateSavesAndSkills();
             calculateSpellAttackAndSaveDc();
         }
 
@@ -502,7 +566,7 @@ namespace StatBlockBuilder
 
         private void hpCalcBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (hpCalcBox.Text == "Manual")
+            if (hpCalcBox.Text == "Custom")
             {
                 hitDiceLabel.ForeColor = Color.Gray;
                 numHitDiceBox.Enabled = false;
@@ -516,6 +580,248 @@ namespace StatBlockBuilder
             }
 
             calculateHitPoints();
+        }
+
+        private void armorCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (armorCheckBox.Checked == true)
+            {
+                armorTypeBox.Enabled = true;
+            }
+            else
+            {
+                armorTypeBox.Enabled = false;
+            }
+        }
+
+        private void setSkillOrSave(CheckBox checkBox, string skillName, int modVal, int profMod)
+        {
+            int totalMod = modVal;
+            if (checkBox.Checked == true)
+            {
+                totalMod += profMod;
+            }
+
+            string str = skillName;
+            if (totalMod >= 0)
+            {
+                str += " (+" + totalMod + ")";
+            }
+            else
+            {
+                str += " (" + totalMod + ")";
+            }
+            checkBox.Text = str;
+        }
+
+        private void calculateSavesAndSkills()
+        {
+            int strMod = int.Parse(strModLabel.Text.Trim(new Char[] { '(', ')', '+' }));
+            int dexMod = int.Parse(dexModLabel.Text.Trim(new Char[] { '(', ')', '+' }));
+            int conMod = int.Parse(conModLabel.Text.Trim(new Char[] { '(', ')', '+' }));
+            int intMod = int.Parse(intModLabel.Text.Trim(new Char[] { '(', ')', '+' }));
+            int wisMod = int.Parse(wisModLabel.Text.Trim(new Char[] { '(', ')', '+' }));
+            int chaMod = int.Parse(chaModLabel.Text.Trim(new Char[] { '(', ')', '+' }));
+
+            int profMod = getProficiencyBonus();
+
+            setSkillOrSave(strCheckbox, "Strength", strMod, profMod);
+            setSkillOrSave(dexCheckbox, "Dexterity", dexMod, profMod);
+            setSkillOrSave(conCheckbox, "Constitution", conMod, profMod);
+            setSkillOrSave(intCheckbox, "Intelligence", intMod, profMod);
+            setSkillOrSave(wisCheckbox, "Wisdom", wisMod, profMod);
+            setSkillOrSave(chaCheckbox, "Charisma", chaMod, profMod);
+
+            setSkillOrSave(athleticsCheckbox, "Athletics", strMod, profMod);
+
+            setSkillOrSave(acrobaticsCheckbox, "Acrobatics", dexMod, profMod);
+            setSkillOrSave(sohCheckbox, "Sleight of Hand", dexMod, profMod);
+            setSkillOrSave(stealthCheckbox, "Stealth", dexMod, profMod);
+
+            setSkillOrSave(arcanaCheckbox, "Arcana", intMod, profMod);
+            setSkillOrSave(historyCheckbox, "History", intMod, profMod);
+            setSkillOrSave(investigationCheckbox, "Investigation", intMod, profMod);
+            setSkillOrSave(natureCheckbox, "Nature", intMod, profMod);
+            setSkillOrSave(religionCheckbox, "Religion", intMod, profMod);
+
+            setSkillOrSave(ahCheckbox, "Animal Handling", wisMod, profMod);
+            setSkillOrSave(insightCheckbox, "Insight", wisMod, profMod);
+            setSkillOrSave(medicineCheckbox, "Medicine", wisMod, profMod);
+            setSkillOrSave(perceptionCheckbox, "Perception", wisMod, profMod);
+            setSkillOrSave(survivalCheckbox, "Survival", wisMod, profMod);
+
+            setSkillOrSave(deceptionCheckbox, "Deception", chaMod, profMod);
+            setSkillOrSave(intimidationCheckbox, "Intimidation", chaMod, profMod);
+            setSkillOrSave(performanceCheckbox, "Performance", chaMod, profMod);
+            setSkillOrSave(persuasionCheckbox, "Persuasion", chaMod, profMod);
+        }
+
+        private void strCheckbox_CheckedChanged(object sender, EventArgs e)
+        {
+            int strMod = int.Parse(strModLabel.Text.Trim(new Char[] { '(', ')', '+' }));
+            int profMod = getProficiencyBonus();
+            setSkillOrSave(strCheckbox, "Strength", strMod, profMod);
+        }
+
+        private void dexCheckbox_CheckedChanged(object sender, EventArgs e)
+        {
+            int dexMod = int.Parse(dexModLabel.Text.Trim(new Char[] { '(', ')', '+' }));
+            int profMod = getProficiencyBonus();
+            setSkillOrSave(dexCheckbox, "Dexterity", dexMod, profMod);
+        }
+
+        private void conCheckbox_CheckedChanged(object sender, EventArgs e)
+        {
+            int conMod = int.Parse(conModLabel.Text.Trim(new Char[] { '(', ')', '+' }));
+            int profMod = getProficiencyBonus();
+            setSkillOrSave(conCheckbox, "Constitution", conMod, profMod);
+        }
+
+        private void intCheckbox_CheckedChanged(object sender, EventArgs e)
+        {
+            int intMod = int.Parse(intModLabel.Text.Trim(new Char[] { '(', ')', '+' }));
+            int profMod = getProficiencyBonus();
+            setSkillOrSave(intCheckbox, "Intelligence", intMod, profMod);
+        }
+
+        private void wisCheckbox_CheckedChanged(object sender, EventArgs e)
+        {
+            int wisMod = int.Parse(wisModLabel.Text.Trim(new Char[] { '(', ')', '+' }));
+            int profMod = getProficiencyBonus();
+            setSkillOrSave(wisCheckbox, "Wisdom", wisMod, profMod);
+        }
+
+        private void chaCheckbox_CheckedChanged(object sender, EventArgs e)
+        {
+            int chaMod = int.Parse(chaModLabel.Text.Trim(new Char[] { '(', ')', '+' }));
+            int profMod = getProficiencyBonus();
+            setSkillOrSave(chaCheckbox, "Charisma", chaMod, profMod);
+        }
+
+        private void acrobaticsCheckbox_CheckedChanged(object sender, EventArgs e)
+        {
+            int dexMod = int.Parse(dexModLabel.Text.Trim(new Char[] { '(', ')', '+' }));
+            int profMod = getProficiencyBonus();
+            setSkillOrSave(acrobaticsCheckbox, "Acrobatics", dexMod, profMod);
+        }
+
+        private void ahCheckbox_CheckedChanged(object sender, EventArgs e)
+        {
+            int wisMod = int.Parse(wisModLabel.Text.Trim(new Char[] { '(', ')', '+' }));
+            int profMod = getProficiencyBonus();
+            setSkillOrSave(ahCheckbox, "Animal Handling", wisMod, profMod);
+        }
+
+        private void arcanaCheckbox_CheckedChanged(object sender, EventArgs e)
+        {
+            int intMod = int.Parse(intModLabel.Text.Trim(new Char[] { '(', ')', '+' }));
+            int profMod = getProficiencyBonus();
+            setSkillOrSave(arcanaCheckbox, "Arcana", intMod, profMod);
+        }
+
+        private void athleticsCheckbox_CheckedChanged(object sender, EventArgs e)
+        {
+            int strMod = int.Parse(strModLabel.Text.Trim(new Char[] { '(', ')', '+' }));
+            int profMod = getProficiencyBonus();
+            setSkillOrSave(athleticsCheckbox, "Athletics", strMod, profMod);
+        }
+
+        private void deceptionCheckbox_CheckedChanged(object sender, EventArgs e)
+        {
+            int chaMod = int.Parse(chaModLabel.Text.Trim(new Char[] { '(', ')', '+' }));
+            int profMod = getProficiencyBonus();
+            setSkillOrSave(deceptionCheckbox, "Deception", chaMod, profMod);
+        }
+
+        private void historyCheckbox_CheckedChanged(object sender, EventArgs e)
+        {
+            int intMod = int.Parse(intModLabel.Text.Trim(new Char[] { '(', ')', '+' }));
+            int profMod = getProficiencyBonus();
+            setSkillOrSave(historyCheckbox, "History", intMod, profMod);
+        }
+
+        private void insightCheckbox_CheckedChanged(object sender, EventArgs e)
+        {
+            int wisMod = int.Parse(wisModLabel.Text.Trim(new Char[] { '(', ')', '+' }));
+            int profMod = getProficiencyBonus();
+            setSkillOrSave(insightCheckbox, "Insight", wisMod, profMod);
+        }
+
+        private void intimidationCheckbox_CheckedChanged(object sender, EventArgs e)
+        {
+            int chaMod = int.Parse(chaModLabel.Text.Trim(new Char[] { '(', ')', '+' }));
+            int profMod = getProficiencyBonus();
+            setSkillOrSave(intimidationCheckbox, "Intimidation", chaMod, profMod);
+        }
+
+        private void investigationCheckbox_CheckedChanged(object sender, EventArgs e)
+        {
+            int intMod = int.Parse(intModLabel.Text.Trim(new Char[] { '(', ')', '+' }));
+            int profMod = getProficiencyBonus();
+            setSkillOrSave(investigationCheckbox, "Investigation", intMod, profMod);
+        }
+
+        private void medicineCheckbox_CheckedChanged(object sender, EventArgs e)
+        {
+            int wisMod = int.Parse(wisModLabel.Text.Trim(new Char[] { '(', ')', '+' }));
+            int profMod = getProficiencyBonus();
+            setSkillOrSave(medicineCheckbox, "Medicine", wisMod, profMod);
+        }
+
+        private void natureCheckbox_CheckedChanged(object sender, EventArgs e)
+        {
+            int intMod = int.Parse(intModLabel.Text.Trim(new Char[] { '(', ')', '+' }));
+            int profMod = getProficiencyBonus();
+            setSkillOrSave(natureCheckbox, "Nature", intMod, profMod);
+        }
+
+        private void perceptionCheckbox_CheckedChanged(object sender, EventArgs e)
+        {
+            int wisMod = int.Parse(wisModLabel.Text.Trim(new Char[] { '(', ')', '+' }));
+            int profMod = getProficiencyBonus();
+            setSkillOrSave(perceptionCheckbox, "Perception", wisMod, profMod);
+        }
+
+        private void performanceCheckbox_CheckedChanged(object sender, EventArgs e)
+        {
+            int chaMod = int.Parse(chaModLabel.Text.Trim(new Char[] { '(', ')', '+' }));
+            int profMod = getProficiencyBonus();
+            setSkillOrSave(performanceCheckbox, "Performance", chaMod, profMod);
+        }
+
+        private void persuasionCheckbox_CheckedChanged(object sender, EventArgs e)
+        {
+            int chaMod = int.Parse(chaModLabel.Text.Trim(new Char[] { '(', ')', '+' }));
+            int profMod = getProficiencyBonus();
+            setSkillOrSave(persuasionCheckbox, "Persuasion", chaMod, profMod);
+        }
+
+        private void religionCheckbox_CheckedChanged(object sender, EventArgs e)
+        {
+            int intMod = int.Parse(intModLabel.Text.Trim(new Char[] { '(', ')', '+' }));
+            int profMod = getProficiencyBonus();
+            setSkillOrSave(religionCheckbox, "Religion", intMod, profMod);
+        }
+
+        private void sohCheckbox_CheckedChanged(object sender, EventArgs e)
+        {
+            int dexMod = int.Parse(dexModLabel.Text.Trim(new Char[] { '(', ')', '+' }));
+            int profMod = getProficiencyBonus();
+            setSkillOrSave(sohCheckbox, "Sleight of Hand", dexMod, profMod);
+        }
+
+        private void stealthCheckbox_CheckedChanged(object sender, EventArgs e)
+        {
+            int dexMod = int.Parse(dexModLabel.Text.Trim(new Char[] { '(', ')', '+' }));
+            int profMod = getProficiencyBonus();
+            setSkillOrSave(stealthCheckbox, "Stealth", dexMod, profMod);
+        }
+
+        private void survivalCheckbox_CheckedChanged(object sender, EventArgs e)
+        {
+            int wisMod = int.Parse(wisModLabel.Text.Trim(new Char[] { '(', ')', '+' }));
+            int profMod = getProficiencyBonus();
+            setSkillOrSave(survivalCheckbox, "Survival", wisMod, profMod);
         }
     }
 }
