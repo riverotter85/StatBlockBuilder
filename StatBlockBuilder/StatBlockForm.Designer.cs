@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem("");
+            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("");
             this.nameBox = new System.Windows.Forms.TextBox();
             this.sizeBox = new System.Windows.Forms.ComboBox();
             this.typeBox = new System.Windows.Forms.ComboBox();
@@ -120,12 +120,28 @@
             this.spellSaveDcLabel = new System.Windows.Forms.Label();
             this.spellAttackLabel = new System.Windows.Forms.Label();
             this.spellsListView = new System.Windows.Forms.ListView();
-            this.nameHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.spellNameHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.editSpellsButton = new System.Windows.Forms.Button();
             this.raceTypeBox = new System.Windows.Forms.TextBox();
             this.hpCalcBox = new System.Windows.Forms.ComboBox();
             this.hpCalcLabel = new System.Windows.Forms.Label();
             this.armorCheckBox = new System.Windows.Forms.CheckBox();
+            this.traitsListView = new System.Windows.Forms.ListView();
+            this.traitNameHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.actionsListView = new System.Windows.Forms.ListView();
+            this.actionNameHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.actionAttackHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.actionDamageHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.editTraitsButton = new System.Windows.Forms.Button();
+            this.editActionsButton = new System.Windows.Forms.Button();
+            this.editLegendaryActionsButton = new System.Windows.Forms.Button();
+            this.editReactionsButton = new System.Windows.Forms.Button();
+            this.legendaryActionsListView = new System.Windows.Forms.ListView();
+            this.legendaryActionNameHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.legendaryActionCostHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.reactionsListView = new System.Windows.Forms.ListView();
+            this.reactionNameHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.saveChangesButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.normalSpeedBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.burrowSpeedBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.climbSpeedBox)).BeginInit();
@@ -827,7 +843,7 @@
             this.damageTypeListBox.Location = new System.Drawing.Point(126, 172);
             this.damageTypeListBox.Margin = new System.Windows.Forms.Padding(2);
             this.damageTypeListBox.Name = "damageTypeListBox";
-            this.damageTypeListBox.Size = new System.Drawing.Size(138, 49);
+            this.damageTypeListBox.Size = new System.Drawing.Size(138, 79);
             this.damageTypeListBox.TabIndex = 81;
             // 
             // tmTypeBox
@@ -860,7 +876,7 @@
             // 
             this.sensesLabel.AutoSize = true;
             this.sensesLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.sensesLabel.Location = new System.Drawing.Point(170, 289);
+            this.sensesLabel.Location = new System.Drawing.Point(170, 365);
             this.sensesLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.sensesLabel.Name = "sensesLabel";
             this.sensesLabel.Size = new System.Drawing.Size(48, 15);
@@ -876,10 +892,10 @@
             "Darkvision",
             "Tremorsense",
             "Truesight"});
-            this.sensesListBox.Location = new System.Drawing.Point(126, 306);
+            this.sensesListBox.Location = new System.Drawing.Point(126, 382);
             this.sensesListBox.Margin = new System.Windows.Forms.Padding(2);
             this.sensesListBox.Name = "sensesListBox";
-            this.sensesListBox.Size = new System.Drawing.Size(138, 49);
+            this.sensesListBox.Size = new System.Drawing.Size(138, 64);
             this.sensesListBox.TabIndex = 85;
             // 
             // languagesListBox
@@ -909,17 +925,17 @@
             "Sylvan",
             "Terran",
             "Undercommon"});
-            this.languagesListBox.Location = new System.Drawing.Point(126, 374);
+            this.languagesListBox.Location = new System.Drawing.Point(126, 473);
             this.languagesListBox.Margin = new System.Windows.Forms.Padding(2);
             this.languagesListBox.Name = "languagesListBox";
-            this.languagesListBox.Size = new System.Drawing.Size(138, 49);
+            this.languagesListBox.Size = new System.Drawing.Size(138, 79);
             this.languagesListBox.TabIndex = 87;
             // 
             // languagesLabel
             // 
             this.languagesLabel.AutoSize = true;
             this.languagesLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.languagesLabel.Location = new System.Drawing.Point(162, 357);
+            this.languagesLabel.Location = new System.Drawing.Point(162, 456);
             this.languagesLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.languagesLabel.Name = "languagesLabel";
             this.languagesLabel.Size = new System.Drawing.Size(69, 15);
@@ -1318,17 +1334,17 @@
             "Restrained",
             "Stunned",
             "Unconscious"});
-            this.conditionTypeListBox.Location = new System.Drawing.Point(126, 238);
+            this.conditionTypeListBox.Location = new System.Drawing.Point(126, 275);
             this.conditionTypeListBox.Margin = new System.Windows.Forms.Padding(2);
             this.conditionTypeListBox.Name = "conditionTypeListBox";
-            this.conditionTypeListBox.Size = new System.Drawing.Size(138, 49);
+            this.conditionTypeListBox.Size = new System.Drawing.Size(138, 79);
             this.conditionTypeListBox.TabIndex = 113;
             // 
             // ciLabel
             // 
             this.ciLabel.AutoSize = true;
             this.ciLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ciLabel.Location = new System.Drawing.Point(138, 221);
+            this.ciLabel.Location = new System.Drawing.Point(138, 258);
             this.ciLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.ciLabel.Name = "ciLabel";
             this.ciLabel.Size = new System.Drawing.Size(123, 15);
@@ -1379,7 +1395,7 @@
             // spellSaveDcLabel
             // 
             this.spellSaveDcLabel.AutoSize = true;
-            this.spellSaveDcLabel.Location = new System.Drawing.Point(124, 442);
+            this.spellSaveDcLabel.Location = new System.Drawing.Point(6, 473);
             this.spellSaveDcLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.spellSaveDcLabel.Name = "spellSaveDcLabel";
             this.spellSaveDcLabel.Size = new System.Drawing.Size(97, 13);
@@ -1389,7 +1405,7 @@
             // spellAttackLabel
             // 
             this.spellAttackLabel.AutoSize = true;
-            this.spellAttackLabel.Location = new System.Drawing.Point(124, 458);
+            this.spellAttackLabel.Location = new System.Drawing.Point(6, 489);
             this.spellAttackLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.spellAttackLabel.Name = "spellAttackLabel";
             this.spellAttackLabel.Size = new System.Drawing.Size(85, 13);
@@ -1399,12 +1415,12 @@
             // spellsListView
             // 
             this.spellsListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.nameHeader});
+            this.spellNameHeader});
             this.spellsListView.Enabled = false;
             this.spellsListView.HideSelection = false;
             this.spellsListView.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem3});
-            this.spellsListView.Location = new System.Drawing.Point(9, 316);
+            listViewItem2});
+            this.spellsListView.Location = new System.Drawing.Point(9, 317);
             this.spellsListView.Margin = new System.Windows.Forms.Padding(2);
             this.spellsListView.Name = "spellsListView";
             this.spellsListView.Size = new System.Drawing.Size(110, 129);
@@ -1412,15 +1428,15 @@
             this.spellsListView.UseCompatibleStateImageBehavior = false;
             this.spellsListView.View = System.Windows.Forms.View.Details;
             // 
-            // nameHeader
+            // spellNameHeader
             // 
-            this.nameHeader.Text = "Name";
-            this.nameHeader.Width = 150;
+            this.spellNameHeader.Text = "Spell Name";
+            this.spellNameHeader.Width = 150;
             // 
             // editSpellsButton
             // 
             this.editSpellsButton.Enabled = false;
-            this.editSpellsButton.Location = new System.Drawing.Point(9, 449);
+            this.editSpellsButton.Location = new System.Drawing.Point(9, 450);
             this.editSpellsButton.Margin = new System.Windows.Forms.Padding(2);
             this.editSpellsButton.Name = "editSpellsButton";
             this.editSpellsButton.Size = new System.Drawing.Size(64, 21);
@@ -1471,11 +1487,156 @@
             this.armorCheckBox.UseVisualStyleBackColor = true;
             this.armorCheckBox.CheckedChanged += new System.EventHandler(this.armorCheckBox_CheckedChanged);
             // 
+            // traitsListView
+            // 
+            this.traitsListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.traitNameHeader});
+            this.traitsListView.HideSelection = false;
+            this.traitsListView.Location = new System.Drawing.Point(272, 357);
+            this.traitsListView.Name = "traitsListView";
+            this.traitsListView.Size = new System.Drawing.Size(118, 74);
+            this.traitsListView.TabIndex = 125;
+            this.traitsListView.UseCompatibleStateImageBehavior = false;
+            this.traitsListView.View = System.Windows.Forms.View.Details;
+            // 
+            // traitNameHeader
+            // 
+            this.traitNameHeader.Text = "Trait Name";
+            this.traitNameHeader.Width = 114;
+            // 
+            // actionsListView
+            // 
+            this.actionsListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.actionNameHeader,
+            this.actionAttackHeader,
+            this.actionDamageHeader});
+            this.actionsListView.HideSelection = false;
+            this.actionsListView.Location = new System.Drawing.Point(396, 357);
+            this.actionsListView.Name = "actionsListView";
+            this.actionsListView.Size = new System.Drawing.Size(247, 74);
+            this.actionsListView.TabIndex = 126;
+            this.actionsListView.UseCompatibleStateImageBehavior = false;
+            this.actionsListView.View = System.Windows.Forms.View.Details;
+            // 
+            // actionNameHeader
+            // 
+            this.actionNameHeader.Text = "Action Name";
+            this.actionNameHeader.Width = 120;
+            // 
+            // actionAttackHeader
+            // 
+            this.actionAttackHeader.Text = "Attack";
+            this.actionAttackHeader.Width = 48;
+            // 
+            // actionDamageHeader
+            // 
+            this.actionDamageHeader.Text = "Damage";
+            this.actionDamageHeader.Width = 75;
+            // 
+            // editTraitsButton
+            // 
+            this.editTraitsButton.Location = new System.Drawing.Point(272, 436);
+            this.editTraitsButton.Margin = new System.Windows.Forms.Padding(2);
+            this.editTraitsButton.Name = "editTraitsButton";
+            this.editTraitsButton.Size = new System.Drawing.Size(71, 21);
+            this.editTraitsButton.TabIndex = 127;
+            this.editTraitsButton.Text = "Edit Traits";
+            this.editTraitsButton.UseVisualStyleBackColor = true;
+            // 
+            // editActionsButton
+            // 
+            this.editActionsButton.Location = new System.Drawing.Point(573, 436);
+            this.editActionsButton.Margin = new System.Windows.Forms.Padding(2);
+            this.editActionsButton.Name = "editActionsButton";
+            this.editActionsButton.Size = new System.Drawing.Size(71, 21);
+            this.editActionsButton.TabIndex = 128;
+            this.editActionsButton.Text = "Edit Actions";
+            this.editActionsButton.UseVisualStyleBackColor = true;
+            // 
+            // editLegendaryActionsButton
+            // 
+            this.editLegendaryActionsButton.Location = new System.Drawing.Point(573, 541);
+            this.editLegendaryActionsButton.Margin = new System.Windows.Forms.Padding(2);
+            this.editLegendaryActionsButton.Name = "editLegendaryActionsButton";
+            this.editLegendaryActionsButton.Size = new System.Drawing.Size(71, 21);
+            this.editLegendaryActionsButton.TabIndex = 132;
+            this.editLegendaryActionsButton.Text = "Edit Actions";
+            this.editLegendaryActionsButton.UseVisualStyleBackColor = true;
+            // 
+            // editReactionsButton
+            // 
+            this.editReactionsButton.Location = new System.Drawing.Point(272, 541);
+            this.editReactionsButton.Margin = new System.Windows.Forms.Padding(2);
+            this.editReactionsButton.Name = "editReactionsButton";
+            this.editReactionsButton.Size = new System.Drawing.Size(87, 21);
+            this.editReactionsButton.TabIndex = 131;
+            this.editReactionsButton.Text = "Edit Reactions";
+            this.editReactionsButton.UseVisualStyleBackColor = true;
+            // 
+            // legendaryActionsListView
+            // 
+            this.legendaryActionsListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.legendaryActionNameHeader,
+            this.legendaryActionCostHeader});
+            this.legendaryActionsListView.HideSelection = false;
+            this.legendaryActionsListView.Location = new System.Drawing.Point(396, 462);
+            this.legendaryActionsListView.Name = "legendaryActionsListView";
+            this.legendaryActionsListView.Size = new System.Drawing.Size(247, 74);
+            this.legendaryActionsListView.TabIndex = 130;
+            this.legendaryActionsListView.UseCompatibleStateImageBehavior = false;
+            this.legendaryActionsListView.View = System.Windows.Forms.View.Details;
+            // 
+            // legendaryActionNameHeader
+            // 
+            this.legendaryActionNameHeader.Text = "Legendary Action";
+            this.legendaryActionNameHeader.Width = 170;
+            // 
+            // legendaryActionCostHeader
+            // 
+            this.legendaryActionCostHeader.Text = "Cost";
+            this.legendaryActionCostHeader.Width = 73;
+            // 
+            // reactionsListView
+            // 
+            this.reactionsListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.reactionNameHeader});
+            this.reactionsListView.HideSelection = false;
+            this.reactionsListView.Location = new System.Drawing.Point(272, 462);
+            this.reactionsListView.Name = "reactionsListView";
+            this.reactionsListView.Size = new System.Drawing.Size(118, 74);
+            this.reactionsListView.TabIndex = 129;
+            this.reactionsListView.UseCompatibleStateImageBehavior = false;
+            this.reactionsListView.View = System.Windows.Forms.View.Details;
+            // 
+            // reactionNameHeader
+            // 
+            this.reactionNameHeader.Text = "Reaction Name";
+            this.reactionNameHeader.Width = 114;
+            // 
+            // saveChangesButton
+            // 
+            this.saveChangesButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.saveChangesButton.Location = new System.Drawing.Point(12, 529);
+            this.saveChangesButton.Name = "saveChangesButton";
+            this.saveChangesButton.Size = new System.Drawing.Size(96, 33);
+            this.saveChangesButton.TabIndex = 133;
+            this.saveChangesButton.Text = "Save Changes";
+            this.saveChangesButton.UseVisualStyleBackColor = true;
+            // 
             // StatBlockForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(655, 480);
+            this.ClientSize = new System.Drawing.Size(655, 577);
+            this.Controls.Add(this.saveChangesButton);
+            this.Controls.Add(this.editLegendaryActionsButton);
+            this.Controls.Add(this.editReactionsButton);
+            this.Controls.Add(this.legendaryActionsListView);
+            this.Controls.Add(this.reactionsListView);
+            this.Controls.Add(this.editActionsButton);
+            this.Controls.Add(this.editTraitsButton);
+            this.Controls.Add(this.actionsListView);
+            this.Controls.Add(this.traitsListView);
             this.Controls.Add(this.armorCheckBox);
             this.Controls.Add(this.hpCalcLabel);
             this.Controls.Add(this.hpCalcBox);
@@ -1687,12 +1848,28 @@
         private System.Windows.Forms.Label spellSaveDcLabel;
         private System.Windows.Forms.Label spellAttackLabel;
         private System.Windows.Forms.ListView spellsListView;
-        private System.Windows.Forms.ColumnHeader nameHeader;
+        private System.Windows.Forms.ColumnHeader spellNameHeader;
         private System.Windows.Forms.Button editSpellsButton;
         private System.Windows.Forms.TextBox raceTypeBox;
         private System.Windows.Forms.ComboBox hpCalcBox;
         private System.Windows.Forms.Label hpCalcLabel;
         private System.Windows.Forms.CheckBox armorCheckBox;
+        private System.Windows.Forms.ListView traitsListView;
+        private System.Windows.Forms.ListView actionsListView;
+        private System.Windows.Forms.ColumnHeader traitNameHeader;
+        private System.Windows.Forms.ColumnHeader actionNameHeader;
+        private System.Windows.Forms.ColumnHeader actionAttackHeader;
+        private System.Windows.Forms.ColumnHeader actionDamageHeader;
+        private System.Windows.Forms.Button editTraitsButton;
+        private System.Windows.Forms.Button editActionsButton;
+        private System.Windows.Forms.Button editLegendaryActionsButton;
+        private System.Windows.Forms.Button editReactionsButton;
+        private System.Windows.Forms.ListView legendaryActionsListView;
+        private System.Windows.Forms.ListView reactionsListView;
+        private System.Windows.Forms.ColumnHeader reactionNameHeader;
+        private System.Windows.Forms.ColumnHeader legendaryActionNameHeader;
+        private System.Windows.Forms.ColumnHeader legendaryActionCostHeader;
+        private System.Windows.Forms.Button saveChangesButton;
     }
 }
 
