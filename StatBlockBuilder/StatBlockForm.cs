@@ -48,7 +48,7 @@ namespace StatBlockBuilder
 
             crBox.Text = "0";
 
-            tmTypeBox.Text = "Immunities";
+            tmTypeBox.Text = "Resistances";
             pbBox.Text = "+2";
             spellAttrBox.Text = "Intelligence";
 
@@ -269,6 +269,8 @@ namespace StatBlockBuilder
             setSkillOrSave(acrobaticsCheckbox, "Acrobatics", dexMod, profMod);
             setSkillOrSave(sohCheckbox, "Sleight of Hand", dexMod, profMod);
             setSkillOrSave(stealthCheckbox, "Stealth", dexMod, profMod);
+
+            calculateBaseArmorClass();
 
             if (spellAttrBox.Text == "Dexterity")
             {
@@ -582,6 +584,17 @@ namespace StatBlockBuilder
             calculateHitPoints();
         }
 
+        private void calculateBaseArmorClass()
+        {
+            if (armorCheckBox.Checked == true)
+            {
+                return;
+            }
+
+            int dexMod = int.Parse(dexModLabel.Text.Trim(new Char[] { '(', ')', '+' }));
+            armorClassBox.Value = 10 + dexMod;
+        }
+
         private void armorCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             if (armorCheckBox.Checked == true)
@@ -592,6 +605,7 @@ namespace StatBlockBuilder
             {
                 armorTypeBox.Enabled = false;
             }
+            calculateBaseArmorClass();
         }
 
         private void setSkillOrSave(CheckBox checkBox, string skillName, int modVal, int profMod)

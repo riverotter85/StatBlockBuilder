@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem26 = new System.Windows.Forms.ListViewItem("");
+            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem("");
             this.nameBox = new System.Windows.Forms.TextBox();
             this.sizeBox = new System.Windows.Forms.ComboBox();
             this.typeBox = new System.Windows.Forms.ComboBox();
@@ -436,7 +436,7 @@
             // 
             this.skillsLabel.AutoSize = true;
             this.skillsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.skillsLabel.Location = new System.Drawing.Point(467, 136);
+            this.skillsLabel.Location = new System.Drawing.Point(479, 136);
             this.skillsLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.skillsLabel.Name = "skillsLabel";
             this.skillsLabel.Size = new System.Drawing.Size(40, 17);
@@ -835,8 +835,8 @@
             this.tmTypeBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.tmTypeBox.FormattingEnabled = true;
             this.tmTypeBox.Items.AddRange(new object[] {
-            "Immunities",
             "Resistances",
+            "Immunities",
             "Vulnerabilities"});
             this.tmTypeBox.Location = new System.Drawing.Point(147, 148);
             this.tmTypeBox.Margin = new System.Windows.Forms.Padding(2);
@@ -1070,6 +1070,11 @@
             this.armorClassBox.Name = "armorClassBox";
             this.armorClassBox.Size = new System.Drawing.Size(34, 20);
             this.armorClassBox.TabIndex = 96;
+            this.armorClassBox.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
             // 
             // strAttrBox
             // 
@@ -1398,7 +1403,7 @@
             this.spellsListView.Enabled = false;
             this.spellsListView.HideSelection = false;
             this.spellsListView.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem26});
+            listViewItem3});
             this.spellsListView.Location = new System.Drawing.Point(9, 316);
             this.spellsListView.Margin = new System.Windows.Forms.Padding(2);
             this.spellsListView.Name = "spellsListView";
