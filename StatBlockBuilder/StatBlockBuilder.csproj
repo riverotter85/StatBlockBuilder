@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EditSpellsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditSpellsForm.Designer.cs">
+      <DependentUpon>EditSpellsForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="StatBlockForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -54,6 +60,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="EditSpellsForm.resx">
+      <DependentUpon>EditSpellsForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="StatBlockForm.resx">
       <DependentUpon>StatBlockForm.cs</DependentUpon>
     </EmbeddedResource>

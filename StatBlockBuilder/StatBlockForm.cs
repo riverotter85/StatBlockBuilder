@@ -14,6 +14,8 @@ namespace StatBlockBuilder
 {
     public partial class StatBlockForm : Form
     {
+        private EditSpellsForm esf = new EditSpellsForm();
+
         private bool[][] toughnessMods = new bool[][]
         {
             new bool[] { false, false, false, false, false, false, false, false, false, false, false, false, false }, // Immunities
@@ -836,6 +838,15 @@ namespace StatBlockBuilder
             int wisMod = int.Parse(wisModLabel.Text.Trim(new Char[] { '(', ')', '+' }));
             int profMod = getProficiencyBonus();
             setSkillOrSave(survivalCheckbox, "Survival", wisMod, profMod);
+        }
+
+        private void editSpellsButton_Click(object sender, EventArgs e)
+        {
+            if (esf.IsDisposed == true)
+            {
+                esf = new EditSpellsForm();
+            }
+            esf.Show();
         }
     }
 }

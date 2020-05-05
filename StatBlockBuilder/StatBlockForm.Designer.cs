@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("");
+            System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem("");
             this.nameBox = new System.Windows.Forms.TextBox();
             this.sizeBox = new System.Windows.Forms.ComboBox();
             this.typeBox = new System.Windows.Forms.ComboBox();
@@ -1419,7 +1419,7 @@
             this.spellsListView.Enabled = false;
             this.spellsListView.HideSelection = false;
             this.spellsListView.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem2});
+            listViewItem4});
             this.spellsListView.Location = new System.Drawing.Point(9, 317);
             this.spellsListView.Margin = new System.Windows.Forms.Padding(2);
             this.spellsListView.Name = "spellsListView";
@@ -1443,6 +1443,7 @@
             this.editSpellsButton.TabIndex = 120;
             this.editSpellsButton.Text = "Edit Spells";
             this.editSpellsButton.UseVisualStyleBackColor = true;
+            this.editSpellsButton.Click += new System.EventHandler(this.editSpellsButton_Click);
             // 
             // raceTypeBox
             // 
@@ -1734,6 +1735,7 @@
             this.Controls.Add(this.sizeBox);
             this.Controls.Add(this.nameBox);
             this.Margin = new System.Windows.Forms.Padding(2);
+            this.MaximizeBox = false;
             this.Name = "StatBlockForm";
             this.Text = "5e Stat Block Builder";
             ((System.ComponentModel.ISupportInitialize)(this.normalSpeedBox)).EndInit();
