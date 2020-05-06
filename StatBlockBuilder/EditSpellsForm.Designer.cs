@@ -39,6 +39,7 @@
             this.newSpellLabel = new System.Windows.Forms.Label();
             this.addedSpellsListView = new System.Windows.Forms.ListView();
             this.addedSpellLevelHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.addedSpellNameHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.addSpellsButton = new System.Windows.Forms.Button();
             this.removeButton = new System.Windows.Forms.Button();
             this.spellNameBox = new System.Windows.Forms.TextBox();
@@ -68,7 +69,6 @@
             this.commentsBox = new System.Windows.Forms.TextBox();
             this.addToCollectionButton = new System.Windows.Forms.Button();
             this.addSpellButton = new System.Windows.Forms.Button();
-            this.addedSpellNameHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.atHigherLevelsLabel = new System.Windows.Forms.Label();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.castingTimeNumBox)).BeginInit();
@@ -102,7 +102,7 @@
             // spellLevelHeader
             // 
             this.spellLevelHeader.Text = "Level";
-            this.spellLevelHeader.Width = 40;
+            this.spellLevelHeader.Width = 57;
             // 
             // spellCastingTimeHeader
             // 
@@ -156,6 +156,11 @@
             // 
             this.addedSpellLevelHeader.Text = "Level";
             this.addedSpellLevelHeader.Width = 51;
+            // 
+            // addedSpellNameHeader
+            // 
+            this.addedSpellNameHeader.Text = "Name";
+            this.addedSpellNameHeader.Width = 137;
             // 
             // addSpellsButton
             // 
@@ -517,11 +522,6 @@
             this.addSpellButton.Text = "Add Spell";
             this.addSpellButton.UseVisualStyleBackColor = true;
             this.addSpellButton.Click += new System.EventHandler(this.addSpellButton_Click);
-            // 
-            // addedSpellNameHeader
-            // 
-            this.addedSpellNameHeader.Text = "Name";
-            this.addedSpellNameHeader.Width = 137;
             // 
             // atHigherLevelsLabel
             // 

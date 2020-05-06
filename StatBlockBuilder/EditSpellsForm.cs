@@ -16,27 +16,19 @@ namespace StatBlockBuilder
         {
             public string name;
 
-            public bool verbalComponent;
-            public bool somaticComponent;
-            public bool materialComponent;
-            public string materialComponentDescription;
+            public string components;
+            public string componentsDescription;
 
             public string level;
             public string type;
             public bool ritual;
 
             public string range;
-            public int distance;
-            public string distanceUnit;
 
-            public string castingTimeType;
-            public int castingTime;
-            public string castingTimeUnit;
+            public string castingTime;
             public string castingTimeComments;
 
-            public string durationType;
-            public int durationTime;
-            public string durationUnit;
+            public string duration;
 
             public string description;
 
@@ -44,27 +36,78 @@ namespace StatBlockBuilder
             {
                 name = f.spellNameBox.Text;
 
-                somaticComponent = f.somaticCheckBox.Checked;
-                verbalComponent = f.verbalCheckBox.Checked;
-                materialComponent = f.materialCheckBox.Checked;
-                materialComponentDescription = f.materialComponentsBox.Text;
+                int componentsCount = 0;
+                components = "";
+                if (f.somaticCheckBox.Checked == true)
+                {
+                    components += "S";
+                    componentsCount++;
+                }
+                if (f.verbalCheckBox.Checked == true)
+                {
+                    if (componentsCount != 0)
+                    {
+                        components += ", ";
+                    }
+                    components += "V";
+                    componentsCount++;
+                }
+                if (f.materialCheckBox.Checked == true)
+                {
+                    if (componentsCount != 0)
+                    {
+                        components += ", ";
+                    }
+                    components += "M";
+                }
+                componentsDescription = f.materialComponentsBox.Text;
 
                 level = f.spellLevelBox.Text;
                 type = f.spellTypeBox.Text;
                 ritual = f.ritualCheckBox.Checked;
 
-                range = f.rangeBox.Text;
-                distance = (int) f.distanceBox.Value;
-                distanceUnit = f.distanceUnitBox.Text;
+                int distance = (int) f.distanceBox.Value;
+                string distanceUnit = f.distanceUnitBox.Text;
+                if (f.rangeBox.Text == "Range")
+                {
+                    range = distance + " " + distanceUnit;
+                }
+                else if (f.rangeBox.Text == "Self")
+                {
+                    range = "Self (" + distance + " " + distanceUnit + ")";
+                }
+                else
+                {
+                    range = f.rangeBox.Text;
+                }
 
-                castingTimeType = f.castingTimeBox.Text;
-                castingTime = (int) f.castingTimeNumBox.Value;
-                castingTimeUnit = f.castingTimeUnitBox.Text;
+                int castingTimeNum = (int) f.castingTimeNumBox.Value;
+                string castingTimeUnit = f.castingTimeUnitBox.Text;
+                if (f.castingTimeBox.Text == "Time")
+                {
+                    castingTime = castingTimeNum + " " + castingTimeUnit;
+                }
+                else
+                {
+                    castingTime = f.castingTimeBox.Text;
+                }
+
                 castingTimeComments = f.commentsBox.Text;
 
-                durationType = f.durationTypeBox.Text;
-                durationTime = (int) f.durationNumBox.Value;
-                durationUnit = f.durationUnitBox.Text;
+                int durationTime = (int) f.durationNumBox.Value;
+                string durationUnit = f.durationUnitBox.Text;
+                if (f.durationTypeBox.Text == "Time")
+                {
+                    duration = durationTime + " " + durationUnit;
+                }
+                else if (f.durationTypeBox.Text == "Concentration")
+                {
+                    duration = "Concentration, up to " + durationTime + " " + durationUnit;
+                }
+                else
+                {
+                    duration = f.durationTypeBox.Text;
+                }
 
                 description = f.descriptionBox.Text;
             }
@@ -250,9 +293,14 @@ namespace StatBlockBuilder
 
             spellCollectionList.Add(spell);
 
-            // NOTE: THIS IS STILL A WIP! FINISH THIS BEFORE MOVING ON!!!
             ListViewItem item = new ListViewItem(spell.name);
             item.SubItems.Add(spell.level);
+            item.SubItems.Add(spell.castingTime);
+            item.SubItems.Add(spell.range);
+            item.SubItems.Add(spell.components);
+            item.SubItems.Add(spell.duration);
+            item.SubItems.Add(spell.description);
+            spellsListView.Items.Add(item);
         }
     }
 }
