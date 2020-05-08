@@ -40,7 +40,7 @@
             this.addedSpellsListView = new System.Windows.Forms.ListView();
             this.addedSpellLevelHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.addedSpellNameHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.addSpellsButton = new System.Windows.Forms.Button();
+            this.addSpellsCollectionButton = new System.Windows.Forms.Button();
             this.removeButton = new System.Windows.Forms.Button();
             this.spellNameBox = new System.Windows.Forms.TextBox();
             this.castingTimeBox = new System.Windows.Forms.ComboBox();
@@ -70,7 +70,9 @@
             this.addToCollectionButton = new System.Windows.Forms.Button();
             this.addSpellButton = new System.Windows.Forms.Button();
             this.atHigherLevelsLabel = new System.Windows.Forms.Label();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.atHigherLevelsBox = new System.Windows.Forms.RichTextBox();
+            this.editButton = new System.Windows.Forms.Button();
+            this.previewButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.castingTimeNumBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.distanceBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.durationNumBox)).BeginInit();
@@ -86,8 +88,10 @@
             this.spellComponentsHeader,
             this.spellDurationHeader,
             this.spellDescriptionHeader});
+            this.spellsListView.FullRowSelect = true;
             this.spellsListView.HideSelection = false;
             this.spellsListView.Location = new System.Drawing.Point(12, 12);
+            this.spellsListView.MultiSelect = false;
             this.spellsListView.Name = "spellsListView";
             this.spellsListView.Size = new System.Drawing.Size(597, 137);
             this.spellsListView.TabIndex = 0;
@@ -144,8 +148,10 @@
             this.addedSpellsListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.addedSpellLevelHeader,
             this.addedSpellNameHeader});
+            this.addedSpellsListView.FullRowSelect = true;
             this.addedSpellsListView.HideSelection = false;
             this.addedSpellsListView.Location = new System.Drawing.Point(12, 199);
+            this.addedSpellsListView.MultiSelect = false;
             this.addedSpellsListView.Name = "addedSpellsListView";
             this.addedSpellsListView.Size = new System.Drawing.Size(200, 266);
             this.addedSpellsListView.TabIndex = 2;
@@ -162,14 +168,15 @@
             this.addedSpellNameHeader.Text = "Name";
             this.addedSpellNameHeader.Width = 137;
             // 
-            // addSpellsButton
+            // addSpellsCollectionButton
             // 
-            this.addSpellsButton.Location = new System.Drawing.Point(13, 156);
-            this.addSpellsButton.Name = "addSpellsButton";
-            this.addSpellsButton.Size = new System.Drawing.Size(75, 23);
-            this.addSpellsButton.TabIndex = 3;
-            this.addSpellsButton.Text = "Add Spells";
-            this.addSpellsButton.UseVisualStyleBackColor = true;
+            this.addSpellsCollectionButton.Location = new System.Drawing.Point(13, 156);
+            this.addSpellsCollectionButton.Name = "addSpellsCollectionButton";
+            this.addSpellsCollectionButton.Size = new System.Drawing.Size(75, 23);
+            this.addSpellsCollectionButton.TabIndex = 3;
+            this.addSpellsCollectionButton.Text = "Add Spells";
+            this.addSpellsCollectionButton.UseVisualStyleBackColor = true;
+            this.addSpellsCollectionButton.Click += new System.EventHandler(this.addSpellsCollectionButton_Click);
             // 
             // removeButton
             // 
@@ -532,21 +539,41 @@
             this.atHigherLevelsLabel.TabIndex = 37;
             this.atHigherLevelsLabel.Text = "At Higher Levels";
             // 
-            // richTextBox1
+            // atHigherLevelsBox
             // 
-            this.richTextBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.richTextBox1.Location = new System.Drawing.Point(239, 513);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(370, 73);
-            this.richTextBox1.TabIndex = 38;
-            this.richTextBox1.Text = "";
+            this.atHigherLevelsBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.atHigherLevelsBox.Location = new System.Drawing.Point(239, 513);
+            this.atHigherLevelsBox.Name = "atHigherLevelsBox";
+            this.atHigherLevelsBox.Size = new System.Drawing.Size(370, 73);
+            this.atHigherLevelsBox.TabIndex = 38;
+            this.atHigherLevelsBox.Text = "";
+            // 
+            // editButton
+            // 
+            this.editButton.Location = new System.Drawing.Point(74, 471);
+            this.editButton.Name = "editButton";
+            this.editButton.Size = new System.Drawing.Size(56, 23);
+            this.editButton.TabIndex = 39;
+            this.editButton.Text = "Edit";
+            this.editButton.UseVisualStyleBackColor = true;
+            // 
+            // previewButton
+            // 
+            this.previewButton.Location = new System.Drawing.Point(239, 592);
+            this.previewButton.Name = "previewButton";
+            this.previewButton.Size = new System.Drawing.Size(56, 23);
+            this.previewButton.TabIndex = 40;
+            this.previewButton.Text = "Preview";
+            this.previewButton.UseVisualStyleBackColor = true;
             // 
             // EditSpellsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(621, 628);
-            this.Controls.Add(this.richTextBox1);
+            this.Controls.Add(this.previewButton);
+            this.Controls.Add(this.editButton);
+            this.Controls.Add(this.atHigherLevelsBox);
             this.Controls.Add(this.atHigherLevelsLabel);
             this.Controls.Add(this.addSpellButton);
             this.Controls.Add(this.addToCollectionButton);
@@ -576,7 +603,7 @@
             this.Controls.Add(this.castingTimeBox);
             this.Controls.Add(this.spellNameBox);
             this.Controls.Add(this.removeButton);
-            this.Controls.Add(this.addSpellsButton);
+            this.Controls.Add(this.addSpellsCollectionButton);
             this.Controls.Add(this.addedSpellsListView);
             this.Controls.Add(this.newSpellLabel);
             this.Controls.Add(this.spellsListView);
@@ -603,7 +630,7 @@
         private System.Windows.Forms.Label newSpellLabel;
         private System.Windows.Forms.ListView addedSpellsListView;
         private System.Windows.Forms.ColumnHeader addedSpellLevelHeader;
-        private System.Windows.Forms.Button addSpellsButton;
+        private System.Windows.Forms.Button addSpellsCollectionButton;
         private System.Windows.Forms.Button removeButton;
         private System.Windows.Forms.TextBox spellNameBox;
         private System.Windows.Forms.ComboBox castingTimeBox;
@@ -634,6 +661,8 @@
         private System.Windows.Forms.Button addSpellButton;
         private System.Windows.Forms.ColumnHeader addedSpellNameHeader;
         private System.Windows.Forms.Label atHigherLevelsLabel;
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.RichTextBox atHigherLevelsBox;
+        private System.Windows.Forms.Button editButton;
+        private System.Windows.Forms.Button previewButton;
     }
 }

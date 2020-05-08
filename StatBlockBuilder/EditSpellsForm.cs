@@ -14,6 +14,8 @@ namespace StatBlockBuilder
     {
         private class Spell
         {
+            private EditSpellsForm f;
+
             public string name;
 
             public string components;
@@ -31,30 +33,33 @@ namespace StatBlockBuilder
             public string duration;
 
             public string description;
+            public string atHigherLevels;
 
-            public Spell(EditSpellsForm f)
+            public Spell(EditSpellsForm form)
             {
+                f = form;
+
                 name = f.spellNameBox.Text;
 
-                int componentsCount = 0;
+                bool first = true;
                 components = "";
                 if (f.somaticCheckBox.Checked == true)
                 {
                     components += "S";
-                    componentsCount++;
+                    first = false;
                 }
                 if (f.verbalCheckBox.Checked == true)
                 {
-                    if (componentsCount != 0)
+                    if (first == false)
                     {
                         components += ", ";
                     }
                     components += "V";
-                    componentsCount++;
+                    first = false;
                 }
                 if (f.materialCheckBox.Checked == true)
                 {
-                    if (componentsCount != 0)
+                    if (first == false)
                     {
                         components += ", ";
                     }
@@ -110,6 +115,51 @@ namespace StatBlockBuilder
                 }
 
                 description = f.descriptionBox.Text;
+                atHigherLevels = f.atHigherLevelsBox.Text;
+
+                clearForm();
+            }
+
+            public void clearForm()
+            {
+                f.spellNameBox.Text = "Spell Name";
+                f.spellNameBox.ForeColor = Color.Gray;
+
+                f.somaticCheckBox.Checked = false;
+                f.verbalCheckBox.Checked = false;
+                f.materialCheckBox.Checked = false;
+
+                f.materialComponentsBox.Text = "Materials";
+                f.materialComponentsBox.ForeColor = Color.Gray;
+                f.materialComponentsBox.Enabled = false;
+
+                f.commentsBox.Text = "Comments (optional)";
+                f.commentsBox.ForeColor = Color.Gray;
+
+                f.spellLevelBox.Text = "Cantrip";
+                f.spellTypeBox.Text = "Abjuration";
+                f.ritualCheckBox.Checked = false;
+
+                f.rangeBox.Text = "Range";
+                f.distanceBox.Value = 0;
+                f.distanceBox.Enabled = true;
+                f.distanceUnitBox.Text = "Feet";
+                f.distanceUnitBox.Enabled = true;
+
+                f.castingTimeBox.Text = "1 Action";
+                f.castingTimeNumBox.Value = 1;
+                f.castingTimeNumBox.Enabled = false;
+                f.castingTimeUnitBox.Text = "Minutes";
+                f.castingTimeUnitBox.Enabled = false;
+
+                f.durationTypeBox.Text = "Instantaneous";
+                f.durationNumBox.Value = 1;
+                f.durationNumBox.Enabled = false;
+                f.durationUnitBox.Text = "Minutes";
+                f.durationUnitBox.Enabled = false;
+
+                f.descriptionBox.Text = "";
+                f.atHigherLevelsBox.Text = "";
             }
         }
 
@@ -301,6 +351,31 @@ namespace StatBlockBuilder
             item.SubItems.Add(spell.duration);
             item.SubItems.Add(spell.description);
             spellsListView.Items.Add(item);
+        }
+
+        private void addSpellsCollectionButton_Click(object sender, EventArgs e)
+        {
+            if (spellsListView.SelectedItems.Count == 0)
+            {
+                return;
+            }
+
+            ListViewItem spellCollectionItem = spellsListView.SelectedItems[0];
+            Spell collectionSpell = null;
+            foreach (Spell spell in spellCollectionList)
+            {
+                if (spell.name == spellCollectionItem.Text)
+                {
+                    collectionSpell = spell;
+                    break;
+                }
+            }
+
+            addedSpellsList.Add(collectionSpell);
+
+            ListViewItem item = new ListViewItem(collectionSpell.level);
+            item.SubItems.Add(collectionSpell.name);
+            addedSpellsListView.Items.Add(item);
         }
     }
 }
