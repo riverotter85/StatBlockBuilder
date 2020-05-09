@@ -14,41 +14,89 @@ namespace StatBlockBuilder
     {
         private class Spell
         {
-            private EditSpellsForm f;
-
             public string name;
 
-            public string components;
+            public bool somaticComponents;
+            public bool verbalComponents;
+            public bool materialComponents;
             public string componentsDescription;
+            public bool componentsDescriptionEnabled;
 
             public string level;
             public string type;
             public bool ritual;
 
-            public string range;
+            public string rangeType;
+            public int distance;
+            public bool distanceEnabled;
+            public string distanceUnit;
+            public bool distanceUnitEnabled;
 
-            public string castingTime;
+            public string castingTimeType;
+            public int castingTimeNum;
+            public bool castingTimeNumEnabled;
+            public string castingTimeUnit;
+            public bool castingTimeUnitEnabled;
             public string castingTimeComments;
 
-            public string duration;
+            public string durationType;
+            public int durationTime;
+            public bool durationTimeEnabled;
+            public string durationUnit;
+            public bool durationUnitEnabled;
 
             public string description;
             public string atHigherLevels;
 
-            public Spell(EditSpellsForm form)
+            public Spell(EditSpellsForm f)
             {
-                f = form;
-
                 name = f.spellNameBox.Text;
 
+                somaticComponents = f.somaticCheckBox.Checked;
+                verbalComponents = f.verbalCheckBox.Checked;
+                materialComponents = f.materialCheckBox.Checked;
+                componentsDescription = f.materialComponentsBox.Text;
+                componentsDescriptionEnabled = f.materialComponentsBox.Enabled;
+
+                level = f.spellLevelBox.Text;
+                type = f.spellTypeBox.Text;
+                ritual = f.ritualCheckBox.Checked;
+
+                rangeType = f.rangeBox.Text;
+                distance = (int) f.distanceBox.Value;
+                distanceEnabled = f.distanceBox.Enabled;
+                distanceUnit = f.distanceUnitBox.Text;
+                distanceUnitEnabled = f.distanceUnitBox.Enabled;
+
+                castingTimeType = f.castingTimeBox.Text;
+                castingTimeNum = (int) f.castingTimeNumBox.Value;
+                castingTimeNumEnabled = f.castingTimeNumBox.Enabled;
+                castingTimeUnit = f.castingTimeUnitBox.Text;
+                castingTimeUnitEnabled = f.castingTimeUnitBox.Enabled;
+                castingTimeComments = f.commentsBox.Text;
+
+                durationType = f.durationTypeBox.Text;
+                durationTime = (int) f.durationNumBox.Value;
+                durationTimeEnabled = f.durationNumBox.Enabled;
+                durationUnit = f.durationUnitBox.Text;
+                durationUnitEnabled = f.durationUnitBox.Enabled;
+
+                description = f.descriptionBox.Text;
+                atHigherLevels = f.atHigherLevelsBox.Text;
+
+                f.clearForm();
+            }
+
+            public string getComponents()
+            {
                 bool first = true;
-                components = "";
-                if (f.somaticCheckBox.Checked == true)
+                string components = "";
+                if (somaticComponents == true)
                 {
                     components += "S";
                     first = false;
                 }
-                if (f.verbalCheckBox.Checked == true)
+                if (verbalComponents == true)
                 {
                     if (first == false)
                     {
@@ -57,7 +105,7 @@ namespace StatBlockBuilder
                     components += "V";
                     first = false;
                 }
-                if (f.materialCheckBox.Checked == true)
+                if (materialComponents == true)
                 {
                     if (first == false)
                     {
@@ -65,101 +113,62 @@ namespace StatBlockBuilder
                     }
                     components += "M";
                 }
-                componentsDescription = f.materialComponentsBox.Text;
 
-                level = f.spellLevelBox.Text;
-                type = f.spellTypeBox.Text;
-                ritual = f.ritualCheckBox.Checked;
+                return components;
+            }
 
-                int distance = (int) f.distanceBox.Value;
-                string distanceUnit = f.distanceUnitBox.Text;
-                if (f.rangeBox.Text == "Range")
+            public string getRange()
+            {
+                string range = "";
+                if (rangeType == "Range")
                 {
                     range = distance + " " + distanceUnit;
                 }
-                else if (f.rangeBox.Text == "Self")
+                else if (rangeType == "Self")
                 {
                     range = "Self (" + distance + " " + distanceUnit + ")";
                 }
                 else
                 {
-                    range = f.rangeBox.Text;
+                    range = rangeType;
                 }
 
-                int castingTimeNum = (int) f.castingTimeNumBox.Value;
-                string castingTimeUnit = f.castingTimeUnitBox.Text;
-                if (f.castingTimeBox.Text == "Time")
+                return range;
+            }
+
+            public string getCastingTime()
+            {
+                string castingTime = "";
+                if (castingTimeType == "Time")
                 {
                     castingTime = castingTimeNum + " " + castingTimeUnit;
                 }
                 else
                 {
-                    castingTime = f.castingTimeBox.Text;
+                    castingTime = castingTimeType;
                 }
+                castingTime += ", " + castingTimeComments;
 
-                castingTimeComments = f.commentsBox.Text;
+                return castingTime;
+            }
 
-                int durationTime = (int) f.durationNumBox.Value;
-                string durationUnit = f.durationUnitBox.Text;
-                if (f.durationTypeBox.Text == "Time")
+            public string getDuration()
+            {
+                string duration = "";
+                if (durationType == "Time")
                 {
                     duration = durationTime + " " + durationUnit;
                 }
-                else if (f.durationTypeBox.Text == "Concentration")
+                else if (durationType == "Concentration")
                 {
                     duration = "Concentration, up to " + durationTime + " " + durationUnit;
                 }
                 else
                 {
-                    duration = f.durationTypeBox.Text;
+                    duration = durationType;
                 }
 
-                description = f.descriptionBox.Text;
-                atHigherLevels = f.atHigherLevelsBox.Text;
-
-                clearForm();
-            }
-
-            public void clearForm()
-            {
-                f.spellNameBox.Text = "Spell Name";
-                f.spellNameBox.ForeColor = Color.Gray;
-
-                f.somaticCheckBox.Checked = false;
-                f.verbalCheckBox.Checked = false;
-                f.materialCheckBox.Checked = false;
-
-                f.materialComponentsBox.Text = "Materials";
-                f.materialComponentsBox.ForeColor = Color.Gray;
-                f.materialComponentsBox.Enabled = false;
-
-                f.commentsBox.Text = "Comments (optional)";
-                f.commentsBox.ForeColor = Color.Gray;
-
-                f.spellLevelBox.Text = "Cantrip";
-                f.spellTypeBox.Text = "Abjuration";
-                f.ritualCheckBox.Checked = false;
-
-                f.rangeBox.Text = "Range";
-                f.distanceBox.Value = 0;
-                f.distanceBox.Enabled = true;
-                f.distanceUnitBox.Text = "Feet";
-                f.distanceUnitBox.Enabled = true;
-
-                f.castingTimeBox.Text = "1 Action";
-                f.castingTimeNumBox.Value = 1;
-                f.castingTimeNumBox.Enabled = false;
-                f.castingTimeUnitBox.Text = "Minutes";
-                f.castingTimeUnitBox.Enabled = false;
-
-                f.durationTypeBox.Text = "Instantaneous";
-                f.durationNumBox.Value = 1;
-                f.durationNumBox.Enabled = false;
-                f.durationUnitBox.Text = "Minutes";
-                f.durationUnitBox.Enabled = false;
-
-                f.descriptionBox.Text = "";
-                f.atHigherLevelsBox.Text = "";
+                return duration;
             }
         }
 
@@ -193,6 +202,111 @@ namespace StatBlockBuilder
             castingTimeUnitBox.Text = "Minutes";
             durationTypeBox.Text = "Instantaneous";
             durationUnitBox.Text = "Minutes";
+        }
+
+        private void clearForm()
+        {
+            spellNameBox.Text = "Spell Name";
+            spellNameBox.ForeColor = Color.Gray;
+
+            somaticCheckBox.Checked = false;
+            verbalCheckBox.Checked = false;
+            materialCheckBox.Checked = false;
+
+            materialComponentsBox.Text = "Materials";
+            materialComponentsBox.ForeColor = Color.Gray;
+            materialComponentsBox.Enabled = false;
+
+            commentsBox.Text = "Comments (optional)";
+            commentsBox.ForeColor = Color.Gray;
+
+            spellLevelBox.Text = "Cantrip";
+            spellTypeBox.Text = "Abjuration";
+            ritualCheckBox.Checked = false;
+
+            rangeBox.Text = "Range";
+            distanceBox.Value = 0;
+            distanceBox.Enabled = true;
+            distanceUnitBox.Text = "Feet";
+            distanceUnitBox.Enabled = true;
+
+            castingTimeBox.Text = "1 Action";
+            castingTimeNumBox.Value = 1;
+            castingTimeNumBox.Enabled = false;
+            castingTimeUnitBox.Text = "Minutes";
+            castingTimeUnitBox.Enabled = false;
+
+            durationTypeBox.Text = "Instantaneous";
+            durationNumBox.Value = 1;
+            durationNumBox.Enabled = false;
+            durationUnitBox.Text = "Minutes";
+            durationUnitBox.Enabled = false;
+
+            descriptionBox.Text = "";
+            atHigherLevelsBox.Text = "";
+        }
+
+        private void fillFormWithSpell(Spell spell)
+        {
+            spellNameBox.Text = spell.name;
+            if (spellNameBox.Text == "Spell Name")
+            {
+                spellNameBox.ForeColor = Color.Gray;
+            }
+            else
+            {
+                spellNameBox.ForeColor = Color.Black;
+            }
+
+            somaticCheckBox.Checked = spell.somaticComponents;
+            verbalCheckBox.Checked = spell.verbalComponents;
+            materialCheckBox.Checked = spell.materialComponents;
+
+            materialComponentsBox.Text = spell.componentsDescription;
+            if (materialComponentsBox.Text == "Materials")
+            {
+                materialComponentsBox.ForeColor = Color.Gray;
+            }
+            else
+            {
+                materialComponentsBox.ForeColor = Color.Black;
+            }
+            materialComponentsBox.Enabled = spell.componentsDescriptionEnabled;
+
+            commentsBox.Text = spell.castingTimeComments;
+            if (commentsBox.Text == "Comments (optional)")
+            {
+                commentsBox.ForeColor = Color.Gray;
+            }
+            else
+            {
+                commentsBox.ForeColor = Color.Black;
+            }
+
+            spellLevelBox.Text = spell.level;
+            spellTypeBox.Text = spell.type;
+            ritualCheckBox.Checked = spell.ritual;
+
+            rangeBox.Text = spell.rangeType;
+            distanceBox.Value = spell.distance;
+            distanceBox.Enabled = spell.distanceEnabled;
+            distanceUnitBox.Text = spell.distanceUnit;
+            distanceUnitBox.Enabled = spell.distanceUnitEnabled;
+
+            castingTimeBox.Text = spell.castingTimeType;
+            castingTimeNumBox.Value = spell.castingTimeNum;
+            castingTimeNumBox.Enabled = spell.castingTimeNumEnabled;
+            castingTimeUnitBox.Text = spell.castingTimeUnit;
+            castingTimeUnitBox.Enabled = spell.castingTimeUnitEnabled;
+
+            durationTypeBox.Text = spell.durationType;
+            durationNumBox.Value = spell.durationTime;
+            durationNumBox.Enabled = spell.durationTimeEnabled;
+            durationUnitBox.Text = spell.durationUnit;
+            durationUnitBox.Enabled = spell.durationUnitEnabled;
+
+            descriptionBox.Text = spell.description;
+            atHigherLevelsBox.Text = spell.atHigherLevels;
         }
 
         private void spellNameBox_Leave(object sender, EventArgs e)
@@ -345,10 +459,10 @@ namespace StatBlockBuilder
 
             ListViewItem item = new ListViewItem(spell.name);
             item.SubItems.Add(spell.level);
-            item.SubItems.Add(spell.castingTime);
-            item.SubItems.Add(spell.range);
-            item.SubItems.Add(spell.components);
-            item.SubItems.Add(spell.duration);
+            item.SubItems.Add(spell.getCastingTime());
+            item.SubItems.Add(spell.getRange());
+            item.SubItems.Add(spell.getComponents());
+            item.SubItems.Add(spell.getDuration());
             item.SubItems.Add(spell.description);
             spellsListView.Items.Add(item);
         }
@@ -376,6 +490,28 @@ namespace StatBlockBuilder
             ListViewItem item = new ListViewItem(collectionSpell.level);
             item.SubItems.Add(collectionSpell.name);
             addedSpellsListView.Items.Add(item);
+        }
+
+        private void editButton_Click(object sender, EventArgs e)
+        {
+            if (addedSpellsListView.SelectedItems.Count == 0)
+            {
+                return;
+            }
+
+            // NOTE: Something's wrong with this!!! e_e
+            ListViewItem addedSpellItem = addedSpellsListView.SelectedItems[0];
+            Spell addedSpell = null;
+            foreach (Spell spell in addedSpellsList)
+            {
+                if (spell.name == addedSpellItem.SubItems[1].Text)
+                {
+                    addedSpell = spell;
+                    break;
+                }
+            }
+
+            fillFormWithSpell(addedSpell);
         }
     }
 }
