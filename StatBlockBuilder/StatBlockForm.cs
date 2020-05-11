@@ -16,6 +16,7 @@ namespace StatBlockBuilder
     {
         private EditSpellsForm esf = new EditSpellsForm();
 
+        // Store settings when switching between toughness mod menus
         private bool[][] toughnessMods = new bool[][]
         {
             new bool[] { false, false, false, false, false, false, false, false, false, false, false, false, false }, // Immunities
@@ -28,16 +29,19 @@ namespace StatBlockBuilder
         {
             InitializeComponent();
 
+            // Name Text Box
             nameBox.Text = "Creature Name";
             nameBox.ForeColor = Color.Gray;
             this.nameBox.Leave += new System.EventHandler(this.nameBox_Leave);
             this.nameBox.Enter += new System.EventHandler(this.nameBox_Enter);
 
+            // Race Text Box
             raceTypeBox.Text = "Race (optional)";
             raceTypeBox.ForeColor = Color.Gray;
             this.raceTypeBox.Leave += new System.EventHandler(this.raceTypeBox_Leave);
             this.raceTypeBox.Enter += new System.EventHandler(this.raceTypeBox_Enter);
 
+            // Natural Armor Text Box
             armorTypeBox.Text = "Natural Armor";
             armorTypeBox.ForeColor = Color.Gray;
             this.armorTypeBox.Leave += new System.EventHandler(this.armorTypeBox_Leave);
@@ -54,6 +58,7 @@ namespace StatBlockBuilder
             pbBox.Text = "+2";
             spellAttrBox.Text = "Intelligence";
 
+            // Visually display that the spellcasting feature is disabled by default
             saLabel.ForeColor = Color.Gray;
             spellSaveDcLabel.ForeColor = Color.Gray;
             spellAttackLabel.ForeColor = Color.Gray;
@@ -115,6 +120,7 @@ namespace StatBlockBuilder
 
         private void sizeBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            // Set hit die type based on the size picked
             switch (sizeBox.Text)
             {
                 case "Tiny":
@@ -144,6 +150,7 @@ namespace StatBlockBuilder
             //stuff
         }
 
+        // Derives the modifier value (in string form) from the given attribute
         private string attrToMod(decimal attr)
         {
             string str;
@@ -171,6 +178,7 @@ namespace StatBlockBuilder
             int hitDieTypeVal = int.Parse(hitDieTypeLabel.Text.Trim('d'));
             int conModVal = int.Parse(conModLabel.Text.Trim(new Char[] { '(', ')', '+' }));
 
+            // Depending on what is chosen, calculate the creature's total hit points differently
             decimal hpVal = (decimal) 0.0;
             switch (hpCalcBox.Text)
             {
@@ -185,6 +193,7 @@ namespace StatBlockBuilder
                     break;
             }
 
+            // Determine the final hit point value
             decimal average = (decimal) Math.Floor(numHitDice * (hpVal + conModVal));
             hitPointsBox.Value = average;
         }
@@ -192,10 +201,12 @@ namespace StatBlockBuilder
         private int getProficiencyBonus()
         {
             int proficiencyBonus;
+            // Get custom proficiency bonus value
             if (manualPbCheckbox.Checked == true)
             {
                 proficiencyBonus = int.Parse(pbBox.Text.Trim(new Char[] { '(', ')', '+' }));
             }
+            // Otherwise, go with value derived from creature's challenge rating
             else
             {
                 proficiencyBonus = int.Parse(pbValLabel.Text.Trim(new Char[] { '(', ')', '+' }));
@@ -208,6 +219,7 @@ namespace StatBlockBuilder
         {
             int proficiencyBonus = getProficiencyBonus();
 
+            // Derive the spellcasting modifier based on the chosen attribute
             int attrModVal = 0;
             switch (spellAttrBox.Text)
             {
@@ -231,6 +243,7 @@ namespace StatBlockBuilder
                     break;
             }
 
+            // Calculate the final spell save DC and spell attack bonus values in string form
             int spellSaveDc = 8 + proficiencyBonus + attrModVal;
             int spellAttack = proficiencyBonus + attrModVal;
             spellSaveDcLabel.Text = "Spell Save DC (" + spellSaveDc + ")";
@@ -244,6 +257,7 @@ namespace StatBlockBuilder
             }
         }
 
+        // Modify all saves and skills tied to Strength
         private void strAttrBox_ValueChanged(object sender, EventArgs e)
         {
             strModLabel.Text = attrToMod(strAttrBox.Value);
@@ -260,6 +274,7 @@ namespace StatBlockBuilder
             }
         }
 
+        // Modify all saves and skills tied to Dexterity
         private void dexAttrBox_ValueChanged(object sender, EventArgs e)
         {
             dexModLabel.Text = attrToMod(dexAttrBox.Value);
@@ -280,6 +295,7 @@ namespace StatBlockBuilder
             }
         }
 
+        // Modify all saves and skills tied to Constitution
         private void conAttrBox_ValueChanged(object sender, EventArgs e)
         {
             conModLabel.Text = attrToMod(conAttrBox.Value);
@@ -296,6 +312,7 @@ namespace StatBlockBuilder
             }
         }
 
+        // Modify all saves and skills tied to Intelligence
         private void intAttrBox_ValueChanged(object sender, EventArgs e)
         {
             intModLabel.Text = attrToMod(intAttrBox.Value);
@@ -316,6 +333,7 @@ namespace StatBlockBuilder
             }
         }
 
+        // Modify all saves and skills tied to Wisdom
         private void wisAttrBox_ValueChanged(object sender, EventArgs e)
         {
             wisModLabel.Text = attrToMod(wisAttrBox.Value);
@@ -336,6 +354,7 @@ namespace StatBlockBuilder
             }
         }
 
+        // Modify all saves and skills tied to Charisma
         private void chaAttrBox_ValueChanged(object sender, EventArgs e)
         {
             chaModLabel.Text = attrToMod(chaAttrBox.Value);
@@ -357,6 +376,7 @@ namespace StatBlockBuilder
 
         private void crBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            // Derive proficiency bonus and XP amount by chosen challenge rating
             switch (crBox.Text)
             {
                 case "0":
@@ -503,6 +523,7 @@ namespace StatBlockBuilder
 
         private void manualPbCheckbox_CheckedChanged(object sender, EventArgs e)
         {
+            // Allow manual proficiency bonus to be changed if the manual checkbox is checked
             if (manualPbCheckbox.Checked == true)
             {
                 pbBox.Enabled = true;
@@ -518,6 +539,7 @@ namespace StatBlockBuilder
 
         private void spellcasterCheckBox_CheckedChanged(object sender, EventArgs e)
         {
+            // Change spellcasting visuals and allow boxes to be changed if spellcaster box is checked
             if (spellcasterCheckBox.Checked == true)
             {
                 saLabel.ForeColor = Color.Black;
@@ -527,6 +549,7 @@ namespace StatBlockBuilder
                 spellSaveDcLabel.ForeColor = Color.Black;
                 spellAttackLabel.ForeColor = Color.Black;
             }
+            // ...And vice-versa
             else
             {
                 saLabel.ForeColor = Color.Gray;
@@ -545,11 +568,13 @@ namespace StatBlockBuilder
 
         private void tmTypeBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            // Store current toughness mod settings
             for (int i = 0; i < 13; i++)
             {
                 toughnessMods[prev][i] = damageTypeListBox.GetItemChecked(i);
             }
 
+            // Allow access to toughness mod being switched to
             prev = tmTypeBox.SelectedIndex;
             for (int i = 0; i < 13; i++)
             {
@@ -570,6 +595,7 @@ namespace StatBlockBuilder
 
         private void hpCalcBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            // Disable hit dice and automatic hit point calculations if 'Custom'
             if (hpCalcBox.Text == "Custom")
             {
                 hitDiceLabel.ForeColor = Color.Gray;
@@ -588,17 +614,21 @@ namespace StatBlockBuilder
 
         private void calculateBaseArmorClass()
         {
+            // Let user manually change armor class if checked, no need to change their settings
             if (armorCheckBox.Checked == true)
             {
                 return;
             }
 
+            // Otherwise, use default AC value of 10 + DEX_MOD
             int dexMod = int.Parse(dexModLabel.Text.Trim(new Char[] { '(', ')', '+' }));
             armorClassBox.Value = 10 + dexMod;
         }
 
         private void armorCheckBox_CheckedChanged(object sender, EventArgs e)
         {
+            // If using armor, allow the user to specify what kind of armor
+            // the creature is wearing
             if (armorCheckBox.Checked == true)
             {
                 armorTypeBox.Enabled = true;
@@ -610,15 +640,16 @@ namespace StatBlockBuilder
             calculateBaseArmorClass();
         }
 
-        private void setSkillOrSave(CheckBox checkBox, string skillName, int modVal, int profMod)
+        private void setSkillOrSave(CheckBox checkBox, string sName, int modVal, int profMod)
         {
             int totalMod = modVal;
-            if (checkBox.Checked == true)
+            if (checkBox.Checked == true) // Add proficiency bonus if proficient with skills or save
             {
                 totalMod += profMod;
             }
 
-            string str = skillName;
+            // Set string value of skill or save
+            string str = sName;
             if (totalMod >= 0)
             {
                 str += " (+" + totalMod + ")";
@@ -641,6 +672,7 @@ namespace StatBlockBuilder
 
             int profMod = getProficiencyBonus();
 
+            // Update all saving throws
             setSkillOrSave(strCheckbox, "Strength", strMod, profMod);
             setSkillOrSave(dexCheckbox, "Dexterity", dexMod, profMod);
             setSkillOrSave(conCheckbox, "Constitution", conMod, profMod);
@@ -648,24 +680,29 @@ namespace StatBlockBuilder
             setSkillOrSave(wisCheckbox, "Wisdom", wisMod, profMod);
             setSkillOrSave(chaCheckbox, "Charisma", chaMod, profMod);
 
+            // Update strength-based skills
             setSkillOrSave(athleticsCheckbox, "Athletics", strMod, profMod);
 
+            // Update dexterity-based skills
             setSkillOrSave(acrobaticsCheckbox, "Acrobatics", dexMod, profMod);
             setSkillOrSave(sohCheckbox, "Sleight of Hand", dexMod, profMod);
             setSkillOrSave(stealthCheckbox, "Stealth", dexMod, profMod);
 
+            // Update intelligence-based skills
             setSkillOrSave(arcanaCheckbox, "Arcana", intMod, profMod);
             setSkillOrSave(historyCheckbox, "History", intMod, profMod);
             setSkillOrSave(investigationCheckbox, "Investigation", intMod, profMod);
             setSkillOrSave(natureCheckbox, "Nature", intMod, profMod);
             setSkillOrSave(religionCheckbox, "Religion", intMod, profMod);
 
+            // Update wisdom-based skills
             setSkillOrSave(ahCheckbox, "Animal Handling", wisMod, profMod);
             setSkillOrSave(insightCheckbox, "Insight", wisMod, profMod);
             setSkillOrSave(medicineCheckbox, "Medicine", wisMod, profMod);
             setSkillOrSave(perceptionCheckbox, "Perception", wisMod, profMod);
             setSkillOrSave(survivalCheckbox, "Survival", wisMod, profMod);
 
+            // Update charisma-based skills
             setSkillOrSave(deceptionCheckbox, "Deception", chaMod, profMod);
             setSkillOrSave(intimidationCheckbox, "Intimidation", chaMod, profMod);
             setSkillOrSave(performanceCheckbox, "Performance", chaMod, profMod);
@@ -674,6 +711,7 @@ namespace StatBlockBuilder
 
         private void strCheckbox_CheckedChanged(object sender, EventArgs e)
         {
+            // Update Strength saving throw
             int strMod = int.Parse(strModLabel.Text.Trim(new Char[] { '(', ')', '+' }));
             int profMod = getProficiencyBonus();
             setSkillOrSave(strCheckbox, "Strength", strMod, profMod);
@@ -681,6 +719,7 @@ namespace StatBlockBuilder
 
         private void dexCheckbox_CheckedChanged(object sender, EventArgs e)
         {
+            // Update Dexterity saving throw
             int dexMod = int.Parse(dexModLabel.Text.Trim(new Char[] { '(', ')', '+' }));
             int profMod = getProficiencyBonus();
             setSkillOrSave(dexCheckbox, "Dexterity", dexMod, profMod);
@@ -688,6 +727,7 @@ namespace StatBlockBuilder
 
         private void conCheckbox_CheckedChanged(object sender, EventArgs e)
         {
+            // Update Constitution saving throw
             int conMod = int.Parse(conModLabel.Text.Trim(new Char[] { '(', ')', '+' }));
             int profMod = getProficiencyBonus();
             setSkillOrSave(conCheckbox, "Constitution", conMod, profMod);
@@ -695,6 +735,7 @@ namespace StatBlockBuilder
 
         private void intCheckbox_CheckedChanged(object sender, EventArgs e)
         {
+            // Update Intelligence saving throw
             int intMod = int.Parse(intModLabel.Text.Trim(new Char[] { '(', ')', '+' }));
             int profMod = getProficiencyBonus();
             setSkillOrSave(intCheckbox, "Intelligence", intMod, profMod);
@@ -702,6 +743,7 @@ namespace StatBlockBuilder
 
         private void wisCheckbox_CheckedChanged(object sender, EventArgs e)
         {
+            // Update Wisdom saving throw
             int wisMod = int.Parse(wisModLabel.Text.Trim(new Char[] { '(', ')', '+' }));
             int profMod = getProficiencyBonus();
             setSkillOrSave(wisCheckbox, "Wisdom", wisMod, profMod);
@@ -709,6 +751,7 @@ namespace StatBlockBuilder
 
         private void chaCheckbox_CheckedChanged(object sender, EventArgs e)
         {
+            // Update Charisma saving throw
             int chaMod = int.Parse(chaModLabel.Text.Trim(new Char[] { '(', ')', '+' }));
             int profMod = getProficiencyBonus();
             setSkillOrSave(chaCheckbox, "Charisma", chaMod, profMod);
@@ -842,11 +885,11 @@ namespace StatBlockBuilder
 
         private void editSpellsButton_Click(object sender, EventArgs e)
         {
-            if (esf.IsDisposed == true)
+            if (esf.IsDisposed == true) // Create new form if opened and closed before
             {
                 esf = new EditSpellsForm();
             }
-            esf.Show();
+            esf.ShowDialog();
         }
     }
 }

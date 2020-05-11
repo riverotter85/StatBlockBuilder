@@ -52,6 +52,7 @@ namespace StatBlockBuilder
             {
                 name = f.spellNameBox.Text;
 
+                // Components
                 somaticComponents = f.somaticCheckBox.Checked;
                 verbalComponents = f.verbalCheckBox.Checked;
                 materialComponents = f.materialCheckBox.Checked;
@@ -62,12 +63,14 @@ namespace StatBlockBuilder
                 type = f.spellTypeBox.Text;
                 ritual = f.ritualCheckBox.Checked;
 
+                // Range
                 rangeType = f.rangeBox.Text;
                 distance = (int) f.distanceBox.Value;
                 distanceEnabled = f.distanceBox.Enabled;
                 distanceUnit = f.distanceUnitBox.Text;
                 distanceUnitEnabled = f.distanceUnitBox.Enabled;
 
+                // Casting Time
                 castingTimeType = f.castingTimeBox.Text;
                 castingTimeNum = (int) f.castingTimeNumBox.Value;
                 castingTimeNumEnabled = f.castingTimeNumBox.Enabled;
@@ -75,6 +78,7 @@ namespace StatBlockBuilder
                 castingTimeUnitEnabled = f.castingTimeUnitBox.Enabled;
                 castingTimeComments = f.commentsBox.Text;
 
+                // Duration
                 durationType = f.durationTypeBox.Text;
                 durationTime = (int) f.durationNumBox.Value;
                 durationTimeEnabled = f.durationNumBox.Enabled;
@@ -87,6 +91,7 @@ namespace StatBlockBuilder
                 f.clearForm();
             }
 
+            // Convert components to string value
             public string getComponents()
             {
                 bool first = true;
@@ -117,6 +122,7 @@ namespace StatBlockBuilder
                 return components;
             }
 
+            // Convert range to string value
             public string getRange()
             {
                 string range = "";
@@ -136,6 +142,7 @@ namespace StatBlockBuilder
                 return range;
             }
 
+            // Convert casting time to string value
             public string getCastingTime()
             {
                 string castingTime = "";
@@ -147,11 +154,17 @@ namespace StatBlockBuilder
                 {
                     castingTime = castingTimeType;
                 }
-                castingTime += ", " + castingTimeComments;
+
+                // Add any casting time comments specified by the user
+                if (castingTimeComments != "Comments (optional)")
+                {
+                    castingTime += ", " + castingTimeComments;
+                }
 
                 return castingTime;
             }
 
+            // Convert duration to string value
             public string getDuration()
             {
                 string duration = "";
@@ -172,6 +185,7 @@ namespace StatBlockBuilder
             }
         }
 
+        // Spells for both listviews are stored here
         private List<Spell> addedSpellsList = new List<Spell>();
         private List<Spell> spellCollectionList = new List<Spell>();
 
@@ -179,16 +193,19 @@ namespace StatBlockBuilder
         {
             InitializeComponent();
 
+            // Spell Name Text Box
             spellNameBox.Text = "Spell Name";
             spellNameBox.ForeColor = Color.Gray;
             this.spellNameBox.Leave += new System.EventHandler(this.spellNameBox_Leave);
             this.spellNameBox.Enter += new System.EventHandler(this.spellNameBox_Enter);
 
+            // Materials Text Box
             materialComponentsBox.Text = "Materials";
             materialComponentsBox.ForeColor = Color.Gray;
             this.materialComponentsBox.Leave += new System.EventHandler(this.materialComponentsBox_Leave);
             this.materialComponentsBox.Enter += new System.EventHandler(this.materialComponentsBox_Enter);
 
+            // Comments Text Box
             commentsBox.Text = "Comments (optional)";
             commentsBox.ForeColor = Color.Gray;
             this.commentsBox.Leave += new System.EventHandler(this.commentsBox_Leave);
@@ -206,17 +223,21 @@ namespace StatBlockBuilder
 
         private void clearForm()
         {
+            // Spell Name Text Box
             spellNameBox.Text = "Spell Name";
             spellNameBox.ForeColor = Color.Gray;
 
+            // Components Checkboxes
             somaticCheckBox.Checked = false;
             verbalCheckBox.Checked = false;
             materialCheckBox.Checked = false;
 
+            // Material Components Text Box
             materialComponentsBox.Text = "Materials";
             materialComponentsBox.ForeColor = Color.Gray;
             materialComponentsBox.Enabled = false;
 
+            // Comments Text Box
             commentsBox.Text = "Comments (optional)";
             commentsBox.ForeColor = Color.Gray;
 
@@ -224,18 +245,21 @@ namespace StatBlockBuilder
             spellTypeBox.Text = "Abjuration";
             ritualCheckBox.Checked = false;
 
+            // Range
             rangeBox.Text = "Range";
             distanceBox.Value = 0;
             distanceBox.Enabled = true;
             distanceUnitBox.Text = "Feet";
             distanceUnitBox.Enabled = true;
 
+            // Casting Time
             castingTimeBox.Text = "1 Action";
             castingTimeNumBox.Value = 1;
             castingTimeNumBox.Enabled = false;
             castingTimeUnitBox.Text = "Minutes";
             castingTimeUnitBox.Enabled = false;
 
+            // Duration
             durationTypeBox.Text = "Instantaneous";
             durationNumBox.Value = 1;
             durationNumBox.Enabled = false;
@@ -248,6 +272,7 @@ namespace StatBlockBuilder
 
         private void fillFormWithSpell(Spell spell)
         {
+            // Spell Name Text Box
             spellNameBox.Text = spell.name;
             if (spellNameBox.Text == "Spell Name")
             {
@@ -258,10 +283,12 @@ namespace StatBlockBuilder
                 spellNameBox.ForeColor = Color.Black;
             }
 
+            // Components Checkboxes
             somaticCheckBox.Checked = spell.somaticComponents;
             verbalCheckBox.Checked = spell.verbalComponents;
             materialCheckBox.Checked = spell.materialComponents;
 
+            // Material Components Text Box
             materialComponentsBox.Text = spell.componentsDescription;
             if (materialComponentsBox.Text == "Materials")
             {
@@ -273,6 +300,7 @@ namespace StatBlockBuilder
             }
             materialComponentsBox.Enabled = spell.componentsDescriptionEnabled;
 
+            // Comments Text Box
             commentsBox.Text = spell.castingTimeComments;
             if (commentsBox.Text == "Comments (optional)")
             {
@@ -287,18 +315,21 @@ namespace StatBlockBuilder
             spellTypeBox.Text = spell.type;
             ritualCheckBox.Checked = spell.ritual;
 
+            // Range
             rangeBox.Text = spell.rangeType;
             distanceBox.Value = spell.distance;
             distanceBox.Enabled = spell.distanceEnabled;
             distanceUnitBox.Text = spell.distanceUnit;
             distanceUnitBox.Enabled = spell.distanceUnitEnabled;
 
+            // Casting Time
             castingTimeBox.Text = spell.castingTimeType;
             castingTimeNumBox.Value = spell.castingTimeNum;
             castingTimeNumBox.Enabled = spell.castingTimeNumEnabled;
             castingTimeUnitBox.Text = spell.castingTimeUnit;
             castingTimeUnitBox.Enabled = spell.castingTimeUnitEnabled;
 
+            // Duration
             durationTypeBox.Text = spell.durationType;
             durationNumBox.Value = spell.durationTime;
             durationNumBox.Enabled = spell.durationTimeEnabled;
@@ -377,6 +408,7 @@ namespace StatBlockBuilder
 
         private void rangeBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            // Allow user to specify range for the 'Range' and 'Self' options
             if (rangeBox.Text == "Range" || rangeBox.Text == "Self")
             {
                 distanceBox.Enabled = true;
@@ -391,6 +423,7 @@ namespace StatBlockBuilder
 
         private void castingTimeBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            // Allow user to specify the exact time if 'Time' is chosen
             if (castingTimeBox.Text == "Time")
             {
                 castingTimeNumBox.Enabled = true;
@@ -405,6 +438,7 @@ namespace StatBlockBuilder
 
         private void durationTypeBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            // Allow user to specify duration time if 'Time' or 'Concentration' is chosen
             if (durationTypeBox.Text == "Time" || durationTypeBox.Text == "Concentration")
             {
                 durationNumBox.Enabled = true;
@@ -419,12 +453,14 @@ namespace StatBlockBuilder
 
         private Spell createNewSpell()
         {
-            if (spellNameBox.Text == "" || descriptionBox.Text == "")
+            // Spell Name and Description are required
+            if (spellNameBox.Text == "Spell Name" || descriptionBox.Text == "")
             {
                 return null;
             }
 
-            if (materialCheckBox.Checked == true && materialComponentsBox.Text == "")
+            // Material components must be specified if the materials checkbox is checked
+            if (materialCheckBox.Checked == true && materialComponentsBox.Text == "Materials")
             {
                 return null;
             }
@@ -435,13 +471,15 @@ namespace StatBlockBuilder
         private void addSpellButton_Click(object sender, EventArgs e)
         {
             Spell spell = createNewSpell();
-            if (spell == null)
+            if (spell == null) // Spell is not completely filled out
             {
                 return;
             }
 
+            // Add spell to added spells list
             addedSpellsList.Add(spell);
 
+            // And then to listview
             ListViewItem item = new ListViewItem(spell.level);
             item.SubItems.Add(spell.name);
             addedSpellsListView.Items.Add(item);
@@ -450,13 +488,15 @@ namespace StatBlockBuilder
         private void addToCollectionButton_Click(object sender, EventArgs e)
         {
             Spell spell = createNewSpell();
-            if (spell == null)
+            if (spell == null) // Spell is not completely filled out
             {
                 return;
             }
 
+            // Add spell to collection list
             spellCollectionList.Add(spell);
 
+            // And then to listview
             ListViewItem item = new ListViewItem(spell.name);
             item.SubItems.Add(spell.level);
             item.SubItems.Add(spell.getCastingTime());
@@ -469,11 +509,12 @@ namespace StatBlockBuilder
 
         private void addSpellsCollectionButton_Click(object sender, EventArgs e)
         {
-            if (spellsListView.SelectedItems.Count == 0)
+            if (spellsListView.SelectedItems.Count == 0) // No listview entry was selected
             {
                 return;
             }
 
+            // Find spell name in collection list
             ListViewItem spellCollectionItem = spellsListView.SelectedItems[0];
             Spell collectionSpell = null;
             foreach (Spell spell in spellCollectionList)
@@ -485,21 +526,73 @@ namespace StatBlockBuilder
                 }
             }
 
+            // Add to added spells list
             addedSpellsList.Add(collectionSpell);
 
+            // And then listview
             ListViewItem item = new ListViewItem(collectionSpell.level);
             item.SubItems.Add(collectionSpell.name);
             addedSpellsListView.Items.Add(item);
         }
 
-        private void editButton_Click(object sender, EventArgs e)
+        private void editCollectionButton_Click(object sender, EventArgs e)
         {
-            if (addedSpellsListView.SelectedItems.Count == 0)
+            if (spellsListView.SelectedItems.Count == 0) // No listview entry was selected
             {
                 return;
             }
 
-            // NOTE: Something's wrong with this!!! e_e
+            // Find spell name in collection list
+            ListViewItem spellCollectionItem = spellsListView.SelectedItems[0];
+            Spell collectionSpell = null;
+            foreach (Spell spell in spellCollectionList)
+            {
+                if (spell.name == spellCollectionItem.Text)
+                {
+                    collectionSpell = spell;
+                    break;
+                }
+            }
+
+            fillFormWithSpell(collectionSpell);
+        }
+
+        private void removeCollectionButton_Click(object sender, EventArgs e)
+        {
+            if (spellsListView.SelectedItems.Count == 0) // No listview entry was selected
+            {
+                return;
+            }
+
+            // Find spell name in collection list
+            ListViewItem spellCollectionItem = spellsListView.SelectedItems[0];
+            foreach (Spell spell in spellCollectionList)
+            {
+                if (spell.name == spellCollectionItem.Text)
+                {
+                    DialogResult dr = MessageBox.Show("Are you sure you want to remove the spell \"" + spell.name +
+                        "\" from the collection? This action cannot be undone.", "Remove Spell from Collection", MessageBoxButtons.YesNo);
+                    if (dr == DialogResult.No)
+                    {
+                        return;
+                    }
+
+                    spellCollectionList.Remove(spell);
+                    break;
+                }
+            }
+
+            spellsListView.Items.Remove(spellCollectionItem);
+        }
+
+        private void editButton_Click(object sender, EventArgs e)
+        {
+            if (addedSpellsListView.SelectedItems.Count == 0) // No listview entry was selected
+            {
+                return;
+            }
+
+            // Find spell name in added spells list
             ListViewItem addedSpellItem = addedSpellsListView.SelectedItems[0];
             Spell addedSpell = null;
             foreach (Spell spell in addedSpellsList)
@@ -511,7 +604,38 @@ namespace StatBlockBuilder
                 }
             }
 
+            // Fill out form entries with spell info
             fillFormWithSpell(addedSpell);
+        }
+
+        private void removeButton_Click(object sender, EventArgs e)
+        {
+            if (addedSpellsListView.SelectedItems.Count == 0)
+            {
+                return;
+            }
+
+            ListViewItem addedSpellItem = addedSpellsListView.SelectedItems[0];
+            foreach (Spell spell in addedSpellsList)
+            {
+                if (spell.name == addedSpellItem.SubItems[1].Text)
+                {
+                    addedSpellsList.Remove(spell);
+                    break;
+                }
+            }
+
+            addedSpellsListView.Items.Remove(addedSpellItem);
+        }
+
+        private void clearButton_Click(object sender, EventArgs e)
+        {
+            clearForm();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

@@ -73,6 +73,11 @@
             this.atHigherLevelsBox = new System.Windows.Forms.RichTextBox();
             this.editButton = new System.Windows.Forms.Button();
             this.previewButton = new System.Windows.Forms.Button();
+            this.editCollectionButton = new System.Windows.Forms.Button();
+            this.removeCollectionButton = new System.Windows.Forms.Button();
+            this.addedSpellsLabel = new System.Windows.Forms.Label();
+            this.clearButton = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.castingTimeNumBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.distanceBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.durationNumBox)).BeginInit();
@@ -150,7 +155,7 @@
             this.addedSpellNameHeader});
             this.addedSpellsListView.FullRowSelect = true;
             this.addedSpellsListView.HideSelection = false;
-            this.addedSpellsListView.Location = new System.Drawing.Point(12, 199);
+            this.addedSpellsListView.Location = new System.Drawing.Point(12, 208);
             this.addedSpellsListView.MultiSelect = false;
             this.addedSpellsListView.Name = "addedSpellsListView";
             this.addedSpellsListView.Size = new System.Drawing.Size(200, 266);
@@ -170,22 +175,23 @@
             // 
             // addSpellsCollectionButton
             // 
-            this.addSpellsCollectionButton.Location = new System.Drawing.Point(13, 156);
+            this.addSpellsCollectionButton.Location = new System.Drawing.Point(12, 155);
             this.addSpellsCollectionButton.Name = "addSpellsCollectionButton";
-            this.addSpellsCollectionButton.Size = new System.Drawing.Size(75, 23);
+            this.addSpellsCollectionButton.Size = new System.Drawing.Size(55, 23);
             this.addSpellsCollectionButton.TabIndex = 3;
-            this.addSpellsCollectionButton.Text = "Add Spells";
+            this.addSpellsCollectionButton.Text = "Add";
             this.addSpellsCollectionButton.UseVisualStyleBackColor = true;
             this.addSpellsCollectionButton.Click += new System.EventHandler(this.addSpellsCollectionButton_Click);
             // 
             // removeButton
             // 
-            this.removeButton.Location = new System.Drawing.Point(12, 471);
+            this.removeButton.Location = new System.Drawing.Point(12, 480);
             this.removeButton.Name = "removeButton";
             this.removeButton.Size = new System.Drawing.Size(56, 23);
             this.removeButton.TabIndex = 4;
             this.removeButton.Text = "Remove";
             this.removeButton.UseVisualStyleBackColor = true;
+            this.removeButton.Click += new System.EventHandler(this.removeButton_Click);
             // 
             // spellNameBox
             // 
@@ -550,7 +556,7 @@
             // 
             // editButton
             // 
-            this.editButton.Location = new System.Drawing.Point(74, 471);
+            this.editButton.Location = new System.Drawing.Point(74, 480);
             this.editButton.Name = "editButton";
             this.editButton.Size = new System.Drawing.Size(56, 23);
             this.editButton.TabIndex = 39;
@@ -560,18 +566,74 @@
             // 
             // previewButton
             // 
-            this.previewButton.Location = new System.Drawing.Point(239, 592);
+            this.previewButton.Location = new System.Drawing.Point(74, 592);
             this.previewButton.Name = "previewButton";
             this.previewButton.Size = new System.Drawing.Size(56, 23);
             this.previewButton.TabIndex = 40;
             this.previewButton.Text = "Preview";
             this.previewButton.UseVisualStyleBackColor = true;
             // 
+            // editCollectionButton
+            // 
+            this.editCollectionButton.Location = new System.Drawing.Point(135, 155);
+            this.editCollectionButton.Name = "editCollectionButton";
+            this.editCollectionButton.Size = new System.Drawing.Size(56, 23);
+            this.editCollectionButton.TabIndex = 42;
+            this.editCollectionButton.Text = "Edit";
+            this.editCollectionButton.UseVisualStyleBackColor = true;
+            this.editCollectionButton.Click += new System.EventHandler(this.editCollectionButton_Click);
+            // 
+            // removeCollectionButton
+            // 
+            this.removeCollectionButton.Location = new System.Drawing.Point(73, 155);
+            this.removeCollectionButton.Name = "removeCollectionButton";
+            this.removeCollectionButton.Size = new System.Drawing.Size(56, 23);
+            this.removeCollectionButton.TabIndex = 41;
+            this.removeCollectionButton.Text = "Remove";
+            this.removeCollectionButton.UseVisualStyleBackColor = true;
+            this.removeCollectionButton.Click += new System.EventHandler(this.removeCollectionButton_Click);
+            // 
+            // addedSpellsLabel
+            // 
+            this.addedSpellsLabel.AutoSize = true;
+            this.addedSpellsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.addedSpellsLabel.Location = new System.Drawing.Point(61, 189);
+            this.addedSpellsLabel.Name = "addedSpellsLabel";
+            this.addedSpellsLabel.Size = new System.Drawing.Size(90, 16);
+            this.addedSpellsLabel.TabIndex = 43;
+            this.addedSpellsLabel.Text = "Added Spells";
+            // 
+            // clearButton
+            // 
+            this.clearButton.Location = new System.Drawing.Point(239, 593);
+            this.clearButton.Name = "clearButton";
+            this.clearButton.Size = new System.Drawing.Size(58, 23);
+            this.clearButton.TabIndex = 44;
+            this.clearButton.Text = "Clear";
+            this.clearButton.UseVisualStyleBackColor = true;
+            this.clearButton.Click += new System.EventHandler(this.clearButton_Click);
+            // 
+            // button1
+            // 
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(12, 592);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(55, 23);
+            this.button1.TabIndex = 45;
+            this.button1.Text = "Close";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // EditSpellsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(621, 628);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.clearButton);
+            this.Controls.Add(this.addedSpellsLabel);
+            this.Controls.Add(this.editCollectionButton);
+            this.Controls.Add(this.removeCollectionButton);
             this.Controls.Add(this.previewButton);
             this.Controls.Add(this.editButton);
             this.Controls.Add(this.atHigherLevelsBox);
@@ -665,5 +727,10 @@
         private System.Windows.Forms.RichTextBox atHigherLevelsBox;
         private System.Windows.Forms.Button editButton;
         private System.Windows.Forms.Button previewButton;
+        private System.Windows.Forms.Button editCollectionButton;
+        private System.Windows.Forms.Button removeCollectionButton;
+        private System.Windows.Forms.Label addedSpellsLabel;
+        private System.Windows.Forms.Button clearButton;
+        private System.Windows.Forms.Button button1;
     }
 }
