@@ -466,6 +466,50 @@ namespace StatBlockBuilder
             return new Spell(this);
         }
 
+        private bool removeDuplicates(Spell matchSpell, List<Spell> spellsList, ListView spellsListView, bool nameFirst)
+        {
+            // Check for duplicates
+            // NOTE: May want to restructure this!
+            foreach (Spell spell in spellsList)
+            {
+                if (matchSpell.name == spell.name)
+                {
+                    // Duplicate found! Prompt user if they want to overwrite.
+                    // Quit if they choose not to
+                    DialogResult dr = MessageBox.Show("Are you sure you want to overwrite \"" + matchSpell.name + "\"?",
+                        "Overwrite Spell", MessageBoxButtons.YesNo);
+                    if (dr == DialogResult.No)
+                    {
+                        return false;
+                    }
+
+                    // Remove duplicate from both added spells list and listview
+                    spellsList.Remove(spell);
+                    foreach (ListViewItem lvi in spellsListView.Items)
+                    {
+                        if (nameFirst == true)
+                        {
+                            if (matchSpell.name == lvi.Text)
+                            {
+                                spellsListView.Items.Remove(lvi);
+                            }
+                        }
+                        else
+                        {
+                            if (matchSpell.name == lvi.SubItems[1].Text)
+                            {
+                                spellsListView.Items.Remove(lvi);
+                            }
+                        }
+                    }
+
+                    break;
+                }
+            }
+
+            return true;
+        }
+
         private void addSpellButton_Click(object sender, EventArgs e)
         {
             Spell spell = createNewSpell();
@@ -474,33 +518,10 @@ namespace StatBlockBuilder
                 return;
             }
 
-            // Check for duplicates
-            // NOTE: May want to restructure this!
-            foreach (Spell s in addedSpellsList)
+            bool removeDupSuccess = removeDuplicates(spell, addedSpellsList, addedSpellsListView, false);
+            if (removeDupSuccess == false)
             {
-                if (spell.name == s.name)
-                {
-                    // Duplicate found! Prompt user if they want to overwrite.
-                    // Quit if they choose not to
-                    DialogResult dr = MessageBox.Show("Are you sure you want to overwrite \"" + spell.name + "\"?",
-                        "Overwrite Spell", MessageBoxButtons.YesNo);
-                    if (dr == DialogResult.No)
-                    {
-                        return;
-                    }
-
-                    // Remove duplicate from both added spells list and listview
-                    addedSpellsList.Remove(s);
-                    foreach (ListViewItem lvi in addedSpellsListView.Items)
-                    {
-                        if (spell.name == lvi.SubItems[1].Text)
-                        {
-                            addedSpellsListView.Items.Remove(lvi);
-                        }
-                    }
-
-                    break;
-                }
+                return;
             }
 
             clearForm();
@@ -522,33 +543,10 @@ namespace StatBlockBuilder
                 return;
             }
 
-            // Check for duplicates
-            // NOTE: May want to restructure this!
-            foreach (Spell s in spellCollectionList)
+            bool removeDupSuccess = removeDuplicates(spell, spellCollectionList, spellsListView, true);
+            if (removeDupSuccess == false)
             {
-                if (spell.name == s.name)
-                {
-                    // Duplicate found! Prompt user if they want to overwrite.
-                    // Quit if they choose not to
-                    DialogResult dr = MessageBox.Show("Are you sure you want to overwrite \"" + spell.name + "\"?",
-                        "Overwrite Spell", MessageBoxButtons.YesNo);
-                    if (dr == DialogResult.No)
-                    {
-                        return;
-                    }
-
-                    // Remove duplicate from both spell collection list and collection listview
-                    spellCollectionList.Remove(s);
-                    foreach (ListViewItem lvi in spellsListView.Items)
-                    {
-                        if (spell.name == lvi.Text)
-                        {
-                            spellsListView.Items.Remove(lvi);
-                        }
-                    }
-
-                    break;
-                }
+                return;
             }
 
             clearForm();
@@ -586,33 +584,10 @@ namespace StatBlockBuilder
                 }
             }
 
-            // Check for duplicates
-            // NOTE: May want to restructure this!
-            foreach (Spell s in addedSpellsList)
+            bool removeDupSuccess = removeDuplicates(collectionSpell, addedSpellsList, addedSpellsListView, false);
+            if (removeDupSuccess == false)
             {
-                if (collectionSpell.name == s.name)
-                {
-                    // Duplicate found! Prompt user if they want to overwrite.
-                    // Quit if they choose not to
-                    DialogResult dr = MessageBox.Show("Are you sure you want to overwrite \"" + collectionSpell.name + "\"?",
-                        "Overwrite Spell", MessageBoxButtons.YesNo);
-                    if (dr == DialogResult.No)
-                    {
-                        return;
-                    }
-
-                    // Remove duplicate from both added spells list and listview
-                    addedSpellsList.Remove(s);
-                    foreach (ListViewItem lvi in addedSpellsListView.Items)
-                    {
-                        if (collectionSpell.name == lvi.SubItems[1].Text)
-                        {
-                            addedSpellsListView.Items.Remove(lvi);
-                        }
-                    }
-
-                    break;
-                }
+                return;
             }
 
             // Add to added spells list
