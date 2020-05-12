@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem("");
+            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("");
             this.nameBox = new System.Windows.Forms.TextBox();
             this.sizeBox = new System.Windows.Forms.ComboBox();
             this.typeBox = new System.Windows.Forms.ComboBox();
@@ -120,7 +120,6 @@
             this.spellSaveDcLabel = new System.Windows.Forms.Label();
             this.spellAttackLabel = new System.Windows.Forms.Label();
             this.spellsListView = new System.Windows.Forms.ListView();
-            this.spellNameHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.editSpellsButton = new System.Windows.Forms.Button();
             this.raceTypeBox = new System.Windows.Forms.TextBox();
             this.hpCalcBox = new System.Windows.Forms.ComboBox();
@@ -142,6 +141,7 @@
             this.reactionsListView = new System.Windows.Forms.ListView();
             this.reactionNameHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.saveChangesButton = new System.Windows.Forms.Button();
+            this.spellNameHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             ((System.ComponentModel.ISupportInitialize)(this.normalSpeedBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.burrowSpeedBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.climbSpeedBox)).BeginInit();
@@ -1417,21 +1417,17 @@
             this.spellsListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.spellNameHeader});
             this.spellsListView.Enabled = false;
+            this.spellsListView.FullRowSelect = true;
             this.spellsListView.HideSelection = false;
             this.spellsListView.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem4});
+            listViewItem1});
             this.spellsListView.Location = new System.Drawing.Point(9, 317);
             this.spellsListView.Margin = new System.Windows.Forms.Padding(2);
             this.spellsListView.Name = "spellsListView";
-            this.spellsListView.Size = new System.Drawing.Size(110, 129);
+            this.spellsListView.Size = new System.Drawing.Size(113, 129);
             this.spellsListView.TabIndex = 119;
             this.spellsListView.UseCompatibleStateImageBehavior = false;
             this.spellsListView.View = System.Windows.Forms.View.Details;
-            // 
-            // spellNameHeader
-            // 
-            this.spellNameHeader.Text = "Spell Name";
-            this.spellNameHeader.Width = 150;
             // 
             // editSpellsButton
             // 
@@ -1623,6 +1619,11 @@
             this.saveChangesButton.TabIndex = 133;
             this.saveChangesButton.Text = "Save Changes";
             this.saveChangesButton.UseVisualStyleBackColor = true;
+            // 
+            // spellNameHeader
+            // 
+            this.spellNameHeader.Text = "Spell Name";
+            this.spellNameHeader.Width = 106;
             // 
             // StatBlockForm
             // 
@@ -1850,7 +1851,6 @@
         private System.Windows.Forms.Label spellSaveDcLabel;
         private System.Windows.Forms.Label spellAttackLabel;
         private System.Windows.Forms.ListView spellsListView;
-        private System.Windows.Forms.ColumnHeader spellNameHeader;
         private System.Windows.Forms.Button editSpellsButton;
         private System.Windows.Forms.TextBox raceTypeBox;
         private System.Windows.Forms.ComboBox hpCalcBox;
@@ -1872,6 +1872,7 @@
         private System.Windows.Forms.ColumnHeader legendaryActionNameHeader;
         private System.Windows.Forms.ColumnHeader legendaryActionCostHeader;
         private System.Windows.Forms.Button saveChangesButton;
+        private System.Windows.Forms.ColumnHeader spellNameHeader;
     }
 }
 

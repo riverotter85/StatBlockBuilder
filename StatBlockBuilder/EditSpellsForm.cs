@@ -12,7 +12,7 @@ namespace StatBlockBuilder
 {
     public partial class EditSpellsForm : Form
     {
-        private class Spell
+        public class Spell
         {
             public string name;
 
@@ -65,14 +65,14 @@ namespace StatBlockBuilder
 
                 // Range
                 rangeType = f.rangeBox.Text;
-                distance = (int) f.distanceBox.Value;
+                distance = (int)f.distanceBox.Value;
                 distanceEnabled = f.distanceBox.Enabled;
                 distanceUnit = f.distanceUnitBox.Text;
                 distanceUnitEnabled = f.distanceUnitBox.Enabled;
 
                 // Casting Time
                 castingTimeType = f.castingTimeBox.Text;
-                castingTimeNum = (int) f.castingTimeNumBox.Value;
+                castingTimeNum = (int)f.castingTimeNumBox.Value;
                 castingTimeNumEnabled = f.castingTimeNumBox.Enabled;
                 castingTimeUnit = f.castingTimeUnitBox.Text;
                 castingTimeUnitEnabled = f.castingTimeUnitBox.Enabled;
@@ -80,7 +80,7 @@ namespace StatBlockBuilder
 
                 // Duration
                 durationType = f.durationTypeBox.Text;
-                durationTime = (int) f.durationNumBox.Value;
+                durationTime = (int)f.durationNumBox.Value;
                 durationTimeEnabled = f.durationNumBox.Enabled;
                 durationUnit = f.durationUnitBox.Text;
                 durationUnitEnabled = f.durationUnitBox.Enabled;
@@ -183,8 +183,10 @@ namespace StatBlockBuilder
             }
         }
 
+        public event Action updateStatBlockForm;
+
         // Spells for both listviews are stored here
-        private List<Spell> addedSpellsList = new List<Spell>();
+        private List<Spell> addedSpellsList = StatBlockForm.addedSpellsList;
         private List<Spell> spellCollectionList = new List<Spell>();
 
         public EditSpellsForm()
@@ -699,6 +701,8 @@ namespace StatBlockBuilder
 
         private void saveChangesButton_Click(object sender, EventArgs e)
         {
+            StatBlockForm.addedSpellsList = addedSpellsList;
+            updateStatBlockForm();
             this.Close();
         }
     }

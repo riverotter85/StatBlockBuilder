@@ -14,7 +14,9 @@ namespace StatBlockBuilder
 {
     public partial class StatBlockForm : Form
     {
-        private EditSpellsForm esf = new EditSpellsForm();
+        private EditSpellsForm esf;
+
+        public static List<EditSpellsForm.Spell> addedSpellsList = new List<EditSpellsForm.Spell>();
 
         // Store settings when switching between toughness mod menus
         private bool[][] toughnessMods = new bool[][]
@@ -28,6 +30,9 @@ namespace StatBlockBuilder
         public StatBlockForm()
         {
             InitializeComponent();
+
+            esf = new EditSpellsForm();
+            esf.updateStatBlockForm += updateSpellsListView;
 
             // Name Text Box
             nameBox.Text = "Creature Name";
@@ -62,6 +67,16 @@ namespace StatBlockBuilder
             saLabel.ForeColor = Color.Gray;
             spellSaveDcLabel.ForeColor = Color.Gray;
             spellAttackLabel.ForeColor = Color.Gray;
+        }
+
+        private void updateSpellsListView()
+        {
+            spellsListView.Items.Clear();
+            foreach (EditSpellsForm.Spell spell in addedSpellsList)
+            {
+                ListViewItem item = new ListViewItem(spell.name);
+                spellsListView.Items.Add(item);
+            }
         }
 
         private void nameBox_Leave(object sender, EventArgs e)
