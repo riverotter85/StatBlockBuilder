@@ -77,7 +77,7 @@
             this.removeCollectionButton = new System.Windows.Forms.Button();
             this.addedSpellsLabel = new System.Windows.Forms.Label();
             this.clearButton = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.saveChangesButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.castingTimeNumBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.distanceBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.durationNumBox)).BeginInit();
@@ -566,7 +566,7 @@
             // 
             // previewButton
             // 
-            this.previewButton.Location = new System.Drawing.Point(74, 592);
+            this.previewButton.Location = new System.Drawing.Point(103, 592);
             this.previewButton.Name = "previewButton";
             this.previewButton.Size = new System.Drawing.Size(56, 23);
             this.previewButton.TabIndex = 40;
@@ -613,23 +613,23 @@
             this.clearButton.UseVisualStyleBackColor = true;
             this.clearButton.Click += new System.EventHandler(this.clearButton_Click);
             // 
-            // button1
+            // saveChangesButton
             // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(12, 592);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(55, 23);
-            this.button1.TabIndex = 45;
-            this.button1.Text = "Close";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.saveChangesButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.saveChangesButton.Location = new System.Drawing.Point(12, 592);
+            this.saveChangesButton.Name = "saveChangesButton";
+            this.saveChangesButton.Size = new System.Drawing.Size(85, 23);
+            this.saveChangesButton.TabIndex = 45;
+            this.saveChangesButton.Text = "Save Changes";
+            this.saveChangesButton.UseVisualStyleBackColor = true;
+            this.saveChangesButton.Click += new System.EventHandler(this.saveChangesButton_Click);
             // 
             // EditSpellsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(621, 628);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.saveChangesButton);
             this.Controls.Add(this.clearButton);
             this.Controls.Add(this.addedSpellsLabel);
             this.Controls.Add(this.editCollectionButton);
@@ -731,6 +731,6 @@
         private System.Windows.Forms.Button removeCollectionButton;
         private System.Windows.Forms.Label addedSpellsLabel;
         private System.Windows.Forms.Button clearButton;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button saveChangesButton;
     }
 }

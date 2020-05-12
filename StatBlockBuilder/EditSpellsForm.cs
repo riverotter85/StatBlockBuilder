@@ -87,8 +87,6 @@ namespace StatBlockBuilder
 
                 description = f.descriptionBox.Text;
                 atHigherLevels = f.atHigherLevelsBox.Text;
-
-                f.clearForm();
             }
 
             // Convert components to string value
@@ -476,6 +474,37 @@ namespace StatBlockBuilder
                 return;
             }
 
+            // Check for duplicates
+            // NOTE: May want to restructure this!
+            foreach (Spell s in addedSpellsList)
+            {
+                if (spell.name == s.name)
+                {
+                    // Duplicate found! Prompt user if they want to overwrite.
+                    // Quit if they choose not to
+                    DialogResult dr = MessageBox.Show("Are you sure you want to overwrite \"" + spell.name + "\"?",
+                        "Overwrite Spell", MessageBoxButtons.YesNo);
+                    if (dr == DialogResult.No)
+                    {
+                        return;
+                    }
+
+                    // Remove duplicate from both added spells list and listview
+                    addedSpellsList.Remove(s);
+                    foreach (ListViewItem lvi in addedSpellsListView.Items)
+                    {
+                        if (spell.name == lvi.SubItems[1].Text)
+                        {
+                            addedSpellsListView.Items.Remove(lvi);
+                        }
+                    }
+
+                    break;
+                }
+            }
+
+            clearForm();
+
             // Add spell to added spells list
             addedSpellsList.Add(spell);
 
@@ -492,6 +521,37 @@ namespace StatBlockBuilder
             {
                 return;
             }
+
+            // Check for duplicates
+            // NOTE: May want to restructure this!
+            foreach (Spell s in spellCollectionList)
+            {
+                if (spell.name == s.name)
+                {
+                    // Duplicate found! Prompt user if they want to overwrite.
+                    // Quit if they choose not to
+                    DialogResult dr = MessageBox.Show("Are you sure you want to overwrite \"" + spell.name + "\"?",
+                        "Overwrite Spell", MessageBoxButtons.YesNo);
+                    if (dr == DialogResult.No)
+                    {
+                        return;
+                    }
+
+                    // Remove duplicate from both spell collection list and collection listview
+                    spellCollectionList.Remove(s);
+                    foreach (ListViewItem lvi in spellsListView.Items)
+                    {
+                        if (spell.name == lvi.Text)
+                        {
+                            spellsListView.Items.Remove(lvi);
+                        }
+                    }
+
+                    break;
+                }
+            }
+
+            clearForm();
 
             // Add spell to collection list
             spellCollectionList.Add(spell);
@@ -522,6 +582,35 @@ namespace StatBlockBuilder
                 if (spell.name == spellCollectionItem.Text)
                 {
                     collectionSpell = spell;
+                    break;
+                }
+            }
+
+            // Check for duplicates
+            // NOTE: May want to restructure this!
+            foreach (Spell s in addedSpellsList)
+            {
+                if (collectionSpell.name == s.name)
+                {
+                    // Duplicate found! Prompt user if they want to overwrite.
+                    // Quit if they choose not to
+                    DialogResult dr = MessageBox.Show("Are you sure you want to overwrite \"" + collectionSpell.name + "\"?",
+                        "Overwrite Spell", MessageBoxButtons.YesNo);
+                    if (dr == DialogResult.No)
+                    {
+                        return;
+                    }
+
+                    // Remove duplicate from both added spells list and listview
+                    addedSpellsList.Remove(s);
+                    foreach (ListViewItem lvi in addedSpellsListView.Items)
+                    {
+                        if (collectionSpell.name == lvi.SubItems[1].Text)
+                        {
+                            addedSpellsListView.Items.Remove(lvi);
+                        }
+                    }
+
                     break;
                 }
             }
@@ -633,7 +722,7 @@ namespace StatBlockBuilder
             clearForm();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void saveChangesButton_Click(object sender, EventArgs e)
         {
             this.Close();
         }
