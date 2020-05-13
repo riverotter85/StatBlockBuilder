@@ -547,6 +547,17 @@ namespace StatBlockBuilder
             return true;
         }
 
+        private int findSpellIndex(Spell spell, List<Spell> spellsList)
+        {
+            int i = 0;
+            while (i < spellsList.Count && spellsList[i].name.CompareTo(spell.name) < 0)
+            {
+                i++;
+            }
+
+            return i;
+        }
+
         private void addSpellButton_Click(object sender, EventArgs e)
         {
             Spell spell = createNewSpell();
@@ -563,13 +574,15 @@ namespace StatBlockBuilder
 
             clearForm();
 
+            int index = findSpellIndex(spell, addedSpellsList);
+
             // Add spell to added spells list
-            addedSpellsList.Add(spell);
+            addedSpellsList.Insert(index, spell);
 
             // And then to listview
             ListViewItem item = new ListViewItem(spell.level);
             item.SubItems.Add(spell.name);
-            addedSpellsListView.Items.Add(item);
+            addedSpellsListView.Items.Insert(index, item);
         }
 
         private void addToCollectionButton_Click(object sender, EventArgs e)
@@ -588,8 +601,10 @@ namespace StatBlockBuilder
 
             clearForm();
 
+            int index = findSpellIndex(spell, spellCollectionList);
+
             // Add spell to collection list
-            spellCollectionList.Add(spell);
+            spellCollectionList.Insert(index, spell);
 
             // And then to listview
             ListViewItem item = new ListViewItem(spell.name);
@@ -599,7 +614,7 @@ namespace StatBlockBuilder
             item.SubItems.Add(spell.getComponents());
             item.SubItems.Add(spell.getDuration());
             item.SubItems.Add(spell.description);
-            spellsListView.Items.Add(item);
+            spellsListView.Items.Insert(index, item);
         }
 
         private void addSpellsCollectionButton_Click(object sender, EventArgs e)
@@ -627,13 +642,15 @@ namespace StatBlockBuilder
                 return;
             }
 
+            int index = findSpellIndex(collectionSpell, addedSpellsList);
+
             // Add to added spells list
-            addedSpellsList.Add(collectionSpell);
+            addedSpellsList.Insert(index, collectionSpell);
 
             // And then listview
             ListViewItem item = new ListViewItem(collectionSpell.level);
             item.SubItems.Add(collectionSpell.name);
-            addedSpellsListView.Items.Add(item);
+            addedSpellsListView.Items.Insert(index, item);
         }
 
         private void editCollectionButton_Click(object sender, EventArgs e)
