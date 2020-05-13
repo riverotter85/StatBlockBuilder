@@ -8,6 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using System.IO;
+using Newtonsoft.Json;
+
 namespace StatBlockBuilder
 {
     public partial class EditSpellsForm : Form
@@ -47,6 +50,11 @@ namespace StatBlockBuilder
 
             public string description;
             public string atHigherLevels;
+
+            public Spell()
+            {
+                // default constructor
+            }
 
             public Spell(EditSpellsForm f)
             {
@@ -186,12 +194,39 @@ namespace StatBlockBuilder
         public event Action updateStatBlockForm;
 
         // Spells for both listviews are stored here
-        private List<Spell> addedSpellsList = StatBlockForm.addedSpellsList;
-        private List<Spell> spellCollectionList = new List<Spell>();
+        private List<Spell> addedSpellsList;
+        private List<Spell> spellCollectionList;
 
         public EditSpellsForm()
         {
             InitializeComponent();
+
+            addedSpellsList = StatBlockForm.addedSpellsList;
+
+            if (File.Exists("spells.json"))
+            {
+                using (StreamReader r = new StreamReader("spells.json"))
+                {
+                    string json = r.ReadToEnd();
+                    spellCollectionList = JsonConvert.DeserializeObject<List<Spell>>(json);
+                }
+
+                foreach (Spell spell in spellCollectionList)
+                {
+                    ListViewItem item = new ListViewItem(spell.name);
+                    item.SubItems.Add(spell.level);
+                    item.SubItems.Add(spell.getCastingTime());
+                    item.SubItems.Add(spell.getRange());
+                    item.SubItems.Add(spell.getComponents());
+                    item.SubItems.Add(spell.getDuration());
+                    item.SubItems.Add(spell.description);
+                    spellsListView.Items.Add(item);
+                }
+            }
+            else
+            {
+                spellCollectionList = new List<Spell>();
+            }
 
             // Spell Name Text Box
             spellNameBox.Text = "Spell Name";
@@ -701,6 +736,13 @@ namespace StatBlockBuilder
 
         private void saveChangesButton_Click(object sender, EventArgs e)
         {
+            //File.Create("spells.json"); // e_e
+            using (StreamWriter w = new StreamWriter("spells.json"))
+            {
+                string json = JsonConvert.SerializeObject(spellCollectionList, Formatting.Indented);
+                w.Write(json);
+            }
+
             StatBlockForm.addedSpellsList = addedSpellsList;
             updateStatBlockForm();
             this.Close();
