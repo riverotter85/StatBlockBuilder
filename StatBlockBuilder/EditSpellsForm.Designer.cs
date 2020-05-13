@@ -98,7 +98,7 @@
             this.spellsListView.Location = new System.Drawing.Point(12, 12);
             this.spellsListView.MultiSelect = false;
             this.spellsListView.Name = "spellsListView";
-            this.spellsListView.Size = new System.Drawing.Size(597, 137);
+            this.spellsListView.Size = new System.Drawing.Size(606, 137);
             this.spellsListView.TabIndex = 0;
             this.spellsListView.UseCompatibleStateImageBehavior = false;
             this.spellsListView.View = System.Windows.Forms.View.Details;
@@ -142,7 +142,7 @@
             // 
             this.newSpellLabel.AutoSize = true;
             this.newSpellLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.newSpellLabel.Location = new System.Drawing.Point(359, 159);
+            this.newSpellLabel.Location = new System.Drawing.Point(356, 178);
             this.newSpellLabel.Name = "newSpellLabel";
             this.newSpellLabel.Size = new System.Drawing.Size(69, 16);
             this.newSpellLabel.TabIndex = 1;
@@ -195,9 +195,9 @@
             // 
             // spellNameBox
             // 
-            this.spellNameBox.Location = new System.Drawing.Point(239, 199);
+            this.spellNameBox.Location = new System.Drawing.Point(239, 208);
             this.spellNameBox.Name = "spellNameBox";
-            this.spellNameBox.Size = new System.Drawing.Size(143, 20);
+            this.spellNameBox.Size = new System.Drawing.Size(178, 20);
             this.spellNameBox.TabIndex = 5;
             // 
             // castingTimeBox
@@ -209,7 +209,7 @@
             "1 Bonus Action",
             "1 Reaction",
             "Time"});
-            this.castingTimeBox.Location = new System.Drawing.Point(239, 318);
+            this.castingTimeBox.Location = new System.Drawing.Point(239, 287);
             this.castingTimeBox.Name = "castingTimeBox";
             this.castingTimeBox.Size = new System.Drawing.Size(113, 21);
             this.castingTimeBox.TabIndex = 6;
@@ -218,7 +218,7 @@
             // castingTimeNumBox
             // 
             this.castingTimeNumBox.Enabled = false;
-            this.castingTimeNumBox.Location = new System.Drawing.Point(359, 318);
+            this.castingTimeNumBox.Location = new System.Drawing.Point(359, 287);
             this.castingTimeNumBox.Maximum = new decimal(new int[] {
             999,
             0,
@@ -250,7 +250,7 @@
             "Weeks",
             "Months",
             "Years"});
-            this.castingTimeUnitBox.Location = new System.Drawing.Point(405, 318);
+            this.castingTimeUnitBox.Location = new System.Drawing.Point(405, 287);
             this.castingTimeUnitBox.Name = "castingTimeUnitBox";
             this.castingTimeUnitBox.Size = new System.Drawing.Size(78, 21);
             this.castingTimeUnitBox.TabIndex = 8;
@@ -270,7 +270,7 @@
             "7th-level",
             "8th-level",
             "9th-level"});
-            this.spellLevelBox.Location = new System.Drawing.Point(239, 238);
+            this.spellLevelBox.Location = new System.Drawing.Point(239, 247);
             this.spellLevelBox.Name = "spellLevelBox";
             this.spellLevelBox.Size = new System.Drawing.Size(80, 21);
             this.spellLevelBox.TabIndex = 9;
@@ -288,7 +288,7 @@
             "Illusion",
             "Necromancy",
             "Transmutation"});
-            this.spellTypeBox.Location = new System.Drawing.Point(326, 238);
+            this.spellTypeBox.Location = new System.Drawing.Point(326, 247);
             this.spellTypeBox.Name = "spellTypeBox";
             this.spellTypeBox.Size = new System.Drawing.Size(91, 21);
             this.spellTypeBox.TabIndex = 10;
@@ -296,7 +296,7 @@
             // ritualCheckBox
             // 
             this.ritualCheckBox.AutoSize = true;
-            this.ritualCheckBox.Location = new System.Drawing.Point(424, 238);
+            this.ritualCheckBox.Location = new System.Drawing.Point(424, 247);
             this.ritualCheckBox.Name = "ritualCheckBox";
             this.ritualCheckBox.Size = new System.Drawing.Size(59, 17);
             this.ritualCheckBox.TabIndex = 11;
@@ -313,7 +313,7 @@
             "Touch",
             "Sight",
             "Unlimited"});
-            this.rangeBox.Location = new System.Drawing.Point(239, 278);
+            this.rangeBox.Location = new System.Drawing.Point(239, 327);
             this.rangeBox.Name = "rangeBox";
             this.rangeBox.Size = new System.Drawing.Size(80, 21);
             this.rangeBox.TabIndex = 12;
@@ -326,7 +326,7 @@
             0,
             0,
             0});
-            this.distanceBox.Location = new System.Drawing.Point(326, 279);
+            this.distanceBox.Location = new System.Drawing.Point(326, 328);
             this.distanceBox.Maximum = new decimal(new int[] {
             999,
             0,
@@ -343,7 +343,7 @@
             this.distanceUnitBox.Items.AddRange(new object[] {
             "Feet",
             "Miles"});
-            this.distanceUnitBox.Location = new System.Drawing.Point(372, 279);
+            this.distanceUnitBox.Location = new System.Drawing.Point(372, 328);
             this.distanceUnitBox.Name = "distanceUnitBox";
             this.distanceUnitBox.Size = new System.Drawing.Size(78, 21);
             this.distanceUnitBox.TabIndex = 14;
@@ -358,7 +358,7 @@
             "Concentration",
             "Until Dispelled",
             "Until Dispelled/Triggered"});
-            this.durationTypeBox.Location = new System.Drawing.Point(239, 358);
+            this.durationTypeBox.Location = new System.Drawing.Point(239, 417);
             this.durationTypeBox.Name = "durationTypeBox";
             this.durationTypeBox.Size = new System.Drawing.Size(143, 21);
             this.durationTypeBox.TabIndex = 15;
@@ -376,7 +376,7 @@
             "Weeks",
             "Months",
             "Years"});
-            this.durationUnitBox.Location = new System.Drawing.Point(434, 359);
+            this.durationUnitBox.Location = new System.Drawing.Point(434, 418);
             this.durationUnitBox.Name = "durationUnitBox";
             this.durationUnitBox.Size = new System.Drawing.Size(79, 21);
             this.durationUnitBox.TabIndex = 17;
@@ -384,7 +384,7 @@
             // durationNumBox
             // 
             this.durationNumBox.Enabled = false;
-            this.durationNumBox.Location = new System.Drawing.Point(388, 359);
+            this.durationNumBox.Location = new System.Drawing.Point(388, 418);
             this.durationNumBox.Maximum = new decimal(new int[] {
             999,
             0,
@@ -407,7 +407,7 @@
             // castingTimeLabel
             // 
             this.castingTimeLabel.AutoSize = true;
-            this.castingTimeLabel.Location = new System.Drawing.Point(250, 302);
+            this.castingTimeLabel.Location = new System.Drawing.Point(250, 271);
             this.castingTimeLabel.Name = "castingTimeLabel";
             this.castingTimeLabel.Size = new System.Drawing.Size(68, 13);
             this.castingTimeLabel.TabIndex = 19;
@@ -416,7 +416,7 @@
             // rangeLabel
             // 
             this.rangeLabel.AutoSize = true;
-            this.rangeLabel.Location = new System.Drawing.Point(258, 262);
+            this.rangeLabel.Location = new System.Drawing.Point(258, 311);
             this.rangeLabel.Name = "rangeLabel";
             this.rangeLabel.Size = new System.Drawing.Size(39, 13);
             this.rangeLabel.TabIndex = 20;
@@ -425,7 +425,7 @@
             // durationLabel
             // 
             this.durationLabel.AutoSize = true;
-            this.durationLabel.Location = new System.Drawing.Point(271, 342);
+            this.durationLabel.Location = new System.Drawing.Point(271, 401);
             this.durationLabel.Name = "durationLabel";
             this.durationLabel.Size = new System.Drawing.Size(47, 13);
             this.durationLabel.TabIndex = 21;
@@ -434,7 +434,7 @@
             // spellTypeLabel
             // 
             this.spellTypeLabel.AutoSize = true;
-            this.spellTypeLabel.Location = new System.Drawing.Point(250, 222);
+            this.spellTypeLabel.Location = new System.Drawing.Point(250, 231);
             this.spellTypeLabel.Name = "spellTypeLabel";
             this.spellTypeLabel.Size = new System.Drawing.Size(57, 13);
             this.spellTypeLabel.TabIndex = 22;
@@ -443,7 +443,7 @@
             // componentsLabel
             // 
             this.componentsLabel.AutoSize = true;
-            this.componentsLabel.Location = new System.Drawing.Point(385, 183);
+            this.componentsLabel.Location = new System.Drawing.Point(236, 351);
             this.componentsLabel.Name = "componentsLabel";
             this.componentsLabel.Size = new System.Drawing.Size(66, 13);
             this.componentsLabel.TabIndex = 30;
@@ -453,7 +453,7 @@
             // 
             this.materialCheckBox.AutoSize = true;
             this.materialCheckBox.CheckAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.materialCheckBox.Location = new System.Drawing.Point(436, 199);
+            this.materialCheckBox.Location = new System.Drawing.Point(287, 367);
             this.materialCheckBox.Name = "materialCheckBox";
             this.materialCheckBox.Size = new System.Drawing.Size(20, 31);
             this.materialCheckBox.TabIndex = 29;
@@ -465,7 +465,7 @@
             // 
             this.somaticCheckBox.AutoSize = true;
             this.somaticCheckBox.CheckAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.somaticCheckBox.Location = new System.Drawing.Point(412, 199);
+            this.somaticCheckBox.Location = new System.Drawing.Point(263, 367);
             this.somaticCheckBox.Name = "somaticCheckBox";
             this.somaticCheckBox.Size = new System.Drawing.Size(18, 31);
             this.somaticCheckBox.TabIndex = 28;
@@ -476,7 +476,7 @@
             // 
             this.verbalCheckBox.AutoSize = true;
             this.verbalCheckBox.CheckAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.verbalCheckBox.Location = new System.Drawing.Point(388, 199);
+            this.verbalCheckBox.Location = new System.Drawing.Point(239, 367);
             this.verbalCheckBox.Name = "verbalCheckBox";
             this.verbalCheckBox.Size = new System.Drawing.Size(18, 31);
             this.verbalCheckBox.TabIndex = 27;
@@ -486,24 +486,24 @@
             // materialComponentsBox
             // 
             this.materialComponentsBox.Enabled = false;
-            this.materialComponentsBox.Location = new System.Drawing.Point(462, 199);
+            this.materialComponentsBox.Location = new System.Drawing.Point(313, 367);
             this.materialComponentsBox.Name = "materialComponentsBox";
-            this.materialComponentsBox.Size = new System.Drawing.Size(147, 20);
+            this.materialComponentsBox.Size = new System.Drawing.Size(143, 20);
             this.materialComponentsBox.TabIndex = 31;
             // 
             // descriptionBox
             // 
             this.descriptionBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.descriptionBox.Location = new System.Drawing.Point(239, 398);
+            this.descriptionBox.Location = new System.Drawing.Point(239, 457);
             this.descriptionBox.Name = "descriptionBox";
-            this.descriptionBox.Size = new System.Drawing.Size(370, 96);
+            this.descriptionBox.Size = new System.Drawing.Size(379, 96);
             this.descriptionBox.TabIndex = 32;
             this.descriptionBox.Text = "";
             // 
             // descriptionLabel
             // 
             this.descriptionLabel.AutoSize = true;
-            this.descriptionLabel.Location = new System.Drawing.Point(259, 382);
+            this.descriptionLabel.Location = new System.Drawing.Point(259, 441);
             this.descriptionLabel.Name = "descriptionLabel";
             this.descriptionLabel.Size = new System.Drawing.Size(60, 13);
             this.descriptionLabel.TabIndex = 33;
@@ -511,14 +511,14 @@
             // 
             // commentsBox
             // 
-            this.commentsBox.Location = new System.Drawing.Point(489, 318);
+            this.commentsBox.Location = new System.Drawing.Point(489, 287);
             this.commentsBox.Name = "commentsBox";
             this.commentsBox.Size = new System.Drawing.Size(120, 20);
             this.commentsBox.TabIndex = 34;
             // 
             // addToCollectionButton
             // 
-            this.addToCollectionButton.Location = new System.Drawing.Point(513, 592);
+            this.addToCollectionButton.Location = new System.Drawing.Point(524, 651);
             this.addToCollectionButton.Name = "addToCollectionButton";
             this.addToCollectionButton.Size = new System.Drawing.Size(96, 23);
             this.addToCollectionButton.TabIndex = 35;
@@ -528,7 +528,7 @@
             // 
             // addSpellButton
             // 
-            this.addSpellButton.Location = new System.Drawing.Point(436, 592);
+            this.addSpellButton.Location = new System.Drawing.Point(447, 651);
             this.addSpellButton.Name = "addSpellButton";
             this.addSpellButton.Size = new System.Drawing.Size(71, 23);
             this.addSpellButton.TabIndex = 36;
@@ -539,7 +539,7 @@
             // atHigherLevelsLabel
             // 
             this.atHigherLevelsLabel.AutoSize = true;
-            this.atHigherLevelsLabel.Location = new System.Drawing.Point(250, 497);
+            this.atHigherLevelsLabel.Location = new System.Drawing.Point(250, 556);
             this.atHigherLevelsLabel.Name = "atHigherLevelsLabel";
             this.atHigherLevelsLabel.Size = new System.Drawing.Size(85, 13);
             this.atHigherLevelsLabel.TabIndex = 37;
@@ -548,9 +548,9 @@
             // atHigherLevelsBox
             // 
             this.atHigherLevelsBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.atHigherLevelsBox.Location = new System.Drawing.Point(239, 513);
+            this.atHigherLevelsBox.Location = new System.Drawing.Point(239, 572);
             this.atHigherLevelsBox.Name = "atHigherLevelsBox";
-            this.atHigherLevelsBox.Size = new System.Drawing.Size(370, 73);
+            this.atHigherLevelsBox.Size = new System.Drawing.Size(379, 73);
             this.atHigherLevelsBox.TabIndex = 38;
             this.atHigherLevelsBox.Text = "";
             // 
@@ -566,7 +566,7 @@
             // 
             // previewButton
             // 
-            this.previewButton.Location = new System.Drawing.Point(103, 592);
+            this.previewButton.Location = new System.Drawing.Point(103, 652);
             this.previewButton.Name = "previewButton";
             this.previewButton.Size = new System.Drawing.Size(56, 23);
             this.previewButton.TabIndex = 40;
@@ -605,7 +605,7 @@
             // 
             // clearButton
             // 
-            this.clearButton.Location = new System.Drawing.Point(239, 593);
+            this.clearButton.Location = new System.Drawing.Point(239, 652);
             this.clearButton.Name = "clearButton";
             this.clearButton.Size = new System.Drawing.Size(58, 23);
             this.clearButton.TabIndex = 44;
@@ -616,7 +616,7 @@
             // saveChangesButton
             // 
             this.saveChangesButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.saveChangesButton.Location = new System.Drawing.Point(12, 592);
+            this.saveChangesButton.Location = new System.Drawing.Point(12, 652);
             this.saveChangesButton.Name = "saveChangesButton";
             this.saveChangesButton.Size = new System.Drawing.Size(85, 23);
             this.saveChangesButton.TabIndex = 45;
@@ -628,7 +628,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(621, 628);
+            this.ClientSize = new System.Drawing.Size(630, 682);
             this.Controls.Add(this.saveChangesButton);
             this.Controls.Add(this.clearButton);
             this.Controls.Add(this.addedSpellsLabel);

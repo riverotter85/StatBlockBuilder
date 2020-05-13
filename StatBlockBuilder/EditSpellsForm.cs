@@ -84,7 +84,14 @@ namespace StatBlockBuilder
                 castingTimeNumEnabled = f.castingTimeNumBox.Enabled;
                 castingTimeUnit = f.castingTimeUnitBox.Text;
                 castingTimeUnitEnabled = f.castingTimeUnitBox.Enabled;
-                castingTimeComments = f.commentsBox.Text;
+                if (f.commentsBox.Text == "Comments (optional)")
+                {
+                    castingTimeComments = "";
+                }
+                else
+                {
+                    castingTimeComments = f.commentsBox.Text;
+                }
 
                 // Duration
                 durationType = f.durationTypeBox.Text;
@@ -318,6 +325,36 @@ namespace StatBlockBuilder
                 spellNameBox.ForeColor = Color.Black;
             }
 
+            // Casting Time
+            castingTimeBox.Text = spell.castingTimeType;
+            castingTimeNumBox.Value = spell.castingTimeNum;
+            castingTimeNumBox.Enabled = spell.castingTimeNumEnabled;
+            castingTimeUnitBox.Text = spell.castingTimeUnit;
+            castingTimeUnitBox.Enabled = spell.castingTimeUnitEnabled;
+
+            // Comments Text Box
+            if (spell.castingTimeComments == "")
+            {
+                commentsBox.Text = "Comments (optional)";
+                commentsBox.ForeColor = Color.Gray;
+            }
+            else
+            {
+                commentsBox.Text = spell.castingTimeComments;
+                commentsBox.ForeColor = Color.Black;
+            }
+
+            spellLevelBox.Text = spell.level;
+            spellTypeBox.Text = spell.type;
+            ritualCheckBox.Checked = spell.ritual;
+
+            // Range
+            rangeBox.Text = spell.rangeType;
+            distanceBox.Value = spell.distance;
+            distanceBox.Enabled = spell.distanceEnabled;
+            distanceUnitBox.Text = spell.distanceUnit;
+            distanceUnitBox.Enabled = spell.distanceUnitEnabled;
+
             // Components Checkboxes
             somaticCheckBox.Checked = spell.somaticComponents;
             verbalCheckBox.Checked = spell.verbalComponents;
@@ -334,35 +371,6 @@ namespace StatBlockBuilder
                 materialComponentsBox.ForeColor = Color.Black;
             }
             materialComponentsBox.Enabled = spell.componentsDescriptionEnabled;
-
-            // Comments Text Box
-            commentsBox.Text = spell.castingTimeComments;
-            if (commentsBox.Text == "Comments (optional)")
-            {
-                commentsBox.ForeColor = Color.Gray;
-            }
-            else
-            {
-                commentsBox.ForeColor = Color.Black;
-            }
-
-            spellLevelBox.Text = spell.level;
-            spellTypeBox.Text = spell.type;
-            ritualCheckBox.Checked = spell.ritual;
-
-            // Range
-            rangeBox.Text = spell.rangeType;
-            distanceBox.Value = spell.distance;
-            distanceBox.Enabled = spell.distanceEnabled;
-            distanceUnitBox.Text = spell.distanceUnit;
-            distanceUnitBox.Enabled = spell.distanceUnitEnabled;
-
-            // Casting Time
-            castingTimeBox.Text = spell.castingTimeType;
-            castingTimeNumBox.Value = spell.castingTimeNum;
-            castingTimeNumBox.Enabled = spell.castingTimeNumEnabled;
-            castingTimeUnitBox.Text = spell.castingTimeUnit;
-            castingTimeUnitBox.Enabled = spell.castingTimeUnitEnabled;
 
             // Duration
             durationTypeBox.Text = spell.durationType;
