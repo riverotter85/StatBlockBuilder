@@ -15,6 +15,7 @@ namespace StatBlockBuilder
     public partial class StatBlockForm : Form
     {
         private EditSpellsForm esf;
+        private EditTraitsForm etf;
 
         public static List<EditSpellsForm.Spell> addedSpellsList = new List<EditSpellsForm.Spell>();
 
@@ -33,6 +34,8 @@ namespace StatBlockBuilder
 
             esf = new EditSpellsForm();
             esf.updateStatBlockForm += updateSpellsListView;
+
+            etf = new EditTraitsForm();
 
             // Name Text Box
             nameBox.Text = "Creature Name";
@@ -905,6 +908,15 @@ namespace StatBlockBuilder
                 esf = new EditSpellsForm();
             }
             esf.ShowDialog();
+        }
+
+        private void editTraitsButton_Click(object sender, EventArgs e)
+        {
+            if (etf.IsDisposed == true)
+            {
+                etf = new EditTraitsForm();
+            }
+            etf.ShowDialog();
         }
     }
 }

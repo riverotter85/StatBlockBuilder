@@ -120,6 +120,7 @@
             this.spellSaveDcLabel = new System.Windows.Forms.Label();
             this.spellAttackLabel = new System.Windows.Forms.Label();
             this.spellsListView = new System.Windows.Forms.ListView();
+            this.spellNameHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.editSpellsButton = new System.Windows.Forms.Button();
             this.raceTypeBox = new System.Windows.Forms.TextBox();
             this.hpCalcBox = new System.Windows.Forms.ComboBox();
@@ -141,7 +142,6 @@
             this.reactionsListView = new System.Windows.Forms.ListView();
             this.reactionNameHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.saveChangesButton = new System.Windows.Forms.Button();
-            this.spellNameHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             ((System.ComponentModel.ISupportInitialize)(this.normalSpeedBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.burrowSpeedBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.climbSpeedBox)).BeginInit();
@@ -1429,6 +1429,11 @@
             this.spellsListView.UseCompatibleStateImageBehavior = false;
             this.spellsListView.View = System.Windows.Forms.View.Details;
             // 
+            // spellNameHeader
+            // 
+            this.spellNameHeader.Text = "Spell Name";
+            this.spellNameHeader.Width = 106;
+            // 
             // editSpellsButton
             // 
             this.editSpellsButton.Enabled = false;
@@ -1539,6 +1544,7 @@
             this.editTraitsButton.TabIndex = 127;
             this.editTraitsButton.Text = "Edit Traits";
             this.editTraitsButton.UseVisualStyleBackColor = true;
+            this.editTraitsButton.Click += new System.EventHandler(this.editTraitsButton_Click);
             // 
             // editActionsButton
             // 
@@ -1619,11 +1625,6 @@
             this.saveChangesButton.TabIndex = 133;
             this.saveChangesButton.Text = "Save Changes";
             this.saveChangesButton.UseVisualStyleBackColor = true;
-            // 
-            // spellNameHeader
-            // 
-            this.spellNameHeader.Text = "Spell Name";
-            this.spellNameHeader.Width = 106;
             // 
             // StatBlockForm
             // 

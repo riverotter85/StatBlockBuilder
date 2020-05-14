@@ -143,7 +143,7 @@ namespace StatBlockBuilder
                 {
                     range = distance + " " + distanceUnit;
                 }
-                else if (rangeType == "Self")
+                else if (rangeType == "Self" && distance != 0)
                 {
                     range = "Self (" + distance + " " + distanceUnit + ")";
                 }

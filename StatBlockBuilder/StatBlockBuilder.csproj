@@ -55,6 +55,12 @@
     <Compile Include="EditSpellsForm.Designer.cs">
       <DependentUpon>EditSpellsForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="EditTraitsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditTraitsForm.Designer.cs">
+      <DependentUpon>EditTraitsForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="StatBlockForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -65,6 +71,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="EditSpellsForm.resx">
       <DependentUpon>EditSpellsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditTraitsForm.resx">
+      <DependentUpon>EditTraitsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="StatBlockForm.resx">
       <DependentUpon>StatBlockForm.cs</DependentUpon>
