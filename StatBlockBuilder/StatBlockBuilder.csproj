@@ -61,6 +61,7 @@
     <Compile Include="EditTraitsForm.Designer.cs">
       <DependentUpon>EditTraitsForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Spell.cs" />
     <Compile Include="StatBlockForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -69,6 +70,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Trait.cs" />
     <EmbeddedResource Include="EditSpellsForm.resx">
       <DependentUpon>EditSpellsForm.cs</DependentUpon>
     </EmbeddedResource>

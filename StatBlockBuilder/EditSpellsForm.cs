@@ -15,189 +15,6 @@ namespace StatBlockBuilder
 {
     public partial class EditSpellsForm : Form
     {
-        public class Spell
-        {
-            public string name;
-
-            public bool somaticComponents;
-            public bool verbalComponents;
-            public bool materialComponents;
-            public string componentsDescription;
-            public bool componentsDescriptionEnabled;
-
-            public string level;
-            public string type;
-            public bool ritual;
-
-            public string rangeType;
-            public int distance;
-            public bool distanceEnabled;
-            public string distanceUnit;
-            public bool distanceUnitEnabled;
-
-            public string castingTimeType;
-            public int castingTimeNum;
-            public bool castingTimeNumEnabled;
-            public string castingTimeUnit;
-            public bool castingTimeUnitEnabled;
-            public string castingTimeComments;
-
-            public string durationType;
-            public int durationTime;
-            public bool durationTimeEnabled;
-            public string durationUnit;
-            public bool durationUnitEnabled;
-
-            public string description;
-            public string atHigherLevels;
-
-            public Spell()
-            {
-                // default constructor
-            }
-
-            public Spell(EditSpellsForm f)
-            {
-                name = f.spellNameBox.Text;
-
-                // Components
-                somaticComponents = f.somaticCheckBox.Checked;
-                verbalComponents = f.verbalCheckBox.Checked;
-                materialComponents = f.materialCheckBox.Checked;
-                componentsDescription = f.materialComponentsBox.Text;
-                componentsDescriptionEnabled = f.materialComponentsBox.Enabled;
-
-                level = f.spellLevelBox.Text;
-                type = f.spellTypeBox.Text;
-                ritual = f.ritualCheckBox.Checked;
-
-                // Range
-                rangeType = f.rangeBox.Text;
-                distance = (int)f.distanceBox.Value;
-                distanceEnabled = f.distanceBox.Enabled;
-                distanceUnit = f.distanceUnitBox.Text;
-                distanceUnitEnabled = f.distanceUnitBox.Enabled;
-
-                // Casting Time
-                castingTimeType = f.castingTimeBox.Text;
-                castingTimeNum = (int)f.castingTimeNumBox.Value;
-                castingTimeNumEnabled = f.castingTimeNumBox.Enabled;
-                castingTimeUnit = f.castingTimeUnitBox.Text;
-                castingTimeUnitEnabled = f.castingTimeUnitBox.Enabled;
-                if (f.commentsBox.Text == "Comments (optional)")
-                {
-                    castingTimeComments = "";
-                }
-                else
-                {
-                    castingTimeComments = f.commentsBox.Text;
-                }
-
-                // Duration
-                durationType = f.durationTypeBox.Text;
-                durationTime = (int)f.durationNumBox.Value;
-                durationTimeEnabled = f.durationNumBox.Enabled;
-                durationUnit = f.durationUnitBox.Text;
-                durationUnitEnabled = f.durationUnitBox.Enabled;
-
-                description = f.descriptionBox.Text;
-                atHigherLevels = f.atHigherLevelsBox.Text;
-            }
-
-            // Convert components to string value
-            public string getComponents()
-            {
-                bool first = true;
-                string components = "";
-                if (somaticComponents == true)
-                {
-                    components += "S";
-                    first = false;
-                }
-                if (verbalComponents == true)
-                {
-                    if (first == false)
-                    {
-                        components += ", ";
-                    }
-                    components += "V";
-                    first = false;
-                }
-                if (materialComponents == true)
-                {
-                    if (first == false)
-                    {
-                        components += ", ";
-                    }
-                    components += "M";
-                }
-
-                return components;
-            }
-
-            // Convert range to string value
-            public string getRange()
-            {
-                string range = "";
-                if (rangeType == "Range")
-                {
-                    range = distance + " " + distanceUnit;
-                }
-                else if (rangeType == "Self" && distance != 0)
-                {
-                    range = "Self (" + distance + " " + distanceUnit + ")";
-                }
-                else
-                {
-                    range = rangeType;
-                }
-
-                return range;
-            }
-
-            // Convert casting time to string value
-            public string getCastingTime()
-            {
-                string castingTime = "";
-                if (castingTimeType == "Time")
-                {
-                    castingTime = castingTimeNum + " " + castingTimeUnit;
-                }
-                else
-                {
-                    castingTime = castingTimeType;
-                }
-
-                // Add any casting time comments specified by the user
-                if (castingTimeComments != "Comments (optional)")
-                {
-                    castingTime += ", " + castingTimeComments;
-                }
-
-                return castingTime;
-            }
-
-            // Convert duration to string value
-            public string getDuration()
-            {
-                string duration = "";
-                if (durationType == "Time")
-                {
-                    duration = durationTime + " " + durationUnit;
-                }
-                else if (durationType == "Concentration")
-                {
-                    duration = "Concentration, up to " + durationTime + " " + durationUnit;
-                }
-                else
-                {
-                    duration = durationType;
-                }
-
-                return duration;
-            }
-        }
-
         public event Action updateStatBlockForm;
 
         // Spells for both listviews are stored here
@@ -220,13 +37,13 @@ namespace StatBlockBuilder
 
                 foreach (Spell spell in spellCollectionList)
                 {
-                    ListViewItem item = new ListViewItem(spell.name);
-                    item.SubItems.Add(spell.level);
+                    ListViewItem item = new ListViewItem(spell.Name);
+                    item.SubItems.Add(spell.Level);
                     item.SubItems.Add(spell.getCastingTime());
                     item.SubItems.Add(spell.getRange());
                     item.SubItems.Add(spell.getComponents());
                     item.SubItems.Add(spell.getDuration());
-                    item.SubItems.Add(spell.description);
+                    item.SubItems.Add(spell.Description);
                     spellsListView.Items.Add(item);
                 }
             }
@@ -315,7 +132,7 @@ namespace StatBlockBuilder
         private void fillFormWithSpell(Spell spell)
         {
             // Spell Name Text Box
-            spellNameBox.Text = spell.name;
+            spellNameBox.Text = spell.Name;
             if (spellNameBox.Text == "Spell Name")
             {
                 spellNameBox.ForeColor = Color.Gray;
@@ -326,42 +143,42 @@ namespace StatBlockBuilder
             }
 
             // Casting Time
-            castingTimeBox.Text = spell.castingTimeType;
-            castingTimeNumBox.Value = spell.castingTimeNum;
-            castingTimeNumBox.Enabled = spell.castingTimeNumEnabled;
-            castingTimeUnitBox.Text = spell.castingTimeUnit;
-            castingTimeUnitBox.Enabled = spell.castingTimeUnitEnabled;
+            castingTimeBox.Text = spell.CastingTimeType;
+            castingTimeNumBox.Value = spell.CastingTimeNum;
+            castingTimeNumBox.Enabled = spell.CastingTimeNumEnabled;
+            castingTimeUnitBox.Text = spell.CastingTimeUnit;
+            castingTimeUnitBox.Enabled = spell.CastingTimeUnitEnabled;
 
             // Comments Text Box
-            if (spell.castingTimeComments == "")
+            if (spell.CastingTimeComments == "")
             {
                 commentsBox.Text = "Comments (optional)";
                 commentsBox.ForeColor = Color.Gray;
             }
             else
             {
-                commentsBox.Text = spell.castingTimeComments;
+                commentsBox.Text = spell.CastingTimeComments;
                 commentsBox.ForeColor = Color.Black;
             }
 
-            spellLevelBox.Text = spell.level;
-            spellTypeBox.Text = spell.type;
-            ritualCheckBox.Checked = spell.ritual;
+            spellLevelBox.Text = spell.Level;
+            spellTypeBox.Text = spell.Type;
+            ritualCheckBox.Checked = spell.Ritual;
 
             // Range
-            rangeBox.Text = spell.rangeType;
-            distanceBox.Value = spell.distance;
-            distanceBox.Enabled = spell.distanceEnabled;
-            distanceUnitBox.Text = spell.distanceUnit;
-            distanceUnitBox.Enabled = spell.distanceUnitEnabled;
+            rangeBox.Text = spell.RangeType;
+            distanceBox.Value = spell.Distance;
+            distanceBox.Enabled = spell.DistanceEnabled;
+            distanceUnitBox.Text = spell.DistanceUnit;
+            distanceUnitBox.Enabled = spell.DistanceUnitEnabled;
 
             // Components Checkboxes
-            somaticCheckBox.Checked = spell.somaticComponents;
-            verbalCheckBox.Checked = spell.verbalComponents;
-            materialCheckBox.Checked = spell.materialComponents;
+            somaticCheckBox.Checked = spell.SomaticComponents;
+            verbalCheckBox.Checked = spell.VerbalComponents;
+            materialCheckBox.Checked = spell.MaterialComponents;
 
             // Material Components Text Box
-            materialComponentsBox.Text = spell.componentsDescription;
+            materialComponentsBox.Text = spell.ComponentsDescription;
             if (materialComponentsBox.Text == "Materials")
             {
                 materialComponentsBox.ForeColor = Color.Gray;
@@ -370,17 +187,17 @@ namespace StatBlockBuilder
             {
                 materialComponentsBox.ForeColor = Color.Black;
             }
-            materialComponentsBox.Enabled = spell.componentsDescriptionEnabled;
+            materialComponentsBox.Enabled = spell.ComponentsDescriptionEnabled;
 
             // Duration
-            durationTypeBox.Text = spell.durationType;
-            durationNumBox.Value = spell.durationTime;
-            durationNumBox.Enabled = spell.durationTimeEnabled;
-            durationUnitBox.Text = spell.durationUnit;
-            durationUnitBox.Enabled = spell.durationUnitEnabled;
+            durationTypeBox.Text = spell.DurationType;
+            durationNumBox.Value = spell.DurationTime;
+            durationNumBox.Enabled = spell.DurationTimeEnabled;
+            durationUnitBox.Text = spell.DurationUnit;
+            durationUnitBox.Enabled = spell.DurationUnitEnabled;
 
-            descriptionBox.Text = spell.description;
-            atHigherLevelsBox.Text = spell.atHigherLevels;
+            descriptionBox.Text = spell.Description;
+            atHigherLevelsBox.Text = spell.AtHigherLevels;
         }
 
         private void spellNameBox_Leave(object sender, EventArgs e)
@@ -508,7 +325,19 @@ namespace StatBlockBuilder
                 return null;
             }
 
-            return new Spell(this);
+            string castingTimeComments = "";
+            if (commentsBox.Text != "Comments (optional)")
+            {
+                castingTimeComments = commentsBox.Text;
+            }
+
+            return new Spell(spellNameBox.Text, somaticCheckBox.Checked, verbalCheckBox.Checked, materialCheckBox.Checked,
+                             materialComponentsBox.Text, materialComponentsBox.Enabled, spellLevelBox.Text, spellTypeBox.Text,
+                             ritualCheckBox.Checked, rangeBox.Text, (int)distanceBox.Value, distanceBox.Enabled, 
+                             distanceUnitBox.Text, distanceUnitBox.Enabled, castingTimeBox.Text, (int)castingTimeNumBox.Value,
+                             castingTimeNumBox.Enabled, castingTimeUnitBox.Text, castingTimeUnitBox.Enabled, castingTimeComments,
+                             durationTypeBox.Text, (int)durationNumBox.Value, durationNumBox.Enabled, durationUnitBox.Text,
+                             durationUnitBox.Enabled, descriptionBox.Text, atHigherLevelsBox.Text);
         }
 
         private bool removeDuplicates(Spell matchSpell, List<Spell> spellsList, ListView spellsListView, bool nameFirst)
@@ -517,11 +346,11 @@ namespace StatBlockBuilder
             // NOTE: May want to restructure this!
             foreach (Spell spell in spellsList)
             {
-                if (matchSpell.name == spell.name)
+                if (matchSpell.Name == spell.Name)
                 {
                     // Duplicate found! Prompt user if they want to overwrite.
                     // Quit if they choose not to
-                    DialogResult dr = MessageBox.Show("Are you sure you want to overwrite \"" + matchSpell.name + "\"?",
+                    DialogResult dr = MessageBox.Show("Are you sure you want to overwrite \"" + matchSpell.Name + "\"?",
                         "Overwrite Spell", MessageBoxButtons.YesNo);
                     if (dr == DialogResult.No)
                     {
@@ -534,14 +363,14 @@ namespace StatBlockBuilder
                     {
                         if (nameFirst == true)
                         {
-                            if (matchSpell.name == lvi.Text)
+                            if (matchSpell.Name == lvi.Text)
                             {
                                 spellsListView.Items.Remove(lvi);
                             }
                         }
                         else
                         {
-                            if (matchSpell.name == lvi.SubItems[1].Text)
+                            if (matchSpell.Name == lvi.SubItems[1].Text)
                             {
                                 spellsListView.Items.Remove(lvi);
                             }
@@ -558,7 +387,7 @@ namespace StatBlockBuilder
         private int findSpellIndex(Spell spell, List<Spell> spellsList)
         {
             int i = 0;
-            while (i < spellsList.Count && spellsList[i].name.CompareTo(spell.name) < 0)
+            while (i < spellsList.Count && spellsList[i].Name.CompareTo(spell.Name) < 0)
             {
                 i++;
             }
@@ -588,8 +417,8 @@ namespace StatBlockBuilder
             addedSpellsList.Insert(index, spell);
 
             // And then to listview
-            ListViewItem item = new ListViewItem(spell.level);
-            item.SubItems.Add(spell.name);
+            ListViewItem item = new ListViewItem(spell.Level);
+            item.SubItems.Add(spell.Name);
             addedSpellsListView.Items.Insert(index, item);
         }
 
@@ -615,13 +444,13 @@ namespace StatBlockBuilder
             spellCollectionList.Insert(index, spell);
 
             // And then to listview
-            ListViewItem item = new ListViewItem(spell.name);
-            item.SubItems.Add(spell.level);
+            ListViewItem item = new ListViewItem(spell.Name);
+            item.SubItems.Add(spell.Level);
             item.SubItems.Add(spell.getCastingTime());
             item.SubItems.Add(spell.getRange());
             item.SubItems.Add(spell.getComponents());
             item.SubItems.Add(spell.getDuration());
-            item.SubItems.Add(spell.description);
+            item.SubItems.Add(spell.Description);
             spellsListView.Items.Insert(index, item);
         }
 
@@ -637,7 +466,7 @@ namespace StatBlockBuilder
             Spell collectionSpell = null;
             foreach (Spell spell in spellCollectionList)
             {
-                if (spell.name == spellCollectionItem.Text)
+                if (spell.Name == spellCollectionItem.Text)
                 {
                     collectionSpell = spell;
                     break;
@@ -656,8 +485,8 @@ namespace StatBlockBuilder
             addedSpellsList.Insert(index, collectionSpell);
 
             // And then listview
-            ListViewItem item = new ListViewItem(collectionSpell.level);
-            item.SubItems.Add(collectionSpell.name);
+            ListViewItem item = new ListViewItem(collectionSpell.Level);
+            item.SubItems.Add(collectionSpell.Name);
             addedSpellsListView.Items.Insert(index, item);
         }
 
@@ -673,7 +502,7 @@ namespace StatBlockBuilder
             Spell collectionSpell = null;
             foreach (Spell spell in spellCollectionList)
             {
-                if (spell.name == spellCollectionItem.Text)
+                if (spell.Name == spellCollectionItem.Text)
                 {
                     collectionSpell = spell;
                     break;
@@ -694,9 +523,9 @@ namespace StatBlockBuilder
             ListViewItem spellCollectionItem = spellsListView.SelectedItems[0];
             foreach (Spell spell in spellCollectionList)
             {
-                if (spell.name == spellCollectionItem.Text)
+                if (spell.Name == spellCollectionItem.Text)
                 {
-                    DialogResult dr = MessageBox.Show("Are you sure you want to remove the spell \"" + spell.name +
+                    DialogResult dr = MessageBox.Show("Are you sure you want to remove the spell \"" + spell.Name +
                         "\" from the collection? This action cannot be undone.", "Remove Spell from Collection", MessageBoxButtons.YesNo);
                     if (dr == DialogResult.No)
                     {
@@ -723,7 +552,7 @@ namespace StatBlockBuilder
             Spell addedSpell = null;
             foreach (Spell spell in addedSpellsList)
             {
-                if (spell.name == addedSpellItem.SubItems[1].Text)
+                if (spell.Name == addedSpellItem.SubItems[1].Text)
                 {
                     addedSpell = spell;
                     break;
@@ -744,7 +573,7 @@ namespace StatBlockBuilder
             ListViewItem addedSpellItem = addedSpellsListView.SelectedItems[0];
             foreach (Spell spell in addedSpellsList)
             {
-                if (spell.name == addedSpellItem.SubItems[1].Text)
+                if (spell.Name == addedSpellItem.SubItems[1].Text)
                 {
                     addedSpellsList.Remove(spell);
                     break;
@@ -761,7 +590,6 @@ namespace StatBlockBuilder
 
         private void saveChangesButton_Click(object sender, EventArgs e)
         {
-            //File.Create("spells.json"); // e_e
             using (StreamWriter w = new StreamWriter("spells.json"))
             {
                 string json = JsonConvert.SerializeObject(spellCollectionList, Formatting.Indented);

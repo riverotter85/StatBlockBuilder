@@ -17,7 +17,8 @@ namespace StatBlockBuilder
         private EditSpellsForm esf;
         private EditTraitsForm etf;
 
-        public static List<EditSpellsForm.Spell> addedSpellsList = new List<EditSpellsForm.Spell>();
+        public static List<Spell> addedSpellsList = new List<Spell>();
+        public static List<Trait> addedTraitsList = new List<Trait>();
 
         // Store settings when switching between toughness mod menus
         private bool[][] toughnessMods = new bool[][]
@@ -36,6 +37,7 @@ namespace StatBlockBuilder
             esf.updateStatBlockForm += updateSpellsListView;
 
             etf = new EditTraitsForm();
+            etf.updateStatBlockForm += updateTraitsListView;
 
             // Name Text Box
             nameBox.Text = "Creature Name";
@@ -75,10 +77,20 @@ namespace StatBlockBuilder
         private void updateSpellsListView()
         {
             spellsListView.Items.Clear();
-            foreach (EditSpellsForm.Spell spell in addedSpellsList)
+            foreach (Spell spell in addedSpellsList)
             {
-                ListViewItem item = new ListViewItem(spell.name);
+                ListViewItem item = new ListViewItem(spell.Name);
                 spellsListView.Items.Add(item);
+            }
+        }
+
+        private void updateTraitsListView()
+        {
+            traitsListView.Items.Clear();
+            foreach (Trait trait in addedTraitsList)
+            {
+                ListViewItem item = new ListViewItem(trait.Name);
+                traitsListView.Items.Add(item);
             }
         }
 
